@@ -1,0 +1,101 @@
+{
+  "mpn": "CR-110-R2.1",
+  "manufacturer": "Cremat Inc",
+  "description": "Single-channel charge-sensitive preamplifier module, 1.4 V/pC (benchmark reference for premium CSP performance)",
+  "source_url": "https://www.cremat.com/CR-110-R2.1.pdf",
+  "file": "CR-110-R2.1.pdf",
+  "doc_revision": "July 2020 (application guide, 1 page)",
+  "retrieved": "2026-10-12",
+  "category": "csp_module",
+  "package": [
+    "8-pin SIP, 0.100 inch pitch"
+  ],
+  "pins": {
+    "note": "see drawing in PDF"
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "supply",
+      "typ": "+-6 V minimum for good operation",
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "ENC",
+      "typ": 200,
+      "unit": "e rms",
+      "cond": "input unconnected, Gaussian shaping time constant 1 us (the 'u' is missing in the extracted text)",
+      "page": 1
+    },
+    {
+      "param": "ENC_slope",
+      "typ": 3.8,
+      "unit": "e rms/pF",
+      "page": 1
+    },
+    {
+      "param": "gain",
+      "typ": 1.4,
+      "unit": "V/pC",
+      "page": 1
+    },
+    {
+      "param": "rise_time",
+      "typ": 3,
+      "unit": "ns",
+      "cond": "zero added capacitance",
+      "page": 1
+    },
+    {
+      "param": "rise_time_vs_Cd",
+      "value": "tr = 0.17*Cd + 3 ns, Cd in pF",
+      "page": 1
+    },
+    {
+      "param": "decay_time_constant",
+      "typ": 140,
+      "unit": "us",
+      "cond": "Rf 100 Mohm x Cf 1.4 pF",
+      "page": 1
+    },
+    {
+      "param": "max_charge",
+      "typ": 2.1,
+      "unit": "pC",
+      "page": 1
+    },
+    {
+      "param": "output_impedance",
+      "typ": 50,
+      "unit": "ohm",
+      "page": 1
+    },
+    {
+      "param": "power",
+      "typ": 85,
+      "unit": "mW",
+      "note": "value read off the extracted table; VERIFY",
+      "cond": "Vs=6 V, no load",
+      "page": 1
+    }
+  ],
+  "application_notes": [
+    "Direct-coupled or AC-coupled; use AC coupling if detector current exceeds 1 nA (offset would saturate the output).",
+    "Typical bias circuit: 200 Mohm bias resistor, 10 Mohm, 0.01 uF decoupling (see figure on the PDF)."
+  ],
+  "spice_model": {
+    "available": true,
+    "note": "LTspice model on cremat.com (not downloaded)"
+  },
+  "gotchas": [
+    "With a detector attached the noise adds detector capacitance, leakage and dielectric losses."
+  ],
+  "not_extracted": [
+    "figures",
+    "power dissipation curve"
+  ],
+  "sha256": "92ff0270c4a86609058bb1c918c2fd0df8d221327a91e580b8a80b3ba45e616f"
+}

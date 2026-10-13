@@ -1,0 +1,82 @@
+{
+  "mpn": "OPA657",
+  "manufacturer": "Texas Instruments",
+  "description": "1.6 GHz gain-bandwidth FET-input op amp (stable for gains of about 7 and above)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/opa657.pdf",
+  "file": "OPA657.pdf",
+  "doc_revision": "SBOS197F, 2015-08",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOIC-8 (D)",
+    "SOT-23-5 (DBV)"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "NC",
+      "5": "NC",
+      "8": "NC",
+      "2": "-IN",
+      "3": "+IN",
+      "note": "others not extracted; VERIFY"
+    }
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "specified_operating_voltage",
+      "typ": "+-5",
+      "unit": "V",
+      "page": 6
+    }
+  ],
+  "electrical": [
+    {
+      "param": "GBW",
+      "typ": 1600,
+      "unit": "MHz",
+      "cond": "G > +40 V/V",
+      "page": 5
+    },
+    {
+      "param": "en_density",
+      "typ": 4.8,
+      "unit": "nV/rtHz",
+      "cond": "f > 100 kHz",
+      "page": 5
+    },
+    {
+      "param": "in_density",
+      "typ": 1.3,
+      "unit": "fA/rtHz",
+      "cond": "f > 100 kHz",
+      "page": 5
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 2,
+      "max": 20,
+      "unit": "pA",
+      "note": "read from the extracted table; VERIFY",
+      "cond": "25 C",
+      "page": 5
+    }
+  ],
+  "application_notes": [
+    "Minimum stable gain is about 7 (AC characterisation uses G = +7 to +20). Check the minimum stable gain statement before use. A CSA noise gain of Cin/Cf of about 35 or more at high frequency satisfies this, but check the low-frequency noise gain."
+  ],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Input capacitance not extracted."
+  ],
+  "not_extracted": [
+    "input capacitance",
+    "pin 4/6/7 mapping",
+    "phase margin",
+    "spice model"
+  ],
+  "sha256": "8d7a3a398f558fe95cdbe1333a39b0ebf19223d4ab8a1ce6579273687b19e54f"
+}

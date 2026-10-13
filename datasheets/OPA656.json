@@ -1,0 +1,112 @@
+{
+  "mpn": "OPA656",
+  "manufacturer": "Texas Instruments",
+  "description": "550 MHz unity-gain stable FET-input op amp",
+  "source_url": "https://www.ti.com/lit/ds/symlink/opa656.pdf",
+  "file": "OPA656.pdf",
+  "doc_revision": "SBOS196I, 2024-02",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOIC-8 (D)",
+    "SOT-23-5 (DBV)"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "NC",
+      "2": "-IN",
+      "3": "+IN",
+      "5": "NC",
+      "8": "NC",
+      "note": "pins 4,6,7 not extracted (expected V-, OUT, V+); VERIFY"
+    }
+  },
+  "abs_max": [
+    {
+      "param": "supply_voltage_total_bipolar",
+      "max": 13,
+      "unit": "V",
+      "note": "+-6.5 V",
+      "page": 4
+    }
+  ],
+  "recommended": [
+    {
+      "param": "total_supply_voltage",
+      "min": 8,
+      "nom": 10,
+      "max": 12,
+      "unit": "V",
+      "page": 4
+    },
+    {
+      "param": "specified_supply",
+      "typ": "+-5",
+      "unit": "V",
+      "page": 5
+    }
+  ],
+  "electrical": [
+    {
+      "param": "GBW",
+      "typ": 230,
+      "unit": "MHz",
+      "cond": "G >= 10 V/V",
+      "page": 5
+    },
+    {
+      "param": "en_density",
+      "typ": 6,
+      "unit": "nV/rtHz",
+      "cond": "f > 100 kHz",
+      "page": 5
+    },
+    {
+      "param": "in_density",
+      "typ": 5,
+      "unit": "fA/rtHz",
+      "cond": "f = 100 kHz",
+      "page": 5
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 2,
+      "max": 20,
+      "unit": "pA",
+      "cond": "VCM = 0 V, 25 C",
+      "page": 5
+    },
+    {
+      "param": "input_impedance_differential",
+      "value": "1e10 || 2.6 pF",
+      "page": 5
+    },
+    {
+      "param": "input_impedance_common_mode",
+      "value": "1e12 || 0.4 pF",
+      "page": 5
+    },
+    {
+      "param": "slew_rate",
+      "typ": 400,
+      "unit": "V/us",
+      "cond": "1 V step",
+      "page": 5
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Needs at least +-4 V (8 V total) supply: marginal or unusable from a +-4.5 V rail from LM27762 off 5 V; use +-5 V.",
+    "Same SOIC-8 NC pins (1,5,8) as OPA140, so it is footprint-compatible with the standard 8-pin single op-amp."
+  ],
+  "not_extracted": [
+    "voltage noise plot",
+    "phase margin vs capacitive load",
+    "spice model"
+  ],
+  "sha256": "af119b7742b2678dd959910bebe695723fcb822b7d6ee33b5d8a607b8970d9f5"
+}

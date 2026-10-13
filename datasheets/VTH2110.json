@@ -1,0 +1,147 @@
+{
+  "mpn": "VTH2110",
+  "manufacturer": "Excelitas Technologies",
+  "description": "5 x 5 mm low-capacitance silicon photodiode chip for alpha-particle detection (radon)",
+  "source_url": "https://www.excelitas.com/product/vth2110-silicon-photodiode-chip-form (page blocks scripted download, HTTP 403; PDF copy obtained from the JLCPCB part page for C20278360)",
+  "file": "VTH2110.pdf",
+  "doc_revision": "VTH21xx series Rev 2022.06 (page footer says 'Page x of 6' but PDF has 5 pages)",
+  "retrieved": "2026-10-12",
+  "category": "photodiode",
+  "package": [
+    "bare chip, 5.67 x 5.67 x 0.30 mm"
+  ],
+  "pins": {
+    "note": "No anode/cathode marking in the datasheet. Drawing (p2, Fig 1) shows active area 5.000 mm square with a bond pad (0.4 mm wide) on the top face at the bottom edge. Chip is die-attached with conductive epoxy (back contact)."
+  },
+  "abs_max": [
+    {
+      "param": "operating_temperature",
+      "min": -40,
+      "max": 100,
+      "unit": "C",
+      "page": 2
+    },
+    {
+      "param": "storage_temperature",
+      "min": -40,
+      "max": 100,
+      "unit": "C",
+      "page": 2
+    },
+    {
+      "param": "humidity_non_condensing",
+      "max": 60,
+      "unit": "%",
+      "page": 2
+    },
+    {
+      "param": "breakdown_voltage",
+      "min": 100,
+      "unit": "V",
+      "cond": "100 uA",
+      "page": 1
+    }
+  ],
+  "recommended": [],
+  "electrical": [
+    {
+      "param": "junction_capacitance",
+      "max": 30,
+      "unit": "pF",
+      "cond": "20 V, 25 C",
+      "page": 1
+    },
+    {
+      "param": "junction_capacitance_typical_curve",
+      "typ_points": {
+        "20 V": "~32",
+        "50 V": "~21",
+        "100 V": "~16",
+        "200 V": "~12"
+      },
+      "unit": "pF",
+      "cond": "Fig 3, read off the plot (approximate)",
+      "page": 3
+    },
+    {
+      "param": "dark_current",
+      "max": 2,
+      "unit": "nA",
+      "cond": "20 V",
+      "page": 1
+    },
+    {
+      "param": "dark_current",
+      "max": 5,
+      "unit": "nA",
+      "cond": "40 V",
+      "page": 1
+    },
+    {
+      "param": "dark_current_typical_curve",
+      "typ_points": {
+        "20 V": "~0.15",
+        "100 V": "~0.2",
+        "200 V": "~0.3"
+      },
+      "unit": "nA",
+      "cond": "Fig 4, read off the plot (approximate)",
+      "page": 3
+    },
+    {
+      "param": "depletion_layer_thickness",
+      "min": 0.09,
+      "unit": "mm",
+      "cond": "20 V",
+      "page": 1
+    },
+    {
+      "param": "dead_layer",
+      "max": 150,
+      "unit": "nm",
+      "cond": "Si equivalent",
+      "page": 1
+    },
+    {
+      "param": "active_area",
+      "value": "5 x 5",
+      "unit": "mm",
+      "page": 1
+    },
+    {
+      "param": "chip_size",
+      "value": "5.67 x 5.67 x 0.30",
+      "unit": "mm",
+      "page": 1
+    },
+    {
+      "param": "responsivity_peak",
+      "typ": 0.74,
+      "wavelength_nm": 950,
+      "unit": "A/W",
+      "cond": "Fig 5",
+      "page": 3
+    }
+  ],
+  "application_notes": [
+    "Key parameters are specified at 20 V and 40 V reverse bias; no recommended operating bias is given (p1). Breakdown > 100 V at 100 uA.",
+    "Capacitance falls from about 32 pF at 20 V to about 12 pF at 200 V (Fig 3), so higher bias lowers preamp noise but raises dark current.",
+    "Table says CJ < 30 pF at 20 V, while the typical curve reads about 32 pF at 20 V. Use 30 pF as the spec and about 33 pF as a conservative design value until measured."
+  ],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Anode/cathode and which face is which are not stated: measure with a DMM diode test on a spare chip before layout.",
+    "Bond pad is only 0.4 mm wide: needs wire bonding or conductive epoxy; plain ENIG may not be suitable for ultrasonic wire bonding (VERIFY).",
+    "Chip is 5.67 mm square: four chips in a 2x2 array have a diagonal of at least 16.0 mm, which does not fit a 16 mm ID tube."
+  ],
+  "not_extracted": [
+    "Rev history",
+    "Series resistance and shunt resistance (not given)",
+    "Chip metallisation details",
+    "Packaging section (waffle pack part numbers, p4)"
+  ],
+  "sha256": "68b4c7e9aa0e17eb4243072de73b0df56ec90492fcd14c958dc3081adede612c"
+}

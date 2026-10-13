@@ -1,0 +1,130 @@
+{
+  "mpn": "ADA4817-1",
+  "manufacturer": "Analog Devices",
+  "description": "Low noise 1 GHz FastFET op amp (ADA4817-1 single, ADA4817-2 dual); SOIC-8 and LFCSP-8 with a feedback pin",
+  "source_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADA4817-1_4817-2.pdf (PDF supplied by the user; automated download from analog.com was blocked)",
+  "file": "ADA4817-1.pdf",
+  "doc_revision": "Rev. I (2025-12)",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOIC-8",
+    "LFCSP-8 (3x3 mm, exposed pad)"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "FB",
+      "2": "-IN",
+      "3": "+IN",
+      "4": "-VS",
+      "5": "NIC",
+      "6": "OUT",
+      "7": "+VS",
+      "8": "not extracted (expected PD, power-down; VERIFY)"
+    },
+    "LFCSP-8": {
+      "1": "PD",
+      "2": "FB",
+      "3": "-IN",
+      "4": "+IN",
+      "5": "-VS",
+      "6": "NIC",
+      "7": "OUT",
+      "8": "+VS",
+      "EPAD": "connect to GND, -VS plane or leave floating"
+    }
+  },
+  "abs_max": [
+    {
+      "param": "supply_voltage",
+      "max": 10.6,
+      "unit": "V",
+      "page": 7
+    }
+  ],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 5,
+      "max": 10,
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "en_density",
+      "typ": 4,
+      "unit": "nV/rtHz",
+      "cond": "f = 100 kHz",
+      "page": 4
+    },
+    {
+      "param": "in_density",
+      "typ": 2.5,
+      "unit": "fA/rtHz",
+      "cond": "f = 100 kHz",
+      "page": 4
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 2,
+      "max": 20,
+      "unit": "pA",
+      "page": 4
+    },
+    {
+      "param": "input_capacitance_common_mode",
+      "typ": 1.3,
+      "unit": "pF",
+      "page": 1
+    },
+    {
+      "param": "input_capacitance_differential",
+      "typ": 0.1,
+      "unit": "pF",
+      "page": 1
+    },
+    {
+      "param": "GBW",
+      "min": 410,
+      "unit": "MHz",
+      "cond": "VOUT = 0.1 Vpp",
+      "page": 4
+    },
+    {
+      "param": "bandwidth_-3dB",
+      "typ": 1050,
+      "unit": "MHz",
+      "cond": "G = 1, RL = 100 ohm",
+      "page": 1
+    },
+    {
+      "param": "quiescent_current_per_amplifier",
+      "typ": 19,
+      "max": 21,
+      "unit": "mA",
+      "page": 5
+    }
+  ],
+  "application_notes": [
+    "FB pin is a feedback connection point next to -IN to reduce layout parasitics (what the user described as premium parts using otherwise-NC pins)."
+  ],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "19 mA per amplifier: four channels on +-4.5 V dissipate about 0.7 W per board; heat near the photodiode raises dark current. Check thermal path.",
+    "Supply range 5-10 V total: +-4.5 V is inside; abs max 10.6 V.",
+    "Price reported by the user as very high (not checked)."
+  ],
+  "not_extracted": [
+    "SOIC pin 8 function",
+    "noise vs frequency figure (p9)",
+    "phase margin and capacitive loading",
+    "power-down pin behavior",
+    "spice model"
+  ],
+  "sha256": "1918883a0d8764e6590f685e515a2ab81cb4ab633f1cd40d038bc567736266e8"
+}

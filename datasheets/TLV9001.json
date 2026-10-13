@@ -1,0 +1,165 @@
+{
+  "mpn": "TLV9001",
+  "manufacturer": "Texas Instruments",
+  "description": "TLV900x family (TLV9001 single, TLV9002 dual, TLV9004 quad): low-power RRIO 1 MHz CMOS op amps",
+  "source_url": "https://www.ti.com/lit/ds/symlink/tlv9001.pdf",
+  "file": "TLV9001.pdf",
+  "doc_revision": "SBOS833R, 2021-11 (copyright 2024)",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOT-23-5 (DBV)",
+    "SC70-5",
+    "X2SON-5 (TLV9001)",
+    "VSSOP-8, X2QFN etc. (TLV9002)",
+    "SOIC-14, TSSOP-14 etc. (TLV9004)"
+  ],
+  "pins": {
+    "TLV9001 SOT-23-5 (DBV)": {
+      "1": "OUT",
+      "2": "V-",
+      "3": "IN+",
+      "4": "IN-",
+      "5": "V+"
+    },
+    "note": "TLV9001U (DBV) uses a different pinout: 1 IN+, 2 V-, 3 IN-, 4 OUT, 5 V+. Check which variant when ordering."
+  },
+  "abs_max": [
+    {
+      "param": "supply_voltage",
+      "max": 7,
+      "unit": "V",
+      "page": 14
+    }
+  ],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 1.8,
+      "max": 5.5,
+      "unit": "V",
+      "page": 14
+    }
+  ],
+  "electrical": [
+    {
+      "param": "GBW",
+      "typ": 1,
+      "unit": "MHz",
+      "cond": "VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "slew_rate",
+      "typ": 2,
+      "unit": "V/us",
+      "cond": "VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "en_density",
+      "typ": 27,
+      "unit": "nV/rtHz",
+      "cond": "f = 10 kHz, VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "en_density",
+      "typ": 30,
+      "unit": "nV/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 17
+    },
+    {
+      "param": "in_density",
+      "typ": 23,
+      "unit": "fA/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 17
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 5,
+      "unit": "pA",
+      "note": "shown as +-5 pA; max not extracted, VERIFY",
+      "cond": "VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "input_offset_voltage",
+      "typ": 0.4,
+      "max": 1.6,
+      "unit": "mV",
+      "cond": "VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "input_cm_range",
+      "min": "(V-)-0.1",
+      "max": "(V+)+0.1",
+      "unit": "V",
+      "cond": "rail-to-rail, no phase reversal",
+      "page": 17
+    },
+    {
+      "param": "overload_recovery",
+      "typ": 0.85,
+      "unit": "us",
+      "cond": "VS = 5 V",
+      "page": 17
+    },
+    {
+      "param": "open_loop_output_impedance",
+      "typ": 1200,
+      "unit": "ohm",
+      "cond": "1 MHz",
+      "page": 17
+    },
+    {
+      "param": "output_swing_from_rail",
+      "typ": 10,
+      "max": 20,
+      "unit": "mV",
+      "cond": "VS = 5.5 V, RL = 10 kohm",
+      "page": 17
+    },
+    {
+      "param": "input_capacitance_differential",
+      "typ": 1.5,
+      "unit": "pF",
+      "page": 17
+    },
+    {
+      "param": "input_capacitance_common_mode",
+      "typ": 5,
+      "unit": "pF",
+      "page": 17
+    },
+    {
+      "param": "quiescent_current_per_channel",
+      "typ": 60,
+      "max": 77,
+      "unit": "uA",
+      "cond": "VS = 5.5 V",
+      "page": 18
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Maximum supply is 5.5 V (abs max 7 V): cannot run on the +-4.5 V analog rails of the detector board. Use a single +5 V rail on the MCU board.",
+    "Open-loop output impedance 1.2 kohm drives a 1 nF hold capacitor poorly inside the loop: simulate stability and accuracy of the peak detector, or use a smaller Chold.",
+    "Used as a comparator the output swing and 2 V/us slew give delays of a few us (acceptable for triggering because the peak is held); TLV3201 remains a faster drop-in candidate (pinout to verify)."
+  ],
+  "not_extracted": [
+    "max input bias current",
+    "noise vs frequency plot",
+    "comparator-use guidance",
+    "TLV9002/TLV9004 pin tables",
+    "spice model"
+  ],
+  "sha256": "ff042e4d6715289a537539f15487d4cfdd56ae18b074388c75226c30b3923267"
+}

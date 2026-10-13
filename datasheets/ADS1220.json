@@ -1,0 +1,91 @@
+{
+  "mpn": "ADS1220",
+  "manufacturer": "Texas Instruments",
+  "description": "4-channel 2 kSPS 24-bit delta-sigma ADC with PGA, internal 2.048 V reference, SPI",
+  "source_url": "https://www.ti.com/lit/ds/symlink/ads1220.pdf",
+  "file": "ADS1220.pdf",
+  "doc_revision": "not found in extracted text (VERIFY)",
+  "retrieved": "2026-10-12",
+  "category": "adc",
+  "package": [
+    "TSSOP-16 (PW)  (VERIFY)"
+  ],
+  "pins": {
+    "note": "not extracted"
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 2.3,
+      "max": 5.5,
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "resolution",
+      "value": 24,
+      "unit": "bit",
+      "page": 1
+    },
+    {
+      "param": "effective_resolution",
+      "max": 20,
+      "unit": "bit",
+      "page": 1
+    },
+    {
+      "param": "data_rate",
+      "max": 2,
+      "unit": "kSPS",
+      "page": 1
+    },
+    {
+      "param": "inputs",
+      "value": "2 differential or 4 single-ended",
+      "page": 1
+    },
+    {
+      "param": "gain",
+      "min": 1,
+      "max": 128,
+      "page": 1
+    },
+    {
+      "param": "internal_reference",
+      "typ": 2.048,
+      "unit": "V",
+      "note": "5 ppm/C typ",
+      "page": 1
+    },
+    {
+      "param": "interface",
+      "value": "SPI mode 1",
+      "page": 1
+    },
+    {
+      "param": "settling",
+      "value": "single-cycle digital filter",
+      "page": 1
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": false,
+    "note": "n/a"
+  },
+  "gotchas": [
+    "Single-ended use gives half the code range.",
+    "User has these in stock."
+  ],
+  "not_extracted": [
+    "pin table",
+    "input current vs gain",
+    "single-ended input range limits with PGA",
+    "conversion latency per data rate",
+    "noise tables"
+  ],
+  "sha256": "218e25810febc1d740287cebe0678d844817a5db9191cba59cb471647ace3ac4"
+}

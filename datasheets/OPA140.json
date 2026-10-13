@@ -1,0 +1,130 @@
+{
+  "mpn": "OPA140",
+  "manufacturer": "Texas Instruments",
+  "description": "High-precision, low-noise, rail-to-rail output, 11 MHz JFET op amp (OPA140 single)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/opa140.pdf",
+  "file": "OPA140.pdf",
+  "doc_revision": "SBOS498F, 2023-03",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOIC-8 (D)",
+    "VSSOP-8 (DGK)",
+    "SOT-23-5 (DBV)"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "NC",
+      "2": "-IN",
+      "3": "+IN",
+      "4": "V-",
+      "5": "NC",
+      "6": "OUT",
+      "7": "V+",
+      "8": "NC"
+    }
+  },
+  "abs_max": [
+    {
+      "param": "supply_voltage",
+      "dual": 20,
+      "single": 40,
+      "unit": "V",
+      "note": "dual supply +-20 V, single 40 V",
+      "page": 5
+    },
+    {
+      "param": "signal_input_pins",
+      "min": "(V-)-0.5",
+      "max": "(V+)+0.5",
+      "unit": "V",
+      "page": 5
+    }
+  ],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 4.5,
+      "max": 36,
+      "unit": "V",
+      "cond": "electrical table header",
+      "page": 7
+    }
+  ],
+  "electrical": [
+    {
+      "param": "en_density",
+      "typ": 5.1,
+      "unit": "nV/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 7
+    },
+    {
+      "param": "en_density",
+      "typ": 5.8,
+      "unit": "nV/rtHz",
+      "cond": "f = 100 Hz",
+      "page": 7
+    },
+    {
+      "param": "in_density",
+      "typ": 0.8,
+      "unit": "fA/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 7
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 0.5,
+      "max": 10,
+      "unit": "pA",
+      "cond": "25 C",
+      "page": 7
+    },
+    {
+      "param": "input_capacitance_differential",
+      "typ": 10,
+      "unit": "pF",
+      "page": 7
+    },
+    {
+      "param": "input_capacitance_common_mode",
+      "typ": 7,
+      "unit": "pF",
+      "page": 7
+    },
+    {
+      "param": "GBW",
+      "typ": 11,
+      "unit": "MHz",
+      "page": 7
+    },
+    {
+      "param": "slew_rate",
+      "typ": 20,
+      "unit": "V/us",
+      "page": 7
+    },
+    {
+      "param": "input_cm_range",
+      "min": "(V-)-0.1",
+      "max": "(V+)-3.5",
+      "unit": "V",
+      "page": 7
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Input common-mode range stops 3.5 V below V+, so on a +5 V supply only about -0.1..1.5 V is usable for the inputs (relevant for a single-supply CSA)."
+  ],
+  "not_extracted": [
+    "voltage noise vs frequency plot (1/f corner)",
+    "spice model",
+    "phase margin vs capacitive load"
+  ],
+  "sha256": "9a205cc8766e1daf9e1a18f3120bfb9b79fdbc4bfb65f3fda0f9bf0ee2dcf4c7"
+}

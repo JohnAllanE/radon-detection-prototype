@@ -1,0 +1,127 @@
+{
+  "mpn": "ADA4530-1",
+  "manufacturer": "Analog Devices",
+  "description": "Femtoampere input bias current electrometer amplifier with integrated guard buffer",
+  "source_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADA4530-1.pdf (PDF supplied by the user; automated download from analog.com was blocked)",
+  "file": "ADA4530-1.pdf",
+  "doc_revision": "Rev. C",
+  "retrieved": "2026-10-12",
+  "category": "opamp_electrometer",
+  "package": [
+    "SOIC-8"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "+IN",
+      "2": "GRD",
+      "3": "IC (connect to V- or leave unconnected)",
+      "4": "V-",
+      "5": "V+",
+      "6": "OUT",
+      "7": "GRD",
+      "8": "-IN"
+    }
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 4.5,
+      "max": 16,
+      "unit": "V",
+      "note": "+-2.25 to +-8 V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "input_bias_current",
+      "max": 20,
+      "unit": "fA",
+      "note": "also max 20 fA -40..+85 C; 250 fA max at 125 C. Offset current row shows RH < 50% condition",
+      "cond": "25 C, guaranteed at production test",
+      "page": 1
+    },
+    {
+      "param": "input_resistance",
+      "min": 100,
+      "unit": "Tohm",
+      "cond": "-40..125 C",
+      "page": 3
+    },
+    {
+      "param": "input_capacitance",
+      "typ": 8,
+      "unit": "pF",
+      "page": 3
+    },
+    {
+      "param": "en_density",
+      "typ": 14,
+      "unit": "nV/rtHz",
+      "cond": "f = 10 kHz",
+      "page": 4
+    },
+    {
+      "param": "en_density",
+      "typ": 16,
+      "unit": "nV/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 4
+    },
+    {
+      "param": "en_density",
+      "typ": 80,
+      "unit": "nV/rtHz",
+      "cond": "f = 10 Hz",
+      "page": 4
+    },
+    {
+      "param": "in_density",
+      "typ": 0.07,
+      "unit": "fA/rtHz",
+      "cond": "f = 0.1 Hz",
+      "page": 4
+    },
+    {
+      "param": "GBW",
+      "typ": 2,
+      "unit": "MHz",
+      "cond": "G = 100",
+      "page": 3
+    },
+    {
+      "param": "slew_rate",
+      "typ": 1.4,
+      "unit": "V/us",
+      "cond": "10 kohm, 10 pF, G=1",
+      "page": 3
+    },
+    {
+      "param": "guard_buffer_offset",
+      "max": 100,
+      "unit": "uV",
+      "page": 1
+    }
+  ],
+  "application_notes": [
+    "Pinout puts guard pins (2, 7) next to the input pins to cut PCB leakage; the datasheet has chapters on guard ring, guard plane, cleaning and handling, solder paste selection, current noise, and a photodiode interface (p38-46).",
+    "Solder flux residue degrades the low input bias performance. RMA paste is recommended; Table 7 (p38) gives IPA ultrasonic clean plus 125 C bake times to restore effective bias below 1 fA (15 min + 1.5 h for RMA)."
+  ],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Bias current limit is quoted at RH < 50% and depends on cleanliness: PCB contamination can swamp the fA specification.",
+    "2 MHz GBW and 14 nV/rtHz make it a poor charge amplifier for a 33 pF diode (about 10 keV FWHM at 10 us shaping, rise about 7.5 us); intended use here is the electrometer test front end.",
+    "Price reported by the user as very high (not checked)."
+  ],
+  "not_extracted": [
+    "guard ring and plane layout details (p42-43)",
+    "photodiode interface chapter (p44-46)",
+    "full electrical tables for 4.5 V and 16 V",
+    "temperature curves"
+  ],
+  "sha256": "ed670c2b080b909b1d51e0cae2ebe30d5df248cfe53e6b0f3a685c271e617769"
+}

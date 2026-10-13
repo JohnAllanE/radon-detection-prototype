@@ -1,0 +1,68 @@
+{
+  "mpn": "TLV3201",
+  "manufacturer": "Texas Instruments",
+  "description": "40 ns, microPOWER push-pull comparator (TLV3201 single, TLV3202 dual)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+  "file": "TLV3201.pdf",
+  "doc_revision": "SBOS561C, 2024-05",
+  "retrieved": "2026-10-12",
+  "category": "comparator",
+  "package": [
+    "SC70-5",
+    "SOT-23-5",
+    "SOIC-8",
+    "VSSOP-8"
+  ],
+  "pins": {
+    "note": "not extracted"
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 2.7,
+      "max": 5.5,
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "propagation_delay",
+      "typ": 40,
+      "unit": "ns",
+      "page": 1
+    },
+    {
+      "param": "input_offset_voltage",
+      "typ": 1,
+      "unit": "mV",
+      "page": 1
+    },
+    {
+      "param": "quiescent_current_per_channel",
+      "typ": 40,
+      "unit": "uA",
+      "page": 1
+    },
+    {
+      "param": "output",
+      "value": "push-pull",
+      "page": 1
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Hysteresis not extracted; the chain needs a threshold above the noise baseline."
+  ],
+  "not_extracted": [
+    "hysteresis",
+    "input bias",
+    "pin table"
+  ],
+  "sha256": "1777bba814c74772bb54c6f1f56702985039043ce2fb2affaf996a83eaf1076e"
+}

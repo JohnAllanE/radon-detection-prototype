@@ -1,0 +1,11 @@
+.DS_Store
+
+# Datasheet PDFs are re-fetchable from source_url in datasheets/<MPN>.json (sha256 there to verify).
+# The JSON summaries stay tracked: they are the working copy (PCB-WORKFLOW.md section 2).
+datasheets/*.pdf
+
+# Exceptions: no stable automated download (Excelitas and ADI block scripted downloads; the VTH2110 copy
+# came from a JLCPCB mirror with an expiring link, the ADI PDFs were supplied by the user).
+!datasheets/VTH2110.pdf
+!datasheets/ADA4530-1.pdf
+!datasheets/ADA4817-1.pdf

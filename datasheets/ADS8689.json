@@ -1,0 +1,124 @@
+{
+  "mpn": "ADS8689",
+  "manufacturer": "Texas Instruments",
+  "description": "16-bit 100 kSPS single-channel SAR ADC with integrated analog front end (ADS868x family: ADS8681 1 MSPS, ADS8685 500 kSPS, ADS8689 100 kSPS)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/ads8689.pdf",
+  "file": "ADS8689.pdf",
+  "doc_revision": "SBAS633E, 2022-08",
+  "retrieved": "2026-10-12",
+  "category": "adc",
+  "package": [
+    "TSSOP-16 (PW) (VERIFY)"
+  ],
+  "pins": {
+    "note": "not extracted"
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "AVDD",
+      "typ": 5,
+      "unit": "V",
+      "page": 1
+    },
+    {
+      "param": "DVDD",
+      "min": 1.65,
+      "max": 5,
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "resolution",
+      "value": 16,
+      "unit": "bit",
+      "page": 1
+    },
+    {
+      "param": "sample_rate",
+      "max": 100,
+      "unit": "kSPS",
+      "page": 1
+    },
+    {
+      "param": "channels",
+      "value": 1,
+      "page": 1
+    },
+    {
+      "param": "input_ranges_bipolar",
+      "value": "+-12.288, +-10.24, +-6.144, +-5.12, +-2.56",
+      "unit": "V",
+      "page": 1
+    },
+    {
+      "param": "input_ranges_unipolar",
+      "value": "0-12.288, 0-10.24, 0-6.144, 0-5.12",
+      "unit": "V",
+      "page": 1
+    },
+    {
+      "param": "input_impedance",
+      "min": 1,
+      "unit": "Mohm",
+      "cond": "constant, resistive",
+      "page": 1
+    },
+    {
+      "param": "input_overvoltage_protection",
+      "max": 20,
+      "unit": "V",
+      "page": 1
+    },
+    {
+      "param": "internal_reference",
+      "value": 4.096,
+      "unit": "V",
+      "page": 1
+    },
+    {
+      "param": "SNR",
+      "typ": 92,
+      "unit": "dB",
+      "page": 1
+    },
+    {
+      "param": "INL",
+      "typ": 0.5,
+      "unit": "LSB",
+      "page": 1
+    },
+    {
+      "param": "DNL",
+      "typ": 0.4,
+      "unit": "LSB",
+      "page": 1
+    },
+    {
+      "param": "interface",
+      "value": "multiSPI",
+      "page": 1
+    }
+  ],
+  "application_notes": [
+    "Single channel: needs an external mux for 4 channels."
+  ],
+  "spice_model": {
+    "available": false,
+    "note": "n/a"
+  },
+  "gotchas": [
+    "Constant resistive input impedance of at least 1 Mohm will discharge a peak-hold capacitor; buffer the hold node with a low-bias op amp (1 nF x 1 Mohm = 1 ms).",
+    "Unipolar 0-5.12 V range matches ground-referenced positive peaks well."
+  ],
+  "not_extracted": [
+    "pin table",
+    "timing diagrams",
+    "conversion latency",
+    "power consumption",
+    "the 'ADS8689W' differential variant"
+  ],
+  "sha256": "7352b44f82a9fefd5f9763a9e5929573140874cb503c958b3d489019f59605c6"
+}

@@ -1,0 +1,77 @@
+{
+  "mpn": "LM27762",
+  "manufacturer": "Texas Instruments",
+  "description": "Low-noise positive and negative output integrated charge pump plus LDOs (+1.5 to +5 V and -1.5 to -5 V adjustable)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/lm27762.pdf",
+  "file": "LM27762.pdf",
+  "doc_revision": "SNVSAF7C, 2025-10",
+  "retrieved": "2026-10-12",
+  "category": "power",
+  "package": [
+    "not extracted"
+  ],
+  "pins": {
+    "note": "not extracted"
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "input_voltage",
+      "min": 2.7,
+      "max": 5.5,
+      "unit": "V",
+      "page": 1
+    }
+  ],
+  "electrical": [
+    {
+      "param": "output_current",
+      "max": 250,
+      "unit": "mA",
+      "note": "per output",
+      "page": 1
+    },
+    {
+      "param": "positive_ldo_dropout",
+      "typ": 45,
+      "unit": "mV",
+      "cond": "100 mA, 5 V out",
+      "page": 1
+    },
+    {
+      "param": "negative_ldo_dropout",
+      "typ": 30,
+      "unit": "mV",
+      "cond": "100 mA, -5 V out",
+      "page": 1
+    },
+    {
+      "param": "charge_pump_frequency",
+      "typ": 2,
+      "unit": "MHz",
+      "page": 1
+    },
+    {
+      "param": "inverter_output_impedance",
+      "typ": 2.5,
+      "unit": "ohm",
+      "cond": "VIN = 5 V",
+      "page": 1
+    }
+  ],
+  "application_notes": [],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Output noise (uV rms) and PSRR numbers not extracted: needed before use for a CSA rail."
+  ],
+  "not_extracted": [
+    "output noise",
+    "PSRR",
+    "pin table",
+    "layout"
+  ],
+  "sha256": "465db259d11b3b2fe202661b21e1e664065ff8873056a984aa9f967a9fbdc6e0"
+}

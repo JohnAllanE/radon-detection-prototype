@@ -1,0 +1,76 @@
+{
+  "mpn": "LMP7721",
+  "manufacturer": "Texas Instruments",
+  "description": "3 fA input bias current, precision, low-noise op amp (pinout with NC pins separating the inputs, for guarding)",
+  "source_url": "https://www.ti.com/lit/ds/symlink/lmp7721.pdf",
+  "file": "LMP7721.pdf",
+  "doc_revision": "SNOSAW6E, 2014-12",
+  "retrieved": "2026-10-12",
+  "category": "opamp",
+  "package": [
+    "SOIC-8"
+  ],
+  "pins": {
+    "SOIC-8": {
+      "1": "IN+",
+      "2": "NC",
+      "3": "V-",
+      "4": "VOUT",
+      "5": "NC",
+      "6": "V+",
+      "7": "NC",
+      "8": "IN- (inferred; VERIFY)"
+    }
+  },
+  "abs_max": [],
+  "recommended": [
+    {
+      "param": "supply_voltage",
+      "min": 1.8,
+      "max": 5.5,
+      "unit": "V",
+      "cond": "PSRR test range",
+      "page": 5
+    }
+  ],
+  "electrical": [
+    {
+      "param": "en_density",
+      "typ": 6.5,
+      "unit": "nV/rtHz",
+      "cond": "f = 1 kHz",
+      "page": 1
+    },
+    {
+      "param": "GBW",
+      "typ": 17,
+      "unit": "MHz",
+      "page": 1
+    },
+    {
+      "param": "input_bias_current",
+      "typ": 3,
+      "max": 20,
+      "unit": "fA",
+      "cond": "25 C, 2.5 V supply",
+      "page": 5
+    }
+  ],
+  "application_notes": [
+    "Pinout is non-standard: it cannot be dropped into the standard single op-amp SOIC-8 footprint. Premium variant only."
+  ],
+  "spice_model": {
+    "available": null,
+    "note": "not checked"
+  },
+  "gotchas": [
+    "Single-supply part, 5.5 V maximum recommended: input common-mode range is 0..V+ minus margin only, so a CSA needs a mid-supply reference."
+  ],
+  "not_extracted": [
+    "input capacitance",
+    "guard layout recommendations (app section)",
+    "5 V electrical table",
+    "spice model"
+  ],
+  "sha256": "162b4794e0aee249a75b6f93758cebacab1e5a26fc7eae2f2c9c4a3afdc0562e"
+}
