@@ -50,7 +50,7 @@ Numbers marked `VERIFY` are standard figures or recalled values that must be che
 - Si pair-creation energy is about 3.6 eV per pair, so a 6 MeV alpha releases about 1.7 × 10⁶ pairs (about 270 fC). `VERIFY` in phase 2.
 - Alpha energies in MeV (`VERIFY` against ENSDF): Po-218 6.00; Po-214 7.69; Po-210 5.30 (from long-lived Pb-210, half-life about 22 y, so it accumulates on surfaces and shows up as background); thoron chain Po-216 6.78 and Po-212 8.78, Bi-212 6.05 (36 %).
 - Self-contamination: Pb-210 and Po-210 deposited by previous air runs stay on the photodiode and chamber. That is the reason for the N₂ control run (D-05).
-- Rough vacuum energy loss (`VERIFY`): a 5.5 MeV alpha loses roughly 1 MeV per cm of air at atmospheric pressure, so about 10 keV per cm at 10 mbar. For a sample a few mm from the detector, rough vacuum is enough if the pressure is of order 1 mbar or below; the actual pump pressure is not yet known (Q-03).
+- Rough vacuum energy loss (`VERIFY`): a 5.5 MeV alpha loses roughly 1 MeV per cm of air at atmospheric pressure, so about 10 keV per cm at 10 mbar. Over the 5–10 mm sample gap (D-19) the loss is about 100 keV at 100 mbar, 10 keV at 10 mbar, 1 keV at 1 mbar and about 10 eV at 10⁻² mbar, so anything at or below about 1–10 mbar is enough for R-09. The Edwards E2M8 reaches 1×10⁻³ mbar (D-24), about four orders of magnitude of margin.
 
 **Sensitivity of the Part 1 chamber (preliminary, assumptions in bold, `VERIFY` all)**
 - Volume of a 21–22 mm bore tube (D-22), boards 76 mm apart: π × 1.05² × 7.6 ≈ 26 cm³ (21 mm) to π × 1.1² × 7.6 ≈ 29 cm³ (22 mm).
@@ -78,7 +78,7 @@ IDs are provisional until the user confirms. Verification: **S** = simulation, *
 |---|---|---|---|
 | R-01 | Part 1 detects alphas from radon progeny collected on the photodiode surface from a flowing or static sample | Sensitivity not specified. Expected levels: typical surface-level indoor/outdoor and underground-mine air. See §3 estimate | T |
 | R-02 | Part 1 works with ambient air; bottled N₂ (semi-dry) is used as a control to check self-contamination between runs | Air and N₂ only | T |
-| R-03 | Part 2 detects alphas from weld samples held close to the detectors in rough vacuum | Pressure unknown (Q-03); sample–detector distance TBD (Q-22) | T |
+| R-03 | Part 2 detects alphas from weld samples held close to the detectors in rough vacuum | ≤ 1 mbar target, ≤ 10 mbar acceptable (§3); E2M8 ultimate 1×10⁻³ mbar (D-24). Sample–detector 5–10 mm (D-19) | T |
 | R-04 | One detector board design serves Part 1 and Part 2 | n/a | I, T |
 | R-05 | In each chamber, one premium and one low-cost board run simultaneously, in the same field, about 3 in (76 mm) apart (Part 1) | Same arrangement in Part 2 | T |
 | R-53 | Comparison metric: low-cost board reports similar event types and event frequency to the premium board | Quantitative criterion TBD (Q-07) | T |
@@ -139,14 +139,17 @@ IDs are provisional until the user confirms. Verification: **S** = simulation, *
 | R-32 | Gas-tightness: with the pump downstream the chamber is below ambient, so leaks draw in unfiltered, undried air | Characterise after build (D-13) | T |
 | R-33 | Flow, pressure drop, desiccant service interval | Characterise after build (D-13) | T |
 | R-34 | Humidity is measured at the outlet during purge with a manual sensor. No sensor is placed in the chamber or on the detector board (see §7) | Manual | I |
-| R-37 | Filters remove aerosols and radon progeny from incoming gas, and stop desiccant dust | Type and pore size TBD (Q-17) | T |
+| R-37 | Filters remove aerosols and radon progeny from incoming gas, and stop desiccant dust | One standard filter for every gas port, PROPOSED in D-25; part selection open (Q-17) | T |
 | R-38 | No conductive path from the +1 kV chamber to valves, tubing, pump or mounts: insulating PTFE gas-line sections between chamber and valves; creepage and clearance around the board's O-ring land and the photodiode corners | Distances TBD (Q-12) | I, S |
 | R-39 | Chamber: 304 SS tube, walls at HV, four photodiodes on the detector board. **Decided 2026-10-12 (D-22): 3/4 in NPS pipe, bore 21–22 mm after grinding and lapping, possibly etched to remove contamination.** The VTH2110 die is 5.67 mm square (VTH2110.json p1): a 2×2 array with 0.5 mm gaps has a 16.75 mm diagonal, leaving about 2.1 mm (21 mm bore) to 2.6 mm (22 mm bore) from die corner to the wall. Uniform-field Paschen estimate for 2.1 mm at 100 mbar is about 1.46 kV (`VERIFY`; corners are worse), so R-43 still applies | Gap to wall confirmed by the field simulation; bore tolerance and etch recorded in the mechanical drawing | S, I |
 | R-40 | Feedthroughs: detector signals pass through the board itself, which seals to the chamber. HV connects to the tube. Part 2 vacuum ports are standard | Details TBD (Q-18, Q-20) | I, T |
 | R-41 | Pump vibration and drive noise (the pump is operated manually, outside the electronics) do not degrade the noise floor | Measured with the pump running | T |
 | R-43 | HV is not applied to the chamber when it is below ambient pressure (inlet valve closed with pump running, or any pump-down). Procedure first; an optional hardware interlock decided in phase 2 | Claude's rough Paschen estimate (`VERIFY` in phase 2): a ~1 mm gap, such as a photodiode corner to the wall, can approach 1 kV near 100 mbar; the ~8 mm gaps are safe down to about 15 mbar | I |
 | R-44 | Detector board mounts at each end of the tube with the photodiodes facing the sample volume; HV-side clearances per R-38 | Mount design TBD (Q-20) | I, S |
-| R-46 | Part 2: custom aluminum chamber with gaskets, a standard port for a single-stage rotary pump, an SS/PTFE ball valve, board O-ring sealed with its back at atmosphere. Weld samples close to the detectors | Pressure, gasket (Q-21), sample holder (Q-22) | I, T |
+| R-46 | Part 2: custom aluminum chamber with gaskets, an NW25 port for the Edwards E2M8 two-stage rotary vane pump (D-24), an SS/PTFE ball valve, board O-ring sealed with its back at atmosphere. Weld samples close to the detectors | Pressure per R-03; gasket (Q-21), sample holder (Q-22) | I, T |
+| R-57 | Part 2: pump oil does not reach the weld samples or the photodiodes. Pump only to a few ×10⁻² to 10⁻¹ mbar, not to ultimate (oil vapour backstreams in molecular flow); a foreline trap (activated alumina or molecular sieve) between chamber and pump; the chamber valve closed before the pump is stopped; venting with dry N₂ through the chamber inlet, never back through the pump line. The PTFE membrane filter (D-25) stops oil mist and particles but not oil vapour | Trap type and part TBD | I, T |
+| R-58 | Part 2: counting can be done with the chamber sealed and the pump off, to remove pump vibration, motor EMI (R-41) and backstreaming. The allowed run length is set by the leak-up rate measured on the built chamber, up to about 1–10 mbar (R-03) | Leak-up rate measured after build (D-13) | T |
+| R-59 | Part 2: a vacuum gauge (Pirani or similar) on an NW25 tee reads the chamber pressure | Gauge part TBD | I |
 | R-47 | Photodiode surfaces are surrounded by exposed ENIG with a bias to push ions onto the photodiodes. Sign, magnitude and source decided by simulation. **Claude's view:** the ring should be slightly *positive* relative to the photodiode front surface (positive ions are repelled from it and steered to the diode). The source should be filtered or regulated, not raw 48 V, because noise on the ring couples capacitively into the preamp input | Set by simulation | S, T |
 
 ### 4.7 Test instrumentation and board characterisation
@@ -168,7 +171,7 @@ IDs are provisional until the user confirms. Verification: **S** = simulation, *
 
 Resolved by the user on 2026-10-12: Q-01, Q-02, Q-08, Q-09, Q-10, Q-13, Q-16, Q-18 (partly), Q-19. See `decisions.md`.
 
-- **Q-03** Rough-vacuum pressure of the single-stage pump (measure with a gauge?) and the sample-to-detector distance. HV is not used in Part 2, so only the Part 1 pressure case (R-43) remains.
+- **Q-03** Resolved (2026-10-16): pump is an Edwards E2M8, ultimate 1×10⁻³ mbar (D-24); distance 5–10 mm (D-19). The pressure actually reached and the leak-up rate are measured with the gauge (R-59) after build. HV is not used in Part 2, so only the Part 1 pressure case (R-43) remains.
 - **Q-04** Target sensitivity, and shaping time. The user does not know the target; decide after the first runs, or set a placeholder?
 - **Q-05** Alphas of interest: radon chain, thoron chain, and the weld-contamination energy range? (Accept R-09 proposal?)
 - **Q-06** Accept R-14 proposal (100 events/s total)? Expected weld-sample rates unknown.
