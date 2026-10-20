@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 940" width="1200" height="940" role="img" aria-label="Electrometer concept: the chamber, detector board and electrometer sit in a grounded tin; one probe cable is moved by hand between the per-channel switch connectors; range elements stay at the summing node in the head; HV supply and radio antenna are outside the tin">
+<title>Electrometer concept: the chamber, detector board and electrometer sit in a grounded tin; one probe cable is moved by hand between the per-channel switch connectors; range elements stay at the summing node in the head; HV supply and radio antenna are outside the tin</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --man:#1a8f5a; --hv:#c62828; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --man:#52c48a; --hv:#ef6b6b; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .hvbox { fill:var(--box); stroke:var(--hv); stroke-width:1.4; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .k { fill:var(--ink); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lman { fill:var(--man); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lhv { fill:var(--hv); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .wire { fill:none; stroke:var(--ink); stroke-width:1.3; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .man { fill:none; stroke:var(--man); stroke-width:3; stroke-linejoin:round; }
+  .gang { fill:none; stroke:var(--man); stroke-width:1.6; stroke-dasharray:3 3; stroke-linejoin:round; }
+  .hv { fill:none; stroke:var(--hv); stroke-width:2.5; stroke-linejoin:round; }
+  .gnd { fill:none; stroke:var(--ink2); stroke-width:1.5; }
+  .lever-man { stroke:var(--man); stroke-width:2.2; }
+  .lever-ctl { stroke:var(--ctl); stroke-width:2.2; }
+  .term { fill:var(--box); stroke:var(--ink); stroke-width:1.3; }
+  .jack { fill:var(--box); stroke:var(--ink); stroke-width:1.5; }
+  .part { fill:var(--box); stroke:var(--ink); stroke-width:1.3; }
+  .plate { stroke:var(--ink); stroke-width:2.2; }
+  .node { fill:var(--ink); }
+  .cap0 { fill:var(--man); }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hman { fill:var(--man); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aman" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hman" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1200" height="940" rx="10"/>
+<g transform="translate(0,70)">
+<rect class="encl" x="8" y="-28" width="1184" height="588" rx="12"/>
+<text class="g" x="24" y="-10" text-anchor="start">COOKIE TIN: GROUNDED, LIGHT-TIGHT. TIN, COAX SHIELDS AND ELECTROMETER COMMON BONDED TO THE DETECTOR BOARD 0 V AT ONE POINT</text>
+<rect class="group" x="20" y="20" width="330" height="520" rx="10"/>
+<rect class="group" x="375" y="20" width="470" height="370" rx="10"/>
+<rect class="group" x="870" y="20" width="310" height="370" rx="10"/>
+<text class="g" x="36" y="44" text-anchor="start">CHAMBER END</text>
+<rect class="hvbox" x="50" y="70" width="290" height="50" rx="6"/>
+<text class="t" x="195.0" y="92.0" text-anchor="middle">Chamber tube, +1 kV</text>
+<text class="s" x="195.0" y="109.0" text-anchor="middle">photodiodes face into it</text>
+<rect class="box" x="50" y="140" width="290" height="370" rx="6"/>
+<text class="t" x="195.0" y="329.5" text-anchor="middle"></text>
+<text class="t" x="195" y="162" text-anchor="middle">Detector board (≤ 20 mm), back side</text>
+<rect class="box" x="62" y="250" width="50" height="30" rx="6"/>
+<text class="t" x="87.0" y="269.5" text-anchor="middle">PD2</text>
+<polyline class="wire" points="112,265 150,265"/>
+<circle class="node" cx="131" cy="265" r="3"/>
+<rect class="part" x="150" y="245" width="55" height="40" rx="3"/>
+<text class="k" x="177" y="270" text-anchor="middle">SWF</text>
+<text class="s" x="177" y="236" text-anchor="middle">switch connector</text>
+<polyline class="wire" points="177,285 177,310"/>
+<rect class="box" x="137" y="310" width="80" height="30" rx="6"/>
+<text class="t" x="177.0" y="329.5" text-anchor="middle">CSA2</text>
+<text class="s" x="224" y="330" text-anchor="start">idles at 0 V</text>
+<polyline class="man" points="205,265 395,265"/>
+<text class="lman" x="214" y="257" text-anchor="start">probe → SMA coax</text>
+<rect class="box" x="62" y="365" width="268" height="45" rx="6"/>
+<text class="t" x="196.0" y="384.5" text-anchor="middle">IN1, IN3, IN4</text>
+<text class="s" x="196.0" y="401.5" text-anchor="middle">connector unmated: node stays on its CSA</text>
+<rect class="box" x="62" y="430" width="268" height="60" rx="6"/>
+<text class="t" x="196.0" y="457.0" text-anchor="middle">PicoBlade</text>
+<text class="s" x="196.0" y="474.0" text-anchor="middle">PD bias, ring, TEST, ±4.5 V, GND</text>
+<polyline class="man" points="420,460 332,460" marker-end="url(#aman)"/>
+<text class="lman" x="376" y="452" text-anchor="middle">source</text>
+<polyline class="wire" points="270,490 270,600"/>
+<rect class="part" x="263" y="552" width="14" height="16" rx="2"/>
+<text class="s" x="282" y="590" text-anchor="start">filtered pass-through: MCU board, PD bias</text>
+<polyline class="hv" points="35,600 35,95 50,95"/>
+<rect class="hvbox" x="27" y="552" width="16" height="16" rx="2"/>
+<text class="lhv" x="48" y="585" text-anchor="start">HV feedthrough, lid interlock</text>
+<rect class="hvbox" x="20" y="600" width="160" height="50" rx="6"/>
+<text class="t" x="100.0" y="622.0" text-anchor="middle">External HV</text>
+<text class="s" x="100.0" y="639.0" text-anchor="middle">≤ 1.1 kV, HV board</text>
+<text class="g" x="590" y="44" text-anchor="start">ELECTROMETER HEAD (SHIELDED)</text>
+<text class="s" x="590" y="62" text-anchor="start">feedback network at the summing node;</text>
+<text class="s" x="590" y="77" text-anchor="start">values are examples, set in phase 2</text>
+<rect class="box" x="395" y="245" width="75" height="40" rx="6"/>
+<text class="t" x="432.5" y="269.5" text-anchor="middle"></text>
+<text class="k" x="432" y="262" text-anchor="middle">input</text>
+<text class="k" x="432" y="277" text-anchor="middle">protection</text>
+<text class="s" x="470" y="310" text-anchor="middle">summing node: mm long,</text>
+<text class="s" x="470" y="325" text-anchor="middle">PTFE or air, guarded</text>
+<polyline class="wire" points="470,265 595,265"/>
+<polyline class="wire" points="530,130 530,265"/>
+<polyline class="wire" points="770,130 770,280"/>
+<circle class="node" cx="530" cy="265" r="4"/>
+<polyline class="wire" points="530,130 545,130"/>
+<line class="lever-man" x1="549.5" y1="130" x2="575" y2="119"/>
+<circle class="term" cx="547.5" cy="130" r="2.5"/>
+<circle class="term" cx="577" cy="130" r="2.5"/>
+<polyline class="wire" points="579,130 640,130"/>
+<rect class="part" x="640" y="124" width="60" height="12"/>
+<polyline class="wire" points="700,130 770,130"/>
+<text class="k" x="670" y="120" text-anchor="middle">10 MΩ</text>
+<text class="s" x="735" y="124" text-anchor="middle">1 µA FS</text>
+<polyline class="wire" points="530,165 545,165"/>
+<line class="lever-man" x1="549.5" y1="165" x2="575" y2="154"/>
+<circle class="term" cx="547.5" cy="165" r="2.5"/>
+<circle class="term" cx="577" cy="165" r="2.5"/>
+<polyline class="wire" points="579,165 640,165"/>
+<rect class="part" x="640" y="159" width="60" height="12"/>
+<polyline class="wire" points="700,165 770,165"/>
+<text class="k" x="670" y="155" text-anchor="middle">1 GΩ</text>
+<text class="s" x="735" y="159" text-anchor="middle">10 nA FS</text>
+<polyline class="wire" points="530,200 666,200"/>
+<line class="plate" x1="666" y1="191" x2="666" y2="209"/>
+<line class="plate" x1="674" y1="191" x2="674" y2="209"/>
+<polyline class="wire" points="674,200 770,200"/>
+<text class="k" x="670" y="186" text-anchor="middle">10 pF, always in</text>
+<polyline class="wire" points="530,232 545,232"/>
+<line class="lever-ctl" x1="549.5" y1="232" x2="575" y2="221"/>
+<circle class="term" cx="547.5" cy="232" r="2.5"/>
+<circle class="term" cx="577" cy="232" r="2.5"/>
+<polyline class="wire" points="579,232 770,232"/>
+<polygon class="part" points="595,250 595,310 665,280"/>
+<text class="k" x="601" y="270" text-anchor="start">−</text>
+<text class="k" x="601" y="300" text-anchor="start">+</text>
+<polyline class="gnd" points="595,295 575,295 575,335"/>
+<line class="gnd" x1="563" y1="335" x2="587" y2="335"/>
+<line class="gnd" x1="567" y1="340" x2="583" y2="340"/>
+<line class="gnd" x1="571" y1="345" x2="579" y2="345"/>
+<text class="s" x="575" y="364" text-anchor="middle">0 V (guard)</text>
+<text class="s" x="675" y="305" text-anchor="start">ADA4530-1 (candidate)</text>
+<polyline class="wire" points="665,280 770,280"/>
+<polyline class="sig" points="770,280 888,280" marker-end="url(#asig)"/>
+<text class="lsig" x="815" y="272" text-anchor="middle">Vout</text>
+<polyline class="gang" points="562,160 562,30 856,30 856,180 1028,180"/>
+<polyline class="man" points="1010,180 1028,180" marker-end="url(#aman)"/>
+<text class="lman" x="945" y="172" text-anchor="middle">range position</text>
+<polyline class="ctl" points="1030,216 584,216" marker-end="url(#actl)"/>
+<text class="lctl" x="945" y="208" text-anchor="middle">reset</text>
+<text class="g" x="886" y="44" text-anchor="start">CONTROL (ESP32)</text>
+<polyline class="ctl" points="1095,140 1095,-64"/>
+<rect class="part" x="1088" y="-35" width="14" height="14" rx="2"/>
+<polyline class="wire" points="1081,-62 1095,-48 1109,-62"/>
+<text class="lctl" x="1075" y="-50" text-anchor="end">antenna outside the tin</text>
+<text class="lctl" x="1075" y="-36" text-anchor="end">ESP-NOW → lab-gateway → script</text>
+<rect class="box" x="890" y="260" width="95" height="40" rx="6"/>
+<text class="t" x="937.5" y="284.5" text-anchor="middle">24-bit ADC</text>
+<polyline class="sig" points="985,280 1028,280" marker-end="url(#asig)"/>
+<rect class="box" x="1030" y="140" width="130" height="170" rx="6"/>
+<text class="t" x="1095.0" y="214.0" text-anchor="middle">MCU</text>
+<text class="s" x="1095.0" y="231.0" text-anchor="middle">auto-ranges by</text>
+<text class="s" x="1095.0" y="246.0" text-anchor="middle">integration time</text>
+<polyline class="ctl" points="1095,310 1095,460 642,460" marker-end="url(#actl)"/>
+<text class="lctl" x="870" y="452" text-anchor="middle">level, polarity, slew</text>
+<rect class="box" x="420" y="435" width="220" height="50" rx="6"/>
+<text class="t" x="530.0" y="457.0" text-anchor="middle">±50 V source</text>
+<text class="s" x="530.0" y="474.0" text-anchor="middle">DAC + HV amp, ≤ 100 µA</text>
+<circle class="dot" cx="640" cy="435" r="5"/>
+<g transform="translate(0,80)">
+<rect class="group" x="680" y="520" width="500" height="262" rx="6"/>
+<text class="t" x="930.0" y="655.5" text-anchor="middle"></text>
+<text class="g" x="696" y="544" text-anchor="start">DETAIL: ONE RANGE BRANCH, SWITCHED OFF (T-SWITCH)</text>
+<circle class="node" cx="720" cy="620" r="4"/>
+<text class="k" x="720" y="646" text-anchor="middle">summing</text>
+<text class="k" x="720" y="661" text-anchor="middle">node ≈ 0 V</text>
+<polyline class="wire" points="724,620 745,620"/>
+<line class="lever-man" x1="749.5" y1="620" x2="775" y2="609"/>
+<circle class="term" cx="747.5" cy="620" r="2.5"/>
+<circle class="term" cx="777" cy="620" r="2.5"/>
+<text class="lman" x="762" y="598" text-anchor="middle">Sa</text>
+<polyline class="wire" points="779,620 845,620"/>
+<circle class="node" cx="820" cy="620" r="3.5"/>
+<line class="lever-man" x1="849.5" y1="620" x2="875" y2="609"/>
+<circle class="term" cx="847.5" cy="620" r="2.5"/>
+<circle class="term" cx="877" cy="620" r="2.5"/>
+<text class="lman" x="862" y="598" text-anchor="middle">Sb</text>
+<polyline class="wire" points="879,620 905,620"/>
+<rect class="part" x="905" y="614" width="55" height="12"/>
+<text class="k" x="932" y="606" text-anchor="middle">R or C</text>
+<polyline class="wire" points="960,620 1010,620"/>
+<circle class="node" cx="1010" cy="620" r="4"/>
+<text class="k" x="1010" y="646" text-anchor="middle">Vout</text>
+<text class="k" x="1010" y="661" text-anchor="middle">up to ±10 V</text>
+<polyline class="wire" points="820,620 820,640"/>
+<line class="lever-man" x1="820" y1="642.5" x2="820" y2="667.5"/>
+<circle class="term" cx="820" cy="642.5" r="2.5"/>
+<circle class="term" cx="820" cy="667.5" r="2.5"/>
+<line class="gnd" x1="820" y1="670" x2="820" y2="684"/>
+<line class="gnd" x1="808" y1="684" x2="832" y2="684"/>
+<line class="gnd" x1="812" y1="689" x2="828" y2="689"/>
+<line class="gnd" x1="816" y1="694" x2="824" y2="694"/>
+<text class="lman" x="840" y="690" text-anchor="start">Sc closed: midpoint held at 0 V</text>
+<text class="k" x="696" y="718" text-anchor="start">Sa has ≈ 0 V across it, so it leaks nothing into the input.</text>
+<text class="k" x="696" y="736" text-anchor="start">Sb sees Vout, but its leakage goes to 0 V through Sc.</text>
+<text class="k" x="696" y="754" text-anchor="start">One DPDT toggle per branch (or one rotary wafer) does this.</text>
+<text class="k" x="696" y="772" text-anchor="start">The MCU's reset switch across the 10 pF needs the same trick.</text>
+</g>
+<text class="g" x="32" y="684" text-anchor="start">KEY</text>
+<polyline class="man" points="32,702 62,702"/>
+<text class="k" x="72" y="706" text-anchor="start">set by hand: probe cable, source lead, range switch</text>
+<polyline class="ctl" points="32,722 62,722"/>
+<text class="k" x="72" y="726" text-anchor="start">set by the MCU (logic, radio)</text>
+<polyline class="gang" points="32,742 62,742"/>
+<text class="k" x="72" y="746" text-anchor="start">switch gang + position readback to the MCU</text>
+<polyline class="sig" points="32,762 62,762"/>
+<text class="k" x="72" y="766" text-anchor="start">analog signal</text>
+<polyline class="hv" points="32,782 62,782"/>
+<text class="k" x="72" y="786" text-anchor="start">HV from outside the tin, interlocked</text>
+</g>
+</svg>

@@ -97,6 +97,7 @@ IDs are provisional until the user confirms. Verification: **S** = simulation, *
 | R-12 | Per-channel gain and noise are matched or characterised so channels can be compared | TBD | T |
 | R-54 | The board is the pressure boundary: O-ring sealed to the chamber, photodiodes inside, back side at atmosphere with the connectors | Leak rate TBD; vias and board material are leak paths to check (Q-20) | I, T |
 | R-55 | Two-layer board (lowest interlayer capacitance, simple circuit) | 2 layers | I |
+| R-60 | Non-destructive test port per CSA input (electrometer R-19, D-02): a Murata SWF-type switched coaxial connector on the back side, in series between the diode node and the CSA input, shell on the 0 V guard ring; Ctest on the diode side. A populated, cleaned board is measured without soldering and goes into service after 1–2 mating cycles per connector. A dedicated bare-board test board uses the same footprints | SWF 2.5 × 2.5 mm, 100 cycles rated; fit on the ≤ 20 mm board (electrometer Q-13); CSA op-amp stable at noise gain 1 while its diode is disconnected | I, T |
 
 ### 4.3 MCU board
 
@@ -158,7 +159,7 @@ IDs are provisional until the user confirms. Verification: **S** = simulation, *
 |---|---|---|---|
 | R-48 | Bare-board characterisation before assembly: leakage between the input pad, guard and ring; interlayer and node capacitance | Limits from the preamp noise budget (phase 2) | T |
 | R-49 | Populated-board characterisation: input leakage, input capacitance, gain via charge injection | TBD | T |
-| R-50 | Electrometer front-end board (premium electrometer IC, switchable capacitors, reed relays, ESP32 over ESP-NOW) controlled by test scripts through the Raspberry Pi ESP-NOW bridge API (future). Until built, this section lives in this project; afterwards it is factored out into the test-gear repo | Details TBD | I, T |
+| R-50 | Electrometer front-end board (premium electrometer IC, switchable capacitors, reed relays, ESP32 over ESP-NOW) controlled by test scripts through the Raspberry Pi ESP-NOW bridge API (future). Until built, this section lives in this project; afterwards it is factored out into the test-gear repo | Requirements in `electrometer/docs/01-requirements.md` (DRAFT 1, 2026-10-20) | I, T |
 | R-51 | Alpha source and HV measurement method | TBD (Q-14) | T |
 
 ## 5. Assumptions
