@@ -90,8 +90,8 @@
 <text class="t" x="100.0" y="622.0" text-anchor="middle">External HV</text>
 <text class="s" x="100.0" y="639.0" text-anchor="middle">≤ 1.1 kV, HV board</text>
 <text class="g" x="590" y="44" text-anchor="start">ELECTROMETER HEAD (SHIELDED)</text>
-<text class="s" x="590" y="62" text-anchor="start">feedback network at the summing node;</text>
-<text class="s" x="590" y="77" text-anchor="start">values are examples, set in phase 2</text>
+<text class="s" x="590" y="62" text-anchor="start">R and C on the board; range switches on</text>
+<text class="s" x="590" y="77" text-anchor="start">an off-board panel (coax S, E1, E2)</text>
 <rect class="box" x="395" y="245" width="75" height="40" rx="6"/>
 <text class="t" x="432.5" y="269.5" text-anchor="middle"></text>
 <text class="k" x="432" y="262" text-anchor="middle">input</text>
@@ -142,9 +142,6 @@
 <polyline class="wire" points="665,280 770,280"/>
 <polyline class="sig" points="770,280 888,280" marker-end="url(#asig)"/>
 <text class="lsig" x="815" y="272" text-anchor="middle">Vout</text>
-<polyline class="gang" points="562,160 562,30 856,30 856,180 1028,180"/>
-<polyline class="man" points="1010,180 1028,180" marker-end="url(#aman)"/>
-<text class="lman" x="945" y="172" text-anchor="middle">range position</text>
 <polyline class="ctl" points="1030,216 584,216" marker-end="url(#actl)"/>
 <text class="lctl" x="945" y="208" text-anchor="middle">reset</text>
 <text class="g" x="886" y="44" text-anchor="start">CONTROL (ESP32)</text>
@@ -202,7 +199,7 @@
 <text class="lman" x="840" y="690" text-anchor="start">Sc closed: midpoint held at 0 V</text>
 <text class="k" x="696" y="718" text-anchor="start">Sa has ≈ 0 V across it, so it leaks nothing into the input.</text>
 <text class="k" x="696" y="736" text-anchor="start">Sb sees Vout, but its leakage goes to 0 V through Sc.</text>
-<text class="k" x="696" y="754" text-anchor="start">One DPDT toggle per branch (or one rotary wafer) does this.</text>
+<text class="k" x="696" y="754" text-anchor="start">Cheap panel: an SPST (Sa) and an SPDT (Sb/Sc), separate bodies.</text>
 <text class="k" x="696" y="772" text-anchor="start">The MCU's reset switch across the 10 pF needs the same trick.</text>
 </g>
 <text class="g" x="32" y="684" text-anchor="start">KEY</text>
@@ -210,11 +207,9 @@
 <text class="k" x="72" y="706" text-anchor="start">set by hand: probe cable, source lead, range switch</text>
 <polyline class="ctl" points="32,722 62,722"/>
 <text class="k" x="72" y="726" text-anchor="start">set by the MCU (logic, radio)</text>
-<polyline class="gang" points="32,742 62,742"/>
-<text class="k" x="72" y="746" text-anchor="start">switch gang + position readback to the MCU</text>
-<polyline class="sig" points="32,762 62,762"/>
-<text class="k" x="72" y="766" text-anchor="start">analog signal</text>
-<polyline class="hv" points="32,782 62,782"/>
-<text class="k" x="72" y="786" text-anchor="start">HV from outside the tin, interlocked</text>
+<polyline class="sig" points="32,742 62,742"/>
+<text class="k" x="72" y="746" text-anchor="start">analog signal</text>
+<polyline class="hv" points="32,762 62,762"/>
+<text class="k" x="72" y="766" text-anchor="start">HV from outside the tin, interlocked</text>
 </g>
 </svg>

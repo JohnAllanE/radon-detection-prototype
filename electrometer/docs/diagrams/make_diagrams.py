@@ -182,8 +182,8 @@ def switching_concept():
 
     # ---- Electrometer head ----
     d.text(590, 44, "ELECTROMETER HEAD (SHIELDED)", "g")
-    d.text(590, 62, "feedback network at the summing node;")
-    d.text(590, 77, "values are examples, set in phase 2")
+    d.text(590, 62, "R and C on the board; range switches on")
+    d.text(590, 77, "an off-board panel (coax S, E1, E2)")
 
     d.box(395, 245, 75, 40, "", cls="box")
     d.text(432, 262, "input", "k", "middle")
@@ -231,10 +231,6 @@ def switching_concept():
     d.line([(770, 280), (888, 280)], "sig")
     d.text(815, 272, "Vout", "lsig", "middle")
 
-    # Range-switch gang and position readback
-    d.line([(562, 160), (562, 30), (856, 30), (856, 180), (1028, 180)], "gang", arrow=False)
-    d.line([(1010, 180), (1028, 180)], "man")
-    d.text(945, 172, "range position", "lman", "middle")
 
     # Reset control
     d.line([(1030, 216), (584, 216)], "ctl")
@@ -289,7 +285,7 @@ def switching_concept():
 
     for i, s in enumerate(("Sa has ≈ 0 V across it, so it leaks nothing into the input.",
                            "Sb sees Vout, but its leakage goes to 0 V through Sc.",
-                           "One DPDT toggle per branch (or one rotary wafer) does this.",
+                           "Cheap panel: an SPST (Sa) and an SPDT (Sb/Sc), separate bodies.",
                            "The MCU's reset switch across the 10 pF needs the same trick.")):
         d.text(696, 718 + 18 * i, s, "k")
     d.add('</g>')
@@ -300,12 +296,10 @@ def switching_concept():
     d.text(72, 706, "set by hand: probe cable, source lead, range switch", "k")
     d.line([(32, 722), (62, 722)], "ctl", arrow=False)
     d.text(72, 726, "set by the MCU (logic, radio)", "k")
-    d.line([(32, 742), (62, 742)], "gang", arrow=False)
-    d.text(72, 746, "switch gang + position readback to the MCU", "k")
-    d.line([(32, 762), (62, 762)], "sig", arrow=False)
-    d.text(72, 766, "analog signal", "k")
-    d.line([(32, 782), (62, 782)], "hv", arrow=False)
-    d.text(72, 786, "HV from outside the tin, interlocked", "k")
+    d.line([(32, 742), (62, 742)], "sig", arrow=False)
+    d.text(72, 746, "analog signal", "k")
+    d.line([(32, 762), (62, 762)], "hv", arrow=False)
+    d.text(72, 766, "HV from outside the tin, interlocked", "k")
 
     d.write("switching-concept.svg")
 
