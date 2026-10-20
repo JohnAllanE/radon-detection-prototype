@@ -8,7 +8,7 @@ It lives inside the radon project until built (radon R-50), then moves to `$ELEC
 
 Follow `$ELECTRONICS_TOOLS/pcb-design-workflow/PCB-WORKFLOW.md`, as the parent project does.
 
-**Current phase:** 1 (requirements). Gate: the user confirms `docs/01-requirements.md`.
+**Current phase:** 2 (architecture), `docs/02-architecture.md`. Gate: the user approves the topology and block-level specs. Phase 1 confirmed 2026-10-20.
 
 ## Project-specific facts
 

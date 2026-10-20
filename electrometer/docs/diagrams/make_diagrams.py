@@ -14,10 +14,10 @@ FONT = 'system-ui,-apple-system,"Segoe UI",sans-serif'
 STYLE = f"""
 <style>
   svg {{ --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
-        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --man:#1a8f5a; --hv:#c62828; }}
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --man:#1a8f5a; --hv:#c62828; --pwr:#8e44ad; }}
   @media (prefers-color-scheme: dark) {{
     svg {{ --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
-          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --man:#52c48a; --hv:#ef6b6b; }}
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --man:#52c48a; --hv:#ef6b6b; --pwr:#b783d6; }}
   }}
   .bg {{ fill:var(--bg); }}
   .box {{ fill:var(--box); stroke:var(--edge); stroke-width:1.2; }}
@@ -38,6 +38,9 @@ STYLE = f"""
   .man {{ fill:none; stroke:var(--man); stroke-width:3; stroke-linejoin:round; }}
   .gang {{ fill:none; stroke:var(--man); stroke-width:1.6; stroke-dasharray:3 3; stroke-linejoin:round; }}
   .hv {{ fill:none; stroke:var(--hv); stroke-width:2.5; stroke-linejoin:round; }}
+  .pwr {{ fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }}
+  .lpwr {{ fill:var(--pwr); font:400 11.5px {FONT}; }}
+  .hpwr {{ fill:var(--pwr); }}
   .gnd {{ fill:none; stroke:var(--ink2); stroke-width:1.5; }}
   .lever-man {{ stroke:var(--man); stroke-width:2.2; }}
   .lever-ctl {{ stroke:var(--ctl); stroke-width:2.2; }}
@@ -54,7 +57,7 @@ STYLE = f"""
 """ + "".join(
     f'  <marker id="a{k}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" '
     f'markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="h{k}" d="M0,0 L10,5 L0,10 z"/></marker>\n'
-    for k in ("sig", "ctl", "man")
+    for k in ("sig", "ctl", "man", "pwr")
 ) + "</defs>\n"
 
 
@@ -190,6 +193,7 @@ def switching_concept():
     d.text(432, 277, "protection", "k", "middle")
     d.text(470, 310, "summing node: mm long,", "s", "middle")
     d.text(470, 325, "PTFE or air, guarded", "s", "middle")
+    d.text(470, 345, "C_inj 1 pF from a quiet DAC", "s", "middle")
 
     d.wire([(470, 265), (595, 265)])
     d.wire([(530, 130), (530, 265)])
@@ -197,7 +201,7 @@ def switching_concept():
     d.node(530, 265)
 
     # Range branches (manual switches)
-    for y, value, fs in ((130, "10 MΩ", "1 µA FS"), (165, "1 GΩ", "10 nA FS")):
+    for y, value, fs in ((130, "3.9 MΩ", "1 µA FS"), (165, "1 GΩ", "4 nA FS")):
         d.wire([(530, y), (545, y)])
         d.switch(545, y, "man")
         d.wire([(579, y), (640, y)])
@@ -304,5 +308,52 @@ def switching_concept():
     d.write("switching-concept.svg")
 
 
+def power_tree():
+    d = Svg(1000, 560, "Electrometer power tree: a floating 1S2P Li-ion pack feeds a 3.3 V digital rail, low-noise "
+                       "plus and minus 5 V analog rails, and a plus and minus 60 V supply for the source that is "
+                       "switched on only when the source is used")
+    d.box(30, 60, 170, 60, "Li-ion 1S2P", "2 × 18650, 3.0–4.2 V")
+    d.box(240, 60, 170, 60, "Switch, fuse", "cell protection")
+    d.line([(200, 90), (238, 90)], "pwr")
+    d.line([(410, 90), (450, 90)], "pwr", arrow=False)
+    d.line([(450, 55), (450, 255)], "pwr", arrow=False)
+
+    d.box(480, 30, 210, 50, "3.3 V buck-boost", "digital rail")
+    d.line([(450, 55), (478, 55)], "pwr")
+    d.box(730, 30, 240, 50, "Digital 3.3 V", "ESP32-S3, ADC digital side, T/RH")
+    d.line([(690, 55), (728, 55)], "pwr")
+
+    d.box(480, 120, 210, 50, "±6.5 V converters", "≥ 1 MHz, shielded, far from the head")
+    d.line([(450, 145), (478, 145)], "pwr")
+    d.box(730, 120, 240, 50, "±5 V low-noise LDOs", "head (local RC filters), ADC, DACs")
+    d.line([(690, 145), (728, 145)], "pwr")
+
+    d.box(480, 210, 210, 50, "±60 V boost", "on only when the source is used", ctl=True)
+    d.line([(450, 235), (478, 235)], "pwr")
+    d.box(730, 210, 240, 50, "±50 V source amplifier", "RC output filter, ≤ 100 µA")
+    d.line([(690, 235), (728, 235)], "pwr")
+
+    d.text(30, 160, "Charger connects only with the", "s")
+    d.text(30, 176, "main switch off (no charging", "s")
+    d.text(30, 192, "while measuring, no ground loop)", "s")
+
+    d.add('<rect class="group" x="30" y="300" width="940" height="230" rx="10"/>')
+    d.text(48, 326, "GROUNDING", "g")
+    items = (["Analog common = op-amp + input = guard = coax shields = head shield = tin: one star point, in the head."],
+             ["Digital ground joins the analog common once, at the ADC."],
+             ["The instrument floats on its battery. Its only bond to the rest of the system is the probe shield",
+              "at the detector board's 0 V (R-31)."],
+             ["The ±60 V boost and the radio are the two noise sources: keep them away from the head and shielded,",
+              "turn the boost off when the source is not needed, and transmit between integration windows (R-23)."])
+    y = 356
+    for lines in items:
+        for j, line in enumerate(lines):
+            d.text(48 if j == 0 else 60, y, ("• " if j == 0 else "") + line, "k")
+            y += 18
+        y += 10
+    d.write("power-tree.svg")
+
+
 if __name__ == "__main__":
     switching_concept()
+    power_tree()

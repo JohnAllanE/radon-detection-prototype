@@ -3,10 +3,10 @@
 
 <style>
   svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
-        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --man:#1a8f5a; --hv:#c62828; }
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --man:#1a8f5a; --hv:#c62828; --pwr:#8e44ad; }
   @media (prefers-color-scheme: dark) {
     svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
-          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --man:#52c48a; --hv:#ef6b6b; }
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --man:#52c48a; --hv:#ef6b6b; --pwr:#b783d6; }
   }
   .bg { fill:var(--bg); }
   .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
@@ -27,6 +27,9 @@
   .man { fill:none; stroke:var(--man); stroke-width:3; stroke-linejoin:round; }
   .gang { fill:none; stroke:var(--man); stroke-width:1.6; stroke-dasharray:3 3; stroke-linejoin:round; }
   .hv { fill:none; stroke:var(--hv); stroke-width:2.5; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .hpwr { fill:var(--pwr); }
   .gnd { fill:none; stroke:var(--ink2); stroke-width:1.5; }
   .lever-man { stroke:var(--man); stroke-width:2.2; }
   .lever-ctl { stroke:var(--ctl); stroke-width:2.2; }
@@ -43,6 +46,7 @@
   <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
   <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
   <marker id="aman" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hman" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
 </defs>
 
 <rect class="bg" x="0" y="0" width="1200" height="940" rx="10"/>
@@ -98,6 +102,7 @@
 <text class="k" x="432" y="277" text-anchor="middle">protection</text>
 <text class="s" x="470" y="310" text-anchor="middle">summing node: mm long,</text>
 <text class="s" x="470" y="325" text-anchor="middle">PTFE or air, guarded</text>
+<text class="s" x="470" y="345" text-anchor="middle">C_inj 1 pF from a quiet DAC</text>
 <polyline class="wire" points="470,265 595,265"/>
 <polyline class="wire" points="530,130 530,265"/>
 <polyline class="wire" points="770,130 770,280"/>
@@ -109,7 +114,7 @@
 <polyline class="wire" points="579,130 640,130"/>
 <rect class="part" x="640" y="124" width="60" height="12"/>
 <polyline class="wire" points="700,130 770,130"/>
-<text class="k" x="670" y="120" text-anchor="middle">10 MΩ</text>
+<text class="k" x="670" y="120" text-anchor="middle">3.9 MΩ</text>
 <text class="s" x="735" y="124" text-anchor="middle">1 µA FS</text>
 <polyline class="wire" points="530,165 545,165"/>
 <line class="lever-man" x1="549.5" y1="165" x2="575" y2="154"/>
@@ -119,7 +124,7 @@
 <rect class="part" x="640" y="159" width="60" height="12"/>
 <polyline class="wire" points="700,165 770,165"/>
 <text class="k" x="670" y="155" text-anchor="middle">1 GΩ</text>
-<text class="s" x="735" y="159" text-anchor="middle">10 nA FS</text>
+<text class="s" x="735" y="159" text-anchor="middle">4 nA FS</text>
 <polyline class="wire" points="530,200 666,200"/>
 <line class="plate" x1="666" y1="191" x2="666" y2="209"/>
 <line class="plate" x1="674" y1="191" x2="674" y2="209"/>

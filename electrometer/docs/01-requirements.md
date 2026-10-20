@@ -1,6 +1,6 @@
 # Requirements: electrometer front-end (test equipment)
 
-**Status:** DRAFT 3, Phase 1 (requirements), 2026-10-20. Not yet confirmed by the user. Draft 2 made DC current the primary function (D-01). Draft 3 makes the in-chamber test in a grounded tin the primary validation, replaces the switching matrix with one probe cable moved between per-channel switch connectors, and sets the grounding scheme (D-02).
+**Status:** DRAFT 3, Phase 1 (requirements), 2026-10-20. **Confirmed by the user 2026-10-20** (phase-1 gate); the open questions in §7 are carried into phase 2 (`02-architecture.md` §8). Draft 2 made DC current the primary function (D-01). Draft 3 makes the in-chamber test in a grounded tin the primary validation, replaces the switching matrix with one probe cable moved between per-channel switch connectors, and sets the grounding scheme (D-02).
 **Parent:** radon detection prototype, `docs/01-requirements.md` §4.7 (radon R-48 to R-50). This board lives here until it is built, then moves to `electronics-tools/bench-test-gear/` (radon R-50), so this folder is self-contained.
 **IDs:** `R-xx`, `Q-xx`, `U-xx` and `D-xx` in this folder are local to the electrometer. Requirements of the radon project are always written as "radon R-xx".
 **Legend:** `VERIFY` means not yet checked against a source. `PROPOSED` means Claude's suggestion for the user to accept or change. `TBD (Q-xx)` depends on an open question in §7.
@@ -93,7 +93,7 @@ Verification: **S** = simulation, **T** = test, **I** = inspection.
 
 | ID | Statement | Target | Verify |
 |---|---|---|---|
-| R-01 | DC current, with the measured node held at virtual ground (as the CSA input is). **The primary function (D-01)** | ±1 µA full scale (overlap, R-07) down to **10 fA (user target)**. PROPOSED to meet it: noise ≤ 10 fA p-p over 60 s at 1 s per reading on the lowest range; burden ≤ 1 mV; accuracy ±2 % of reading above 1 pA after zeroing | T |
+| R-01 | DC current, with the measured node held at virtual ground (as the CSA input is). **The primary function (D-01)** | ±1 µA full scale (overlap, R-07) down to **10 fA (user target)**. PROPOSED to meet it: noise ≤ 10 fA p-p over 60 s at 1 s per reading on the lowest range; burden ≤ 1 mV up to 4 nA and ≤ 10 mV on the 1 µA range (D-05); accuracy ±2 % of reading above 1 pA after zeroing | T |
 | R-02 | *Optional (D-01, D-04):* charge, as a firmware mode on the 10 pF integrator. Slowly arriving charge is counted through resets (each reset dumps a known charge), so its range is not limited by the capacitor; a charge arriving faster than a reset (above about 100 pC at once) is logged as an overload, not measured | PROPOSED: 1 fC resolution over a 1 s window; overloads timestamped | T |
 | R-03 | *Optional (D-01), needs R-02:* capacitance by charge transfer with small steps (about ±1 V; 33 pF × 1 V = 33 pC fits the 10 pF integrator), guarded cross-capacitance between a source node and the measured node with all other nodes held at 0 V. For bare boards (U-2) and absolute Ctest (U-3) | PROPOSED: 1 fF to 100 pF at a 1 V step (charge ≤ 100 pC; larger C needs a proportionally smaller step); resolution 1 fF; accuracy ±(1 % + 2 fF) | T |
 | R-04 | Resistance from V/I, including the alternating-polarity method to reject soak currents and offsets | PROPOSED: up to 10¹⁵ Ω at 50 V (50 fA), ±10 % | T |
@@ -105,7 +105,7 @@ Verification: **S** = simulation, **T** = test, **I** = inspection.
 
 | ID | Statement | Target | Verify |
 |---|---|---|---|
-| R-08 | Built-in bipolar programmable voltage source for bias, steps and alternating polarity. In the chamber it drives the ring (or PD bias) through the PicoBlade breakout | PROPOSED: ±50 V, 10 mV steps, current limit ≤ 100 µA, noise ≤ 10 µV rms in 0.1–10 Hz (100 pF × 10 µV at 1 Hz moves only 6 fA), controlled slew so a step does not overload the input. One or two channels (Q-03) | S, T |
+| R-08 | Built-in bipolar programmable voltage source for bias, steps and alternating polarity. In the chamber it drives the ring (or PD bias) through the PicoBlade breakout | PROPOSED: ±50 V, 10 mV steps, current limit ≤ 100 µA, noise ≤ 10 µV rms in 0.1–10 Hz (100 pF × 10 µV at 1 Hz moves only 6 fA), controlled slew so a step does not overload the input. One channel (D-06): in the chamber the real PD bias and ring supplies are selected at the breakout | S, T |
 | R-09 | External HV: the project HV board, outside the tin, feeds the chamber tube through an HV feedthrough in the tin wall. For bench tests of the bare board, a metal ring pressed on the O-ring land stands in for the tube. HV never passes through the electrometer | ≤ 1.1 kV; supply choice Q-04 | I |
 | R-10 | Input protection: the input survives a flashover from the 1 kV tube to a diode node while the probe is on it, and a mis-routed ±50 V, without lasting change in leakage or offset | Survives; the zero and noise floor (R-01) re-checked after a deliberate test (`VERIFY` the energy available from the HV board's output capacitance) | S, T |
 
@@ -139,7 +139,7 @@ The open switch contact sits between the diode node (held at virtual ground by t
 | R-21 | Each record carries: timestamp, function, range, value, source level, probed channel and board (entered by the operator), range setting as instructed and confirmed (R-33), PD bias and ring state, T, RH, and flags (overload, range change, settling, HV present) | n/a | I |
 | R-22 | Reading rate | PROPOSED: 1–10 readings/s with integration over whole mains cycles (Q-08); up to 1 kS/s in charge-step mode (R-06) | T |
 | R-23 | Radio and digital activity do not disturb readings | Radio on vs off differs by less than the R-01 noise floor; transmissions scheduled between integration windows if needed | T |
-| R-24 | Power: battery, so the electrometer floats and the only bond to the rest of the system is the coax shield (R-31) | Resolved (D-02). Battery life PROPOSED ≥ 24 h of logging (R-05) | I, T |
+| R-24 | Power: battery, so the electrometer floats and the only bond to the rest of the system is the coax shield (R-31) | Resolved (D-02). Battery life PROPOSED ≥ 24 h of logging (R-05); two 18650 cells in parallel, about 25 h with the source on (D-08) | I, T |
 | R-32 | The tin blocks 2.4 GHz, so the radio antenna is outside it: an ESP32 module with an external-antenna connector and a bulkhead antenna, or the control board outside with a shielded cable to the head (Q-14) | ESP-NOW link holds with the tin closed | T |
 
 ### 4.6 Calibration and self-test
@@ -177,12 +177,12 @@ The open switch contact sits between the diode node (held at virtual ground by t
 
 - **Q-01** Resolved (2026-10-20, D-02): U-5 in the tin is the primary validation; the bench test diagnoses.
 - **Q-02** Resolved (2026-10-20, D-01): target 10 fA. Consequence: PTFE or in-air input node, guarded range switching, careful cleaning.
-- **Q-03** Built-in source: one ±50 V channel, or two (PD bias and ring bias at the same time)? Or use the HV board's regulated PD bias for the second?
+- **Q-03** (Resolved, D-06: one channel.) Built-in source: one ±50 V channel, or two (PD bias and ring bias at the same time)? Or use the HV board's regulated PD bias for the second?
 - **Q-04** 1 kV: the project HV board (fixed output), or also an adjustable lab HV supply and an HV probe for leakage vs voltage curves?
 - **Q-05** Resolved (2026-10-20, D-02): Murata SWF switch connectors per input, one probe cable.
 - **Q-06** Resolved (2026-10-20, D-02): no matrix; four inputs per board via the probe; other nets through the PicoBlade.
 - **Q-07** Resolved (2026-10-20, D-02): battery.
-- **Q-08** Mains frequency in the lab (50 or 60 Hz).
+- **Q-08** (Closed, D-06: not needed; integration over multiples of 100 ms rejects both.) Mains frequency in the lab (50 or 60 Hz).
 - **Q-09** Budget for the premium parts: ADA4530-1 (one; your earlier note says it is very expensive), the Murata probe (price not checked), SWF receptacles (low cost per the user).
 - **Q-10** Typical lab RH, and whether a tin purge (R-18) is wanted.
 - **Q-11** Resolved (2026-10-20, D-04): no 1 nF charge range. Charge and capacitance stay optional firmware modes on the 10 pF integrator (reset counting for slow charge, steps of about ±1 V for capacitance); a large fast charge is logged as a timestamped overload.

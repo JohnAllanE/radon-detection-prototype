@@ -1,0 +1,91 @@
+Electrometer phase-2 budgets (budget.py). Inputs:
+  vos_max          4e-05      V       input offset voltage max (p3, p5)
+  vos_drift_max    5e-07      V/K     offset drift max, 0..125 C (p3, p5)
+  en_pp_0p1_10     4e-06      Vpp     voltage noise 0.1-10 Hz (p4, p5)
+  en_1k            1.6e-08    V/rtHz  voltage noise density at 1 kHz (p4)
+  in_0p1           7e-17      A/rtHz  current noise density at 0.1 Hz (p4)
+  ib_max           2e-14      A       input bias max, -40..85 C (p1)
+  cin_amp          8e-12      F       input capacitance typ (p3)
+  gbw              2e+06      Hz      GBW typ, G = 100 (p3)
+  isy_amp          0.0013     A       supply current max (p3)
+  out_swing        4          V       usable output swing on +/-5 V rails: VOH/VOL within 40 mV of rails at 10 V supply (p5); 4 V keeps margin for the ADC front end
+  cf               1e-11      F       integrator capacitor, always in (D-03)
+  r1               3.9e+06    ohm     range 1 resistor (1 uA full scale at 3.9 V)
+  r2               1e+09      ohm     range 2 resistor (3.9 nA full scale at 3.9 V)
+  t_reset_min      0.01       s       shortest integration ramp allowed between resets (settling after reset charge injection), PROPOSED
+  c_diode_20v      3.3e-11    F       VTH2110 at 20 V (VTH2110.json p1, p3)
+  c_diode_0v       1.5e-10    F       VTH2110 at 0 V bias: VERIFY (curve stops at 20 V; larger at low bias)
+  c_probe_cable    3e-11      F       Murata probe, 300 mm cable, ~100 pF/m: VERIFY
+  c_s_coax         3e-11      F       range-panel S coax, 300 mm, ~100 pF/m: VERIFY
+  c_inj            1e-12      F       permanent injection capacitor for self-test and calibration (PROPOSED, architecture §3.1)
+  i_mcu            0.1        A       ESP32-S3 module with radio receiving for ESP-NOW, average at 3.3 V: VERIFY
+  i_analog         0.015      A       head + ADC + DACs + T/RH + references at 5 V rails: VERIFY
+  p_source         0.25       W       +/-50 V source: boost to about +/-60 V plus a low-power HV amplifier, when enabled: VERIFY
+  eff              0.85               converter efficiency from the cell: VERIFY
+  v_cell           3.6        V       Li-ion 1S nominal under load
+  cell_ah          3          Ah      one 18650 cell, usable: VERIFY per cell
+  src_span         100        V       source output span, -50..+50 V (R-08)
+  dac_bits         12         bit     MCP4922, each channel
+  fine_overlap_bits 2          bit     fine channel's full scale spans 2^n coarse LSBs, so it covers the coarse DNL
+  src_zero_err     0.01       V       source output at a commanded 0 V, uncalibrated (DAC offset x gain ~20): VERIFY
+
+== Ranges (R-01, R-07) ==
+Integrator: charge per ramp = Cf x swing = 40 pC; max current at 10 ms per ramp = 4 nA
+R1 = 3.9 Mohm: full scale 1.03 uA; offset before zeroing 10.3 pA; offset drift 128 fA/K; lowest reading at 1 % of reading after zeroing ~ 12.8 pA per K of drift
+R2 = 1 Gohm: full scale 4 nA; offset before zeroing 40 fA; offset drift 500 aA/K; lowest reading at 1 % of reading after zeroing ~ 50 fA per K of drift
+Coverage: integrator 10 fA..~4 nA, R2 ~4 pA..3.9 nA (continuous), R1 ~1 nA..1 uA. Overlap with the SDM3055 200 uA range: 100 nA..1 uA (R-07).
+
+== Input capacitance and noise gain ==
+PD bias on (20 V): Cin = 102 pF, noise gain (integrator) = 1 + Cin/Cf = 11.2
+PD bias 0 V (fA runs): Cin = 219 pF, noise gain (integrator) = 1 + Cin/Cf = 22.9
+
+== Integrator current resolution, op-amp limited (R-01 target 10 fA) ==
+  PD bias on, T =    1 s: from en 448 aApp, from in 327 aApp, total ~ 554 aApp
+  PD bias on, T =   10 s: from en 44.8 aApp, from in 103 aApp, total ~ 113 aApp
+  PD bias 0 V, T =    1 s: from en 916 aApp, from in 327 aApp, total ~ 973 aApp
+  PD bias 0 V, T =   10 s: from en 91.6 aApp, from in 103 aApp, total ~ 138 aApp
+Conclusion: the amplifier is not the limit for 10 fA; leakage, triboelectric charge, dielectric absorption and humidity are (risks R1-R4 in the architecture).
+
+== Resistor ranges: thermal noise of Rf (1 s reading, ENBW 0.5 Hz) ==
+R1: 65 fA/rtHz -> 45.9 fA rms per 1 s reading
+R2: 4.06 fA/rtHz -> 2.87 fA rms per 1 s reading
+
+== Loop stability, transimpedance ranges (worst case Cin) ==
+R1: noise-gain zero 178 Hz, pole 4.08 kHz, HF noise gain 22.9, crossover 87.3 kHz, phase margin ~87 deg; signal bandwidth 4.08 kHz
+R2: noise-gain zero 695 mHz, pole 15.9 Hz, HF noise gain 22.9, crossover 87.3 kHz, phase margin ~90 deg; signal bandwidth 15.9 Hz
+Both ranges have more than 60 deg margin; a SPICE check (S-01) confirms with the real model.
+
+== Mains rejection (Q-08) ==
+A slope or average over a multiple of 100 ms spans whole cycles of both 50 Hz (5) and 60 Hz (6), and a delta-sigma ADC with simultaneous 50/60 Hz rejection does the same for the resistor ranges, so the design does not need to know the mains frequency.
+
+== Leakage at the summing node (everything has about Vos across it) ==
+  40 uV across 1 Tohm -> 40 aA
+  40 uV across 100 Tohm -> 4e-19 A
+  Op-amp input bias max 20 fA (zeroed; the typical value at 25 C is far lower)
+  Open Sa contacts, clamp diodes, the reset switch's summing-node side and C_inj's drive line all sit at ~0 V, so their leakage scales with Vos, not with the 4 V output or the 50 V source.
+
+== Calibration currents from the injection capacitor (architecture §3.1) ==
+  C_inj x ramp 0.01 V/s = 10 fA
+  C_inj x ramp 0.1 V/s = 100 fA
+  C_inj x ramp 1 V/s = 1 pA
+  C_inj x ramp 4 V/s = 4 pA
+
+== Input protection vs burden (R-01, R-10) ==
+  Series R 10 kohm: burden 10 mV at 1 uA, 40 uV at 4 nA; thermal noise 12.8 nV/rtHz (adds to en)
+  Series R 100 kohm: burden 100 mV at 1 uA, 400 uV at 4 nA; thermal noise 40.6 nV/rtHz (adds to en)
+  Fault current from a 1 kV flashover is set by the HV board's output resistance: at 10 Mohm it is 100 uA, which clamp diodes and a 10 kohm series R handle easily (requirement on the HV board).
+
+== Why the resistor check is an external cal plug, not a resistor fixed to the summing node (R-25) ==
+  1 Gohm left on the node: thermal noise 4.06 fA/rtHz (2.87 fA rms in a 1 s reading) and 10 pA from a source 'at 0 V' that is 10 mV off, against the 10 fA target
+  100 Gohm left on the node: thermal noise 406 aA/rtHz (287 aA rms in a 1 s reading) and 100 fA from a source 'at 0 V' that is 10 mV off, against the 10 fA target
+  C_inj injects only C*dV/dt: a static DAC offset gives no current, and an ideal capacitor has no thermal noise.
+
+== Source DAC, coarse + fine (R-08: 10 mV steps) ==
+  12-bit alone: 24.4 mV per step
+  coarse + fine (fine full scale = 4 coarse LSB): 23.8 uV per step, about 22 bits; monotonic and accurate only through the ADC readback (R-21)
+
+== Battery (R-24: >= 24 h) ==
+  source off: 0.48 W -> 157 mA from the cell; 2 x 18650: 38 h
+  source off: 0.48 W -> 157 mA from the cell; 3 x 18650: 57 h
+  source on: 0.73 W -> 239 mA from the cell; 2 x 18650: 25 h
+  source on: 0.73 W -> 239 mA from the cell; 3 x 18650: 38 h
