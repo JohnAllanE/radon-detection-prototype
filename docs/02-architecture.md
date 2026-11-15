@@ -1,6 +1,6 @@
 # Architecture: detector board and MCU board
 
-**Status:** DRAFT 1, Phase 2 (architecture). **Gate not passed:** the user has not reviewed it. Written 2026-10-12 while the user was away, at their request to "proceed with the existing information" to a design spec with part numbers for the detector board and the MCU board. The workflow normally defers part numbers to phase 3, so §6 and `parts/selection.md` are a preview and every part stays a candidate until the user approves the topology. The HV board is not covered here. Revised the same day after the user's tube decision (D-22), the ADI datasheets they added, and their TLV900x preference (D-23).
+**Status:** DRAFT 1, Phase 2 (architecture). **Gate not passed:** the user has not reviewed it. Written 2026-10-12 while the user was away, at their request to "proceed with the existing information" to a design spec with part numbers for the detector board and the MCU board. The workflow normally defers part numbers to phase 3, so §6 and `parts/selection.md` are a preview and every part stays a candidate until the user approves the topology. The HV board is not covered here. Revised the same day after the user's tube decision (D-22), the ADI datasheets they added, and their TLV900x preference (D-23). Revised 2026-10-13: part numbers and part-specific facts removed from `01-requirements.md` are collected in §6.
 
 Sources: `docs/01-requirements.md` (R-xx), `docs/decisions.md` (D-xx), datasheet JSONs in `datasheets/` (cited as `JSON p.N`), arithmetic in `sim/analytic/enc_budget.py` (output in `enc_budget.out.txt`). `VERIFY` means not checked against a source. Nothing here has been simulated yet.
 
@@ -52,6 +52,8 @@ Sequence per event (R-13): comparator fires → ESP32 notes the channel and time
 - Peak-hold droop budget: 0.03 % of about 1.3 V full scale = 0.4 mV over a 5 ms worst-case hold with Chold = 1 nF gives I ≤ 0.4 mV × 1 nF / 5 ms = 80 pA total leakage on the hold node. Candidates: TMUX1101 leakage 3 pA (TMUX1101.json p1), TLV9001 input bias ±5 pA typical (max not extracted, TLV9001.json p17), diode `VERIFY` (low-leakage type needed). Reset switch charge injection about −1.5 pC into 1 nF is about 1.5 mV offset after reset: constant, absorbed in baseline calibration.
 
 ### 2.3 Noise budget (from `sim/analytic/enc_budget.py`)
+
+**Why input noise matters.** An alpha arrives as a small charge (266 fC at 6 MeV). Noise at the preamp input is indistinguishable from that charge, and every later stage amplifies the two together, so the signal-to-noise ratio is fixed at the input. That is why the CSA op-amp is chosen on noise and the shaper, peak detector and hold buffer are not. The noise is quoted as equivalent noise charge (ENC, electrons rms): FWHM in keV = 2.355 × ENC × 3.62 eV, so 7 keV FWHM is about 1900 e FWHM, or about 820 e rms. It sets the electronics' share of the floor in two ways: (1) the peak width, which limits how well neighbouring alpha lines can be separated, and (2) the comparator threshold, which must sit about 5σ above the baseline noise to avoid false triggers (σ of 3 keV puts the threshold near 15 keV, far below any 5–9 MeV alpha). So the electronics set a floor on resolution and threshold, but at these numbers they are not the limit: the detector's dead layer and straggling (§2.4) give a wider peak than the amplifier does. Leakage enters the same budget twice, as shot noise (2qI) and as DC offset, which is why board leakage matters and why the electrometer exists (requirements §4.7).
 
 Inputs: C_pd 33 pF (spec < 30 pF at 20 V, curve about 32 pF; VTH2110.json p1, p3), 2 pF stray, Cf 1 pF, Rf 100 MΩ, CR-RC shaping with form factor 0.924 (`VERIFY`), 3.62 eV per pair (`VERIFY`), dark current 0.15 nA typical to 2 nA maximum. Op-amp Cin: OPA140 17 pF, OPA656 3 pF (from the datasheets); OPA657 and LMP7721 not extracted, 5 pF assumed.
 
@@ -105,7 +107,7 @@ So the standard does not diminish the product for the downstream stages as long 
 - **Ring bias (R-47):** the exposed ENIG ring is driven from a filtered rail, polarity and value from the field simulation, never raw 48 V. It should be slightly positive relative to the diode front surface (my view, Q-24).
 - **Guarding and layout (R-48):** the CSA input pad and trace are the critical node. Keep the trace short and straight, surround it with a guard trace tied to the non-inverting input potential (0 V) on the same layer, remove solder mask over the guarded trace if the fab permits (`VERIFY`), keep the input node off the board edge, and coat the atmosphere side in a way that does not add leakage. **Flux residue is a real leakage path:** the ADA4530-1 datasheet reports that flux residue degrades effective bias current and recommends RMA paste with an ultrasonic IPA clean and a 125 °C bake (about 15 min clean plus 1.5 h bake for RMA, much longer for no-clean paste; ADA4530-1.json p38). Hand-assemble the input nodes with RMA flux, clean, bake, and handle with gloves. Keep digital lines away from the input.
 - **Humidity:** VTH2110 is rated to 60 % RH non-condensing (VTH2110.json p2). Keep spare chips in a dry box, and assemble in a dry condition.
-- **Connector (PicoBlade, pin count ≤ 15 `VERIFY`):** proposed 14 pins: OUT1..4 each paired with a ground, +4.5 V, −4.5 V, GND, PD bias, ring bias, TEST. Final plan in phase 3.
+- **Connector (Molex PicoBlade-style per R-24, pin count ≤ 15 `VERIFY`):** proposed 14 pins: OUT1..4 each paired with a ground, +4.5 V, −4.5 V, GND, PD bias, ring bias, TEST. Final plan in phase 3.
 - **Power:** ±4.5 V from the MCU board's LM27762 plus a local RC or ferrite filter and bulk C per board. LM27762 noise and PSRR are not extracted: `VERIFY` before relying on it for a CSA rail (LM27762.json not_extracted).
 
 **Variants (R-10, R-53)**
@@ -131,7 +133,7 @@ Honest expectation: both will measure similar spectra (§1.3). The differences w
 - **Peak detector:** TLV900x op-amp plus a low-leakage diode (candidate BAS116, not pulled) into Chold, reset by a TMUX1101 SPST switch (TMUX1101.json p1). A second op-amp buffers the hold node so the ADC loading (ADS8689 ≥ 1 MΩ) never touches it (§1.5). **Use the TLV9061 family here, not the TLV9001:** input bias 0.5 pA vs 5 pA typical (max `VERIFY` for both), open-loop output impedance 100 Ω vs 1.2 kΩ (the latter drives a 1 nF load inside the loop poorly), 10 MHz vs 1 MHz for tracking the pulse crest. A stability and accuracy simulation is still required; if the load is a problem use a smaller Chold (220 pF would tighten the leakage budget to about 15 pA).
 - **ADCs (D-16):** populate **both**. The buffered holds go (a) straight to ADS1220 AIN0–AIN3 single-ended (the part in stock), and (b) through a **TMUX1104** 4:1 mux (TMUX1104.json p1: 3 pA, 1.5 pC, signals limited to GND..VDD, so positive peaks only) into the **ADS8689**. A solder jumper or 0 Ω option routes the mux output to an ESP32-S3 ADC pin for a low-resolution, high-rate test path (the module's ADC performance is not extracted, `VERIFY`). Single-ended is adequate (§2.2).
 - **MCU:** ESP32-S3-WROOM-1 module with PCB antenna (ESP32-S3-WROOM-1.json p1; flash and PSRAM variant not chosen; pick when the ordering table is read). Native USB for data. ESP-NOW over the PCB antenna as the pivot (software feature; the datasheet only covers the radio). Strapping pins avoided for interrupts (4 strapping GPIOs, p1). Peripherals needed: SPI ×2 chip selects (ADS1220, ADS8689), 4 comparator interrupts, 2 mux-select lines, 4 reset lines, pulse counters for pile-up detection, and a timer for timestamps.
-- **Power:** +5 V wall adapter → 3.3 V LDO for the ESP32 and digital (3.0–3.6 V, ESP32-S3-WROOM-1.json p2; LDO not selected) and LM27762 for the ±4.5 V analog rails used only by the detector boards' CSAs (through their connectors). All MCU-board analog stages run from a single filtered +5 V rail (TLV900x maximum 5.5 V, TLV9001.json p14), as does the ADS8689 AVDD (ADS8689.json p1); TMUX1104, TMUX1101 and TLV3201 are also 5.5 V parts.
+- **Power:** +5 V Mean Well wall adapter (R-25; the HV board takes the Mean Well 48 V adapter) → 3.3 V LDO for the ESP32 and digital (3.0–3.6 V, ESP32-S3-WROOM-1.json p2; LDO not selected) and LM27762 for the ±4.5 V analog rails used only by the detector boards' CSAs (through their connectors). All MCU-board analog stages run from a single filtered +5 V rail (TLV900x maximum 5.5 V, TLV9001.json p14), as does the ADS8689 AVDD (ADS8689.json p1); TMUX1104, TMUX1101 and TLV3201 are also 5.5 V parts.
 - **Noise and partition:** keep the analog section away from the antenna and the digital area, one solid ground pour per layer, no digital traces under the shaper. ESP-NOW transmit bursts are a likely noise source on the supply, so firmware may hold off a conversion during a radio burst.
 
 ## 5. Risks (simulate or measure first)
@@ -153,6 +155,20 @@ Honest expectation: both will measure similar spectra (§1.3). The differences w
 ## 6. Candidate parts (preview of phase 3; full table in `parts/selection.md`)
 
 Datasheet pulled and summarised: VTH2110, TLV9061 (the TLV906x family), OPA140, OPA656, OPA657, LMP7721, ADA4817-1 and ADA4530-1 (PDFs supplied by the user), TLV9001 (the TLV900x family), ADS1220, ADS8689, TMUX1104, TMUX1101, TLV3201, LM27762, ESP32-S3-WROOM-1, and CR-110-R2.1 as benchmark. Not pulled yet: BAS116 (diode), 3.3 V LDO, PicoBlade connectors and housings, TL071, capacitors (C0G, film) and resistors for Cf, Rf and Chold. Prices and stock have not been checked (only the user's remarks: LMP7721 $8.40 each, ADI parts very expensive).
+
+### Part-specific items moved from the requirements (2026-10-13)
+
+Requirements now state these generically; the part names live here.
+
+| Requirement | Part-level content |
+|---|---|
+| R-06, R-20, Q-11 | Photodiode is the Excelitas VTH2110. To verify from its datasheet: area, capacitance, dark current, rated bias (20 V default, specs at 20 V and 40 V, breakdown > 100 V, no recommended operating point, polarity not stated), and which electrode faces the window (§1.2). Q-26: ask Excelitas about carriers. |
+| R-15, R-56 | Microcontroller is the ESP32-S3 (WROOM-1 module, USB, ESP-NOW option), §4. |
+| R-16 | Default ADC is the ADS1220: 24-bit delta-sigma, up to 2 kSPS, input mux, single-cycle settling (`VERIFY`). Single-ended use gives half the code range, still about 23 bits. Alternative is a 16-bit SAR with built-in mux: the ADS8688 (8-channel, as far as Claude recalls, `VERIFY`). The user's "ADS8689" is a different part, single-channel and 100 kSPS (§1.5), which is why the design adds an external mux (D-16). |
+| R-24 | Detector-to-MCU connector is a Molex PicoBlade-style part (§3). |
+| R-25, R-18 | Mean Well 48 V (HV board) and 5 V (other boards) wall adapters. |
+| R-30, R-37 | Preferred desiccant is Drierite (calcium sulfate); the Durridge RAD7 also uses it at about 1 L/min (`VERIFY` from its manual). Sourcing outstanding (Q-15, Q-17). |
+| R-50 | Electrometer wireless side is an ESP32 over ESP-NOW, reached through a Raspberry Pi bridge API (D-15). |
 
 ## 7. Questions for the user
 
