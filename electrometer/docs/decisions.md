@@ -62,3 +62,11 @@ Reason (user): the two-cell figures are acceptable. If the measured draws miss R
 - **Reason:** the document contract; the old draft was 3,200 words.
 - **Affects:** A-01 to A-20, R-25, R-10.
 - **Replaces:** none.
+
+## 2026-11-20: Project CLAUDE.md to the template; passes replace phases
+
+- **Decision (Claude, from the brief):** `CLAUDE.md` follows the template, tier full. The work so far is pass 1: requirements confirmed by the user, architecture awaiting approval, ended by `docs/reviews/pass-1.md`. No `parts/selection.md` yet: parts are named in the architecture until pass 2 selects them.
+- **Alternatives:** keep "Current phase: 2" and its gate.
+- **Reason:** the workflow's passes and document contract.
+- **Affects:** none (process only).
+- **Replaces:** none.
