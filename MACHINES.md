@@ -26,4 +26,4 @@ Updated 2026-11-20. Checked on this Mac on that date.
 
 ## Work Mac (work-mini: Mac mini M4, arm64)
 
-Known so far, not checked on that Mac: the documents and scripts up to 2026-11-15 were written there. The electronics-tools `MACHINES.md` lists its Python (uv-managed 3.12.15), Chrome and KiCad 10.0.7.
+Known so far, not checked on that Mac: nothing in this repo records it. The electronics-tools `MACHINES.md` lists its Python (uv-managed 3.12.15), Chrome and KiCad 10.0.7.

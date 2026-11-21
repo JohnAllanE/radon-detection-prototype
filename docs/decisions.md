@@ -92,3 +92,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the document contract and templates.
 - **Affects:** A-02 to A-20.
 - **Replaces:** none.
+
+## 2026-11-20: Project CLAUDE.md to the template; passes replace phases
+
+- **Decision (Claude, from the brief):** the root `CLAUDE.md` becomes the detector project's, tier full, with `electrometer/` named as a second project. The work since 2026-10-12 (requirements draft 2, architecture draft 1, candidate parts) is pass 1, with the architecture not yet reviewed by the user, ended by `docs/reviews/pass-1.md`. `MACHINES.md` added at the root: every script is standard library only.
+- **Alternatives:** keep the phase numbering and its gates.
+- **Reason:** the workflow's passes and document contract (`PCB-WORKFLOW.md`).
+- **Affects:** none (process only).
+- **Replaces:** none.
