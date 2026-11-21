@@ -4,7 +4,7 @@
 |---|---|
 | Pass | 1: a sketch of the detector, MCU and HV boards and both chambers |
 | Date | 2026-11-20 |
-| Covered | Intent (requirements draft 2), candidate parts, architecture (not reviewed by the user), analytic ENC budget. No simulation or schematic |
+| Covered | Intent, candidate parts, architecture (unreviewed), analytic ENC budget. No simulation or schematic |
 | Next pass | CSA and hold-chain simulation, the HV board's architecture, prices and stock |
 
 ## Changed in earlier documents
