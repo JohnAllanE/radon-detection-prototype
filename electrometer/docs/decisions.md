@@ -46,3 +46,11 @@ Reason (user): uses stock, and the method is proven on the microbalance.
 About 38 h with the source off and 25 h with it on (budget; draws `VERIFY`).
 Alternatives considered: three cells in parallel (about 38 h with the source on; capacity only, since parallel cells add no voltage); cells in series (2S or 3S: needs a balancing charger and protection, and buys nothing because every rail comes from a converter anyway).
 Reason (user): the two-cell figures are acceptable. If the measured draws miss R-24, a third parallel cell is the fix.
+
+## 2026-11-20: Requirements rewritten to the document contract
+
+- **Decision (Claude, from the brief, user away):** `01-requirements.md` keeps every R-xx, sorted into functions, objectives and constraints. Rows confirmed by the user are firm. Claude's proposed numbers move to `docs/notes/proposed-targets.md` as working, except the burden split (D-05, approved), which stays. Use cases, expected magnitudes, bench-gear coverage, grounding and the switch connector, and answered questions move to notes. New R-34: build and assembly effort.
+- **Alternatives:** keep targets in a Target column.
+- **Reason:** the document contract (numbers in requirements only when firm); the old draft was 5,350 words.
+- **Affects:** all R-xx, U-1 to U-6.
+- **Replaces:** none.
