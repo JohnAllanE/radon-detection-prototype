@@ -84,3 +84,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the document contract; the old draft was 5,400 words.
 - **Affects:** A-01 to A-26; the electrometer's HV fault-current request becomes A-21, open.
 - **Replaces:** none.
+
+## 2026-11-20: Part selection to the template, candidate surveys split out
+
+- **Decision (Claude, from the brief, user away):** `parts/selection.md` lists one row per function with a status, quantity and stock. Quantities assume four detector boards. The comparison of candidates moves to six `docs/notes/candidates-<role>.md` surveys. Prices and stock stay unchecked and are pass-2 work. Datasheet JSONs stay in `datasheets/` until the reviewer migrates them.
+- **Alternatives:** keep the single candidate table.
+- **Reason:** the document contract and templates.
+- **Affects:** A-02 to A-20.
+- **Replaces:** none.
