@@ -16,14 +16,16 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 - 2026-11-20: repo level with GitHub at 12943f4 (last work 2026-11-15). Brief and this log written by the coordinating session.
 - 2026-11-20: detector requirements to the contract, 0d583d5 (6,103 → 1,580 words; 5 numbers carried to the architecture commit: 0.14 keV, 100 cycles, 2.5 mm, 20 mm, 200 V).
 - 2026-11-20: detector architecture, a2658a8 (5,427 → about 1,990 words; 11 notes, 6 candidate surveys, 3 SVGs from the Mermaid blocks). Part selection, 0e323ec. MACHINES.md, 60db0d0. CLAUDE.md, a2d70f6. Detector check: all IDs and numbers present (one false positive, the heading "2.4 Why").
+- 2026-11-20: electrometer requirements, 303daf6 (4,896 → 1,336 doclint words). Architecture, be8f48b (2,882 → 1,870). CLAUDE.md, d0982aa. All IDs and numbers present.
+- 2026-11-20: pass 1 reviews for both designs, 1d6dab5 and 10bcf6f. doclint 0 findings for the root and `electrometer/` (one `words` allowance on each requirements file).
 
 ## Running
 
-- Part 1, electrometer: requirements next. Fact-check script: scratchpad `factcheck.py` (IDs and numbers with units against commit ea7fd29).
+- Nothing running. Brief complete; nothing pushed. Fact-check script: scratchpad `factcheck.py` (IDs and numbers with units against commit ea7fd29).
 
 ## Next
 
-- Part 1, detector documents; Part 1, electrometer documents; Part 2 reviews.
+- The user reviews both pass 1 reviews and answers their questions. Pass 2 is not started.
 
 ## Decisions made while the user was away
 
@@ -42,4 +44,5 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Waiting on the user
 
-- (from the reviews' questions)
+- Detector (`docs/reviews/pass-1.md`): architecture review, D-16 to D-18 and an ADA4817-1 test, OPA657 tier, MCU boards per detector board, the unrecorded Q-02/Q-08/Q-10/Q-13 answers, the die-to-wall gap, A-21 HV series resistance, R-xx conversion.
+- Electrometer (`electrometer/docs/reviews/pass-1.md`): A-06 self-test, A-18, Q-14 antenna, battery vs GX12 input, USB console for bring-up until the gateway carries ESP-NOW, Q-09 budget.
