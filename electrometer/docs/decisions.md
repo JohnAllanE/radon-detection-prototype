@@ -54,3 +54,11 @@ Reason (user): the two-cell figures are acceptable. If the measured draws miss R
 - **Reason:** the document contract (numbers in requirements only when firm); the old draft was 5,350 words.
 - **Affects:** all R-xx, U-1 to U-6.
 - **Replaces:** none.
+
+## 2026-11-20: Architecture rewritten to the document contract
+
+- **Decision (Claude, from the brief, user away):** `02-architecture.md` holds choices A-01 to A-20 with a status (approved items firm: topology, ranges, reset, burden, source, cells), derived specs, expected performance, off-board connections, mechanics and risks. The findings, the range plan, the self-test and protection arguments move to notes. The C_inj self-test (A-06) and the HV-board series resistance (A-18) stay open, as the user left them. New question: whether the box takes the bench power standard's GX12 input or stays on battery alone.
+- **Alternatives:** keep the numbered draft with its findings and answered-questions sections.
+- **Reason:** the document contract; the old draft was 3,200 words.
+- **Affects:** A-01 to A-20, R-25, R-10.
+- **Replaces:** none.

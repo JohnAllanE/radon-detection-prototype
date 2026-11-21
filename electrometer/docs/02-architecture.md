@@ -1,164 +1,142 @@
-# Architecture: electrometer front-end
+# Electrometer front end: architecture
 
-**Status:** DRAFT 2, Phase 2 (architecture), 2026-10-20. Gate: the user approves the topology and block-level specs. Draft 2 records the user's answers to §8: topology and ranges approved, burden split, one source channel, Q-08 closed, coarse + fine DAC, two cells (D-05 to D-08). Items 3 and 6 are still open.
-**Inputs:** requirements DRAFT 3 (`01-requirements.md`, confirmed by the user 2026-10-20, open questions carried here), decisions D-01 to D-04. Calculations: `sim/analytic/budget.py`, output in `sim/analytic/budget.out.txt`. Component classes only; parts are chosen in phase 3 (stock noted where it already matches).
+| | |
+|---|---|
+| Project | A battery-powered bench electrometer for the radon project's detector (CSA) boards: DC current from about 1 µA down to 10 fA, measured in situ in a grounded tin |
+| This document | How the head, range panel, readout, source, control and power are built, and what they should do. Stock parts named where they fit. `VERIFY` marks an unconfirmed fact |
+| State | Draft. Topology and ranges approved by the user, the rest awaits approval |
+| Open questions | 4 |
 
-## 1. Findings that change the plan
+## IDs from other documents
 
-1. **The amplifier is not what limits 10 fA.** An ADA4530-1-class integrator resolves about 0.5–1 fA peak-to-peak in a 1 s integration, even with the 220 pF input capacitance of a zero-biased diode plus cables (budget §"Integrator current resolution"). The floor will be set by leakage, triboelectric charge, dielectric absorption and humidity. Effort goes into construction, cleaning, settling and the self-baseline (U-6), not into a better amplifier.
-2. **Split rails are needed.** The ADA4530-1's input range runs from its negative rail to 1.5 V below its positive rail (ADA4530-1.pdf p3, p5), so a 0 V virtual ground needs a negative rail. Proposed ±5 V, which leaves a ±4 V usable output swing. That sets the ranges: **3.9 MΩ (1 µA full scale), 1 GΩ (4 nA full scale), and the 10 pF integrator (40 pC per ramp, up to about 4 nA)**.
-3. **The mains frequency does not matter (Q-08).** Averaging or slope-fitting over multiples of 100 ms spans whole cycles of both 50 and 60 Hz, and a delta-sigma ADC with simultaneous 50/60 Hz rejection does the same for the resistor ranges.
-4. **Self-test without a switch at the summing node.** A permanent 1 pF injection capacitor from a quiet DAC line replaces R-25's switchable reference capacitor and resistor. Held at 0 V it has no voltage across it and leaks nothing. Ramping its DAC line injects a known current (1 pF × 0.01–4 V/s = 10 fA to 4 pA), and a step injects a known charge (the power-up range check, D-03). This changes R-25 (§8).
-5. **Burden at 1 µA.** Input protection needs a series resistor. 10 kΩ gives 40 µV burden at 4 nA but 10 mV at 1 µA. Proposed: burden ≤ 1 mV up to 4 nA and ≤ 10 mV on the 1 µA range. 10 mV is negligible against the node biases (20 V PD, ring). This changes R-01 (§8).
-6. **The HV board must limit fault current.** A flashover from the tube to a diode node while the probe is on it can only be survived if the HV board's output has a series resistance. At 10 MΩ the fault current is 100 µA, easy to clamp. This is a new requirement on the radon HV board (§8).
-7. **One source channel is enough (Q-03).** In the chamber, the real PD bias and ring supplies are used, selected by hand at the PicoBlade breakout (with a 0 V position for the femtoamp runs). The built-in source serves bench tests, bare boards and alternating-polarity resistance.
-8. **Two cells (D-08).** Two 18650 cells in parallel give about 38 h with the source off and about 25 h with it on (budget §"Battery"; current draws `VERIFY`). That only just meets R-24 with the source on. The radio dominates.
+- Functions: R-01 DC current to 10 fA, R-02 charge, R-05 logging, R-07 DMM overlap, R-08 ±50 V source, R-10 survives faults, R-13 settling, R-17 T and RH, R-20 SCPI over ESP-NOW, R-21 records, R-25 range checks, R-26 calibration.
+- Objectives: R-14 triboelectric pickup, R-23 radio disturbance, R-24 battery life, R-22 reading rate, R-34 build effort.
+- Constraints: R-09 HV outside, R-15 the tin, R-27 SELV source, R-28 HV interlock, R-29 build, R-31 grounding, R-32 antenna outside, R-33 off-board range panel.
+- Simulations: S-01 head (loop stability, integrator reset, range check), S-02 source (step and 0.1–10 Hz noise).
+- Radon project: radon R-19 (HV ripple), radon R-60 (test port), radon A-21 (HV series resistance).
 
-## 2. System
+## Block diagram
 
-The concept sketch is now the system diagram. Its values are updated to §3.1.
+![System diagram inside the grounded, light-tight tin. Left: the chamber at +1 kV, fed from the external HV board through an interlocked feedthrough, and the detector board's back, where the probe is mated on one channel's switch connector while the other channels stay on their CSAs. The PicoBlade breakout carries PD bias, ring, TEST, ±4.5 V and GND, and the ±50 V source can drive the ring or PD bias through it. Middle: the shielded head, with input protection, the guarded summing node, a 1 pF injection capacitor, the ADA4530-1-class op-amp, a 3.9 MΩ and a 1 GΩ branch each on a manual T-switch on the off-board panel, the 10 pF integrator always in, and an MCU-driven reset. Right: a 24-bit ADC and the MCU, which reaches lab-gateway over ESP-NOW through an antenna outside the tin. Inset: a branch switched off as a T-switch, Sa and Sb in series with their midpoint held at 0 V by Sc.](diagrams/switching-concept.svg)
 
-![Electrometer system, everything inside a grounded, light-tight cookie tin whose metal, the coax shields and the electrometer common are bonded to the detector board's 0 V at one point. Left, the chamber end: the chamber tube at +1 kV fed from the external HV board through an HV feedthrough with a lid interlock, and the detector board's back side. On channel 2 the probe is mated in the switched coaxial connector, so PD2's node goes to the probe and SMA coax while CSA2 idles at 0 V; channels 1, 3 and 4 stay on their CSAs. The PicoBlade carries PD bias, ring, TEST, ±4.5 V and GND; the ±50 V source drives the ring or PD bias through it, and a filtered pass-through brings in the MCU board and the HV board's PD bias. Middle, the electrometer head: input protection, then the guarded summing node on PTFE or in air, with a 1 pF injection capacitor from a quiet DAC. The feedback network between the summing node and the ADA4530-1-class op-amp output: a 3.9 MΩ branch (1 µA full scale) and a 1 GΩ branch (4 nA full scale), each switched by a manual T-switch on an off-board range panel (coax lines S, E1, E2), a 10 pF integrating capacitor that is always in, and an MCU-driven reset switch across it. Right, the control board: Vout to a 24-bit ADC, then the MCU, which auto-ranges by integration time, drives the reset, sets the source's level, polarity and slew, and reaches lab-gateway over ESP-NOW through an antenna outside the tin. Below, an inset shows a range branch switched off as a T-switch: Sa and Sb in series with their midpoint held at 0 V by Sc, so Sa has about 0 V across it; on the cheap panel Sa is an SPST and Sb/Sc an SPDT in separate bodies.](diagrams/switching-concept.svg)
+![Power tree. A floating 1S2P Li-ion pack (two 18650 cells) feeds, through a switch, fuse and cell protection, a 3.3 V buck-boost for the digital side, ±6.5 V converters followed by ±5 V low-noise LDOs for the head, ADC and DACs, and a ±60 V boost for the ±50 V source, switched on only when used. The charger connects only with the main switch off. One star point in the head, digital ground joining it once at the ADC.](diagrams/power-tree.svg)
 
-![Power tree. A 1S2P Li-ion pack (two 18650 cells, 3.0 to 4.2 V) feeds a switch with fuse and cell protection, then three branches: a 3.3 V buck-boost for the digital rail (ESP32-S3, the ADC's digital side, the T/RH sensor); plus and minus 6.5 V converters at 1 MHz or above, shielded and far from the head, followed by plus and minus 5 V low-noise LDOs for the head (with local RC filters), the ADC and the DACs; and a plus and minus 60 V boost, switched on by the MCU only when the source is used, feeding the plus and minus 50 V source amplifier with its RC output filter and 100 µA limit. The charger connects only with the main switch off. Grounding notes: the analog common, the op-amp's + input, the guard, the coax shields, the head shield and the tin form one star point in the head; the digital ground joins it once at the ADC; the instrument floats on its battery and its only bond to the rest of the system is the probe shield at the detector board's 0 V; the boost and the radio are the noise sources, kept away from the head and shielded, with the boost off when unused and transmissions between integration windows.](diagrams/power-tree.svg)
+## Choices
 
-Diagrams are generated by `diagrams/make_diagrams.py` (standard library; rerun `python3 electrometer/docs/diagrams/make_diagrams.py`).
-
-## 3. Blocks
-
-### 3.1 Head (the riskiest block)
-
-A small board in its own non-ferrous shield box (aluminium), inside the tin, as close to the chamber end as the probe cable allows.
-
-| Item | Spec (PROPOSED) | Class | Requirements |
-|---|---|---|---|
-| Input connector | SMA, PTFE insulation, shell to common | Panel SMA | R-11, R-31 |
-| Input protection | 10 kΩ series resistor, then two low-leakage clamps from the summing node to common (about 0 V across them, so their leakage scales with Vos). Survives the HV board's fault current (≤ 100 µA at 1 kV through ≥ 10 MΩ, §8) | Thin-film R, rated for the pulse; low-leakage diodes or diode-connected JFETs (`VERIFY` leakage at mV) | R-10 |
-| Summing node | Millimetres long: the op-amp's -IN pin, Cf, the reset switch, C_inj, the clamps and the S connector meet in air or on PTFE standoffs, inside a guard ring driven by the op-amp's guard pins (2, 7) | Construction | R-29, R-01 |
-| Op-amp | ≤ 20 fA bias, guard buffer, ±5 V | Electrometer op-amp: ADA4530-1 (in the radon datasheets folder) | R-01 |
-| Cf | 10 pF, always connected | C0G or PTFE/polystyrene; low dielectric absorption (`VERIFY` for 10 pF C0G) | R-01, R-02 |
-| R1 | 3.9 MΩ, 1 µA full scale | Thin-film, ≤ 1 % | R-01, R-07 |
-| R2 | 1 GΩ, 4 nA full scale | High-value glass or thick-film, low voltage coefficient; value calibrated (R-26), not trusted | R-01 |
-| Range panel connectors | S, E1, E2: SMA, PTFE | Panel SMA | R-33 |
-| Reset switch | T arrangement: Sa a reed relay with an electrostatically shielded coil (coil off while integrating), Sb/Sc a low-leakage analog SPDT; driven by the MCU | Reed relay + analog switch | R-01, R-02 |
-| C_inj | 1 pF from a quiet DAC line, permanently connected; held at 0 V while measuring | C0G | R-25, R-26 (changed, §8) |
-| Output to ADC | ±4 V scaled into the ADC's input range by a precision divider and buffer | Precision resistors, low-drift op-amp (OPA2186/OPA2192 in stock) | R-01 |
-| Local supply filter | RC or LC per rail at the head | Passive | R-23 |
-
-**Range plan** (budget §"Ranges"):
-
-| Range | Covers | Offset before zeroing | Offset drift | Noise per 1 s reading |
+| ID | Choice | Status | Serves | Why |
 |---|---|---|---|---|
-| Integrator, 10 pF | 10 fA to about 4 nA (ramps of 10 ms or longer) | Zeroed against an open input | n/a | about 0.5–1 fA p-p (amplifier) |
-| R2, 1 GΩ | about 4 pA to 4 nA, continuous | 40 fA max | 0.5 fA/K | 2.9 fA rms (thermal noise of R2) |
-| R1, 3.9 MΩ | about 1 nA to 1 µA | 10 pA max | 0.13 pA/K | 46 fA rms |
+| A-01 | Transimpedance and integrator head around an ADA4530-1-class op-amp, + input at 0 V guard, ±5 V rails | firm | R-01 | Approved. Its input range needs a negative rail. [Floor](notes/amplifier-floor.md) |
+| A-02 | Ranges: R1 3.9 MΩ (1 µA full scale), R2 1 GΩ (4 nA), 10 pF integrator always in | firm | R-01, R-07 | Approved. ±4 V swing sets them |
+| A-03 | Range panel off the head board: T-switch per branch, PTFE coax S, E1, E2 at most 30 cm, cheap SPST plus SPDT panel first | firm | R-33 | D-03. Rotary panel later, same interface |
+| A-04 | Reset switch as a T: Sa a reed relay with a shielded coil, off while integrating; Sb/Sc a low-leakage analog SPDT | firm | R-01, R-02 | Approved. Sa sees about 0 V |
+| A-05 | Input protection: 10 kΩ series resistor, then low-leakage clamps from the summing node to common | firm | R-10, R-01 | D-05 burden split. [Protection](notes/input-protection.md) |
+| A-06 | Self-test: permanent 1 pF $C_{inj}$ from an MCP4821, held at 0 V while measuring. Resistor ranges checked with an external cal plug | open | R-25, R-26 | Awaits the user. [Self-test](notes/self-test.md) |
+| A-07 | Summing node millimetres long, in air or on PTFE standoffs, in a guard ring driven by the op-amp's guard pins (2, 7) | working | R-29, R-01 | Construction sets the floor |
+| A-08 | Readout: 24-bit ΔΣ ADC (ADS1220), slope fits over multiples of 100 ms on the integrator, 20 SPS 50/60 Hz mode on the resistor ranges | working | R-01, R-22 | No need to know the mains frequency (D-06) |
+| A-09 | One ±50 V source: MCP4922 coarse plus fine, REF5040, summing op-amp, HV amplifier from ±60 V, RC output filter, readback | firm | R-08, R-27 | D-06, D-07: about 24 µV steps, monotonic via readback |
+| A-10 | Power: two 18650 cells in parallel (3.0–4.2 V), floating. Charger only with the main switch off | firm | R-24, R-31 | D-08 |
+| A-11 | Rails: 3.3 V buck-boost, ±6.5 V converters at ≥ 1 MHz then ±5 V LDOs, ±60 V boost on only when the source is used | working | R-23, R-24 | Converters shielded and far from the head |
+| A-12 | Control: ESP32-S3-WROOM-1U (in stock), antenna on a bulkhead outside the tin | working | R-20, R-32 | Q-14 open |
+| A-13 | SCPI-style protocol over ESP-NOW through lab-gateway, Keithley 6514/6517B names where they overlap. Transmit between integration windows | working | R-20, R-23 | As the load-cell reader follows the SDM3055 |
+| A-14 | T/RH: digital I²C sensor (SHT4x class) in the tin, away from the head | working | R-17 | — |
+| A-15 | One star point in the head: common, op-amp + input, guard, coax shields, head shield, tin. Digital ground joins at the ADC | firm | R-31 | D-02. [Test connection](notes/test-connection.md) |
+| A-16 | Head in its own non-ferrous (aluminium) shield box inside the tin, near the chamber end | working | R-15, R-23 | Short probe cable |
+| A-17 | Power-up range check: a $C_{inj}$ step whose decay identifies the connected range | working | R-33 | D-03, no extra parts |
+| A-18 | The radon HV board gets ≥ 10 MΩ output series resistance (radon A-21) | open | R-10 | Limits a flashover to about 100 µA |
+| A-19 | PicoBlade breakout with manual selectors. PD bias: HV board, source or 0 V. Ring: its supply, source or 0 V. TEST: 0 V or pulse generator | working | R-12, R-08 | D-06. Filtered pass-through in the tin wall |
+| A-20 | HV feedthrough with a lid switch that disables the HV board and closes a bleeder on the tube | working | R-09, R-28 | Interlock design open |
 
-**Stability:** with the worst-case 220 pF input, both resistor ranges have 87–90° of phase margin in a single-pole model (budget §"Loop stability"). Bandwidths are 4 kHz (R1) and 16 Hz (R2). S-01 checks this with the real model.
+### Parts in stock and to select
 
-### 3.2 Range panel (off-board, D-03)
+- In stock: ADS1220 (8), ESP32-S3-WROOM-1U-N16R8 (1), REF5040 4.096 V (1), MCP4922 (1), MCP4821 (2), OPA2186 (8), OPA2192 (1).
+- Not in stock: ADA4530-1 (datasheet pulled, Q-09 budget).
+- To select: HV op-amp, ±60 V boost, reed relay and its coil driver transistor (on only during a reset), analog SPDT, high-value resistor, T/RH sensor, SWF receptacles and probe.
 
-Cheap version first: per branch an SPST (Sa) and an SPDT (Sb/Sc), separate bodies, at any spacing, on a small metal panel at common. PTFE coax S, E1, E2 to the head, 30 cm or less (`VERIFY` against the capacitance in budget: 30 pF assumed). The power is off while ranges are changed. With no panel connected, the head runs integrate-only.
+## Derived specs
 
-### 3.3 Readout and firmware measurement
+Proposed numbers each requirement designs to are in [proposed targets](notes/proposed-targets.md), all working.
 
-| Item | Spec (PROPOSED) | Class | Requirements |
+| Block | Spec | Value | Parent | Working |
+|---|---|---|---|---|
+| Head | Op-amp input bias | ≤ 20 fA, guard buffer | R-01 | ADA4530-1 class |
+| Head | Burden | ≤ 1 mV up to 4 nA, ≤ 10 mV at 1 µA | R-01 | D-05 |
+| Head | $C_f$ | 10 pF, C0G or PTFE/polystyrene, low dielectric absorption (`VERIFY` for C0G) | R-01, R-02 | — |
+| Head | R1, R2 | 3.9 MΩ thin film ≤ 1 %. 1 GΩ glass or thick film, low voltage coefficient, calibrated (R-26) | R-01 | — |
+| Head | Output to ADC | ±4 V scaled by a precision divider and buffer (OPA2186 or OPA2192, in stock) | R-01 | — |
+| Readout | ADC rate | ≥ 1 kSPS for slope fitting, a 20 SPS 50/60 Hz mode, second channel reads the source | R-01, R-22 | — |
+| Readout | Integrator reset | When \|Vout\| passes 3.5 V, then discard a settle time. Resets counted for charge (R-02) | R-01, R-02 | — |
+| Readout | Settled | 60 s slope below the noise floor | R-13 | — |
+| Source | Output filter | Series R ≥ 100 kΩ then a film capacitor: ≤ 100 µA into a short, sets the slew | R-08, R-27 | — |
+| Source | HV amplifier | ±50 V from ±60 V rails, ≤ 1 mA quiescent, unity-gain stable, low 1/f noise | R-08, R-24 | — |
+| Source | Noise | ≤ 10 µV rms in 0.1–10 Hz. Reference noise × gain (about 20) is the main term | R-08 | S-02 |
+
+## Expected performance
+
+| Quantity | Value | Set by | Known by |
 |---|---|---|---|
-| ADC | 24-bit delta-sigma, ≥ 1 kSPS for slope fitting, a 20 SPS mode with simultaneous 50/60 Hz rejection; second channel reads the source output | 24-bit ΔΣ with mux (ADS1220 in stock, 8) | R-01, R-22 |
-| Integrator readout | Sample Vout continuously; fit the slope over windows that are multiples of 100 ms; reset when \|Vout\| passes 3.5 V; discard a settle time after each reset; count resets for charge (R-02); flag overloads with a timestamp | Firmware | R-01, R-02, R-05, R-06 |
-| Resistor-range readout | Average in the 20 SPS 50/60 Hz mode; zero against an open input at the start of a session | Firmware | R-01, R-07 |
-| Power-up range check | C_inj step, decay time identifies the connected range (integrate: none; R2: 10 ms; R1: 40 µs) | Firmware | R-33 |
-| Settling detection | Settled when the 60 s slope is below the noise floor | Firmware | R-13 |
+| Integrator resolution, R-01 | about 0.5–1 fA p-p in 1 s | A-01 | Calculated: [floor](notes/amplifier-floor.md) |
+| R2 range noise, R-01 | 2.9 fA rms per 1 s reading | A-02 | Calculated |
+| R1 range noise | 46 fA rms per 1 s reading | A-02 | Calculated |
+| Offset before zeroing | 40 fA (R2), 10 pA (R1) | A-01, A-02 | Calculated |
+| Bandwidth, phase margin | 4 kHz and 87° (R1), 16 Hz and 90° (R2) | A-02 | Calculated, S-01 to confirm |
+| Source step, R-08 | about 24 µV | A-09 | Calculated |
+| Battery life, R-24 | about 38 h source off, about 25 h source on | A-10 | Calculated, draws `VERIFY` |
 
-### 3.4 Source (one channel)
+## Off-board connections
 
-| Item | Spec (PROPOSED) | Class | Requirements |
-|---|---|---|---|
-| DAC | Coarse + fine (D-07): both channels of the MCP4922, the fine channel attenuated so its full scale spans 4 coarse LSBs, summed at unity gain (MCP4922 datasheet §6.7, as on the microbalance). About 24 µV per step at the output; the firmware sets the coarse code, then trims the fine code against the readback, which makes the result monotonic and accurate despite the coarse DNL | MCP4922 (in stock) + low-noise reference (REF5040 in stock) + summing op-amp | R-08, R-21 |
-| HV amplifier | ±50 V out from ±60 V rails, ≤ 1 mA quiescent, unity-gain stable, low 1/f noise | High-voltage op-amp, low power | R-08, R-24 |
-| Output filter | Series R ≥ 100 kΩ then a film capacitor to common: limits current (≤ 100 µA at a short), sets the slew, and filters converter ripple | Passive | R-08, R-27 |
-| Readback | Output sensed after the filter by a divider into the ADC | Precision divider | R-21 |
-| ±60 V supply | Boost and inverter, enabled by the MCU only when the source is used | Small boost converter | R-24 |
+Counted from the head and control board. Conductor counts marked open wait for the pinouts.
 
-Noise: the reference's 0.1–10 Hz noise times the amplifier's gain (about 20) is the main term and could reach the R-08 limit of 10 µV rms. The output RC only helps above its corner. This is S-02.
+| Item | Board connector | Keyed | Cable | Board edge | Conductors |
+|---|---|---|---|---|---|
+| Probe to the detector board | SMA on the head | Yes | Murata SWF probe, 100 or 300 mm | Head, chamber side | 2 (coax) |
+| Range panel S, E1, E2 | SMA ×3, PTFE | Yes | PTFE coax ≤ 30 cm | Head | 6 |
+| Head to control board | open | open | Shielded, inside the tin | open | open |
+| Source to the PicoBlade breakout | open | open | Coax | Control board | 2 |
+| Antenna | Module connector to a bulkhead | Yes | Coax pigtail | Control board | 1 cable |
+| Battery charger | open | open | Charger lead, main switch off | Control board | 2 |
+| Tin wall: HV feedthrough, interlock, filtered pass-through, gas grommets | — | — | Radon project's cables | Tin | open |
+| **Total** | at least 7 | | | | at least 12, plus open items |
 
-### 3.5 Control
+## Mechanics and assembly
 
-| Item | Spec (PROPOSED) | Class | Requirements |
-|---|---|---|---|
-| MCU and radio | ESP32-S3 module with external-antenna connector, antenna on a bulkhead outside the tin | ESP32-S3-WROOM-1U (in stock, 1) | R-20, R-32 |
-| Protocol | SCPI-style over ESP-NOW through lab-gateway; Keithley 6514/6517B names where they overlap | Firmware | R-20 |
-| Radio scheduling | Transmit between integration windows | Firmware | R-23 |
-| T/RH sensor | Digital, I²C, inside the tin away from the head | SHT4x class | R-17 |
-| Reset driver | Reed coil driver, on only during a reset | Transistor | §3.1 |
-| C_inj DAC | Drives C_inj: quiet, RC-filtered (which also smooths the 1 mV staircase into a ramp), held at 0 V while measuring. Its own part, since both MCP4922 channels go to the source | MCP4821 (in stock, 2), 12-bit, internal reference | R-25 |
-
-### 3.6 Power and grounding
-
-See the power-tree diagram. Two 18650 cells in parallel (D-08). They are charged externally, or by a charger that connects only with the main switch off, so nothing earths the instrument during a measurement. One star point in the head. The ±60 V boost and the radio are the noise sources: keep distance and shields, and turn the boost off when unused.
-
-### 3.7 Tin and breakout
-
-| Item | Spec (PROPOSED) | Requirements |
+| Aspect | Value | Status |
 |---|---|---|
-| PicoBlade breakout | Manual selectors: PD bias ∈ {HV board, source, 0 V}; ring ∈ {real ring supply, source, 0 V}; TEST ∈ {0 V, pulse generator}. Filtered pass-through in the tin wall | R-12, U-5 |
-| HV feedthrough and interlock | HV board outside; lid switch disables the HV board and closes a bleeder to discharge the tube | R-09, R-28 |
-| Gas, antenna | PTFE tubing through grommets; antenna bulkhead | R-15, R-32 |
+| Head | Small board in an aluminium shield box inside the tin | working |
+| Control board | Inside the tin, battery beside it, antenna on a bulkhead | working |
+| The tin | Grounded, light-tight, lid contact good. Size open | open |
+| Chamber in the tin | On insulating standoffs, ≥ 10 mm from the tin (`VERIFY`, radon Q-12) | working |
+| Range panel | Small metal panel at common, outside the head box | working |
 
-## 4. Calculations
+Assembly:
 
-All in `sim/analytic/budget.py` (output `budget.out.txt`), with each input's source. What they don't capture:
+1. Build the head first and measure the self-baseline (U-6) before anything else.
+2. Fit the head box, control board, battery and range panel in the tin.
+3. Fit the HV feedthrough, interlock, filtered pass-through, antenna bulkhead and gas grommets.
+4. Mount the chamber on standoffs, tie down the probe cable.
 
-- leakage of the real construction (PCB, PTFE, connectors, humidity);
-- triboelectric and piezoelectric charge from handling;
-- dielectric absorption of Cf and the board;
-- reset-switch charge injection;
-- converter and radio interference;
-- the real op-amp model.
+## Risks
 
-The cable capacitances, the zero-bias diode capacitance and all power draws are `VERIFY` assumptions.
+| # | Risk | Effect | Mitigation | Test first |
+|---|---|---|---|---|
+| 1 | Summing-node leakage and settling in the real construction | Floor above 10 fA | PTFE or air, cleaning | Build the head, measure U-6 |
+| 2 | SWF connector leakage and the probe cable (Q-12) | Floor above 10 fA | Ask Murata | Measure on the bare test board (U-6) |
+| 3 | Reset switch charge injection, coil coupling, leakage | Integrator errors | Shielded coil, T arrangement | S-01, then bench |
+| 4 | Source noise in 0.1–10 Hz | Misses R-08 | Lower-noise reference, longer filter | S-02 |
+| 5 | Converter and radio interference at the head | Misses R-23 | Distance, shields, boost off, scheduling | Radio on vs off |
+| 6 | Triboelectric settling after probe moves and range changes | Long waits | Tie-down | Measure in U-6, sets the R-13 wait |
+| 7 | Battery life with the source on, about 25 h against 24 h | Misses R-24 | A third parallel cell | Measure the draws |
 
-## 5. Risks (simulate or measure first)
+## Open questions
 
-| # | Risk | Plan |
-|---|---|---|
-| 1 | Summing-node leakage and settling in the real construction | Build the head first and measure the self-baseline (U-6) before anything else |
-| 2 | Murata SWF connector leakage and probe cable (Q-12) | Measure on the bare test board with the head (U-6); ask Murata for the approval sheet |
-| 3 | Reset switch: charge injection, coil coupling, leakage | S-01 transient with a charge-injection estimate; bench test on the head |
-| 4 | Source noise in 0.1–10 Hz (reference noise × gain) | S-02; choose a lower-noise reference or a higher output-filter time constant if needed |
-| 5 | Converter and radio interference at the head | Layout distance and shields; boost off when unused; radio scheduling; measure radio on vs off (R-23) |
-| 6 | Triboelectric settling after probe moves and range changes | Measure in U-6; sets the R-13 wait |
-| 7 | Battery life with the source on (about 25 h on two cells, against 24 h) | Measure the real draws; a third parallel cell if needed (capacity only, same voltage) |
+1. A-06: accept $C_{inj}$ and an external cal plug in place of R-25's switched references?
+2. A-18: does the radon HV board take ≥ 10 MΩ output series resistance?
+3. Q-14: antenna on a bulkhead (working), or the control board outside the tin?
+4. Power input: the bench power standard (GX12 2-pin) or the battery alone? The electrometer floats on its battery, and the standard notes it may need its own earth lug.
 
-## 6. Simulations planned (phase 4)
+## Notes
 
-- **S-01, head (SPICE):** loop stability on both resistor ranges with 100–220 pF input; integrator step and reset transient with an estimated reed-relay charge injection; the C_inj power-up range check. Verifies R-01 and R-33.
-- **S-02, source (SPICE plus noise):** step response through the output filter; 0.1–10 Hz output noise from the reference, DAC and amplifier. Verifies R-08.
-- **Analytic budget:** done (`budget.py`). Rerun when parts are chosen.
-
-## 7. Candidate component classes (preview of phase 3)
-
-| Block | Class | In stock |
-|---|---|---|
-| Electrometer op-amp | ≤ 20 fA, guard buffer | ADA4530-1 (datasheet pulled; not in stock) |
-| ADC | 24-bit ΔΣ, 50/60 Hz rejection, ≥ 1 kSPS | ADS1220 (8) |
-| MCU and radio | ESP32-S3, external antenna | ESP32-S3-WROOM-1U-N16R8 (1) |
-| Reference | Low-noise 4.096 V | REF5040 (1) |
-| DAC | Source: dual 12-bit as coarse + fine; C_inj: single 12-bit | MCP4922 (1), MCP4821 (2) |
-| Buffers, divider driver | Low-drift precision op-amp | OPA2186 (8), OPA2192 (1) |
-| HV op-amp, ±60 V boost, reed relay, analog SPDT, high-value resistor, T/RH sensor, switch connectors and probe | To select | No |
-
-## 8. Questions and proposed requirement changes for the user
-
-Answered 2026-10-20 (draft 2):
-
-1. Topology and ranges: **approved** (±5 V rails; R1 3.9 MΩ, R2 1 GΩ, 10 pF integrator; T reset with a reed relay and an analog switch).
-2. R-01 burden: **approved**, ≤ 1 mV up to 4 nA and ≤ 10 mV on the 1 µA range (D-05).
-4. Q-03: **one source channel** (D-06).
-5. Q-08: **closed**, not needed (D-06).
-7. Source DAC: **MCP4922 as coarse + fine** (D-07). C_inj moves to an MCP4821.
-8. Battery: **two 18650 cells** in parallel (D-08).
-
-Still open (the user asked for clarification; answers given in conversation 2026-10-20):
-
-3. **R-25 self-test:** replace the switchable reference capacitor and resistor with the permanent 1 pF C_inj (§1.4), and check the resistor ranges with an external "cal plug" on the probe. Why not a resistor fixed to the summing node: it adds its thermal noise current all the time (4 fA/√Hz at 1 GΩ, 0.4 fA/√Hz at 100 GΩ), and a source that is 10 mV off at "0 V" drives 10 pA (1 GΩ) or 100 fA (100 GΩ) into the node; disconnecting it needs a switch at the summing node, which this design avoids. C_inj has neither problem (budget §"cal plug").
-6. **Radon HV-board requirement:** output series resistance ≥ 10 MΩ at the +1 kV output (`VERIFY` against the HV board's design), so that a tube flashover cannot draw more than about 100 µA from the multiplier's stored charge. No change to the detector board. It also protects the CSAs in service. The alternative, 10 MΩ at the electrometer input, gives 10 V burden at 1 µA and 40 mV at 4 nA (§1.5).
+- [Amplifier floor](notes/amplifier-floor.md): about 0.5–1 fA p-p from the amplifier, so construction sets the floor.
+- [Self-test](notes/self-test.md): $C_{inj}$ gives 10 fA to 4 pA, no switch at the node.
+- [Input protection](notes/input-protection.md): 10 kΩ and clamps, plus ≥ 10 MΩ at the HV board.
+- [Proposed targets](notes/proposed-targets.md): the working numbers per requirement.
+- Diagrams: `python3 electrometer/docs/diagrams/make_diagrams.py` (standard library).
