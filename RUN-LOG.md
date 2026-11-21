@@ -14,10 +14,11 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 ## Done
 
 - 2026-11-20: repo level with GitHub at 12943f4 (last work 2026-11-15). Brief and this log written by the coordinating session.
+- 2026-11-20: detector requirements to the contract, 0d583d5 (6,103 → 1,580 words; 5 numbers carried to the architecture commit: 0.14 keV, 100 cycles, 2.5 mm, 20 mm, 200 V).
 
 ## Running
 
-- (the agent fills this in)
+- Part 1, detector: architecture next (with candidate notes and diagrams). Fact-check script: scratchpad `factcheck.py` (IDs and numbers with units against commit ea7fd29).
 
 ## Next
 
@@ -25,7 +26,9 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Decisions made while the user was away
 
-- (none yet)
+- Detector R-xx kept and sorted into functions, objectives and constraints; new R-73 (build effort). Words allowance on the requirements (55 rows).
+- Electrometer outline (old requirements 4.7, R-57 to R-72, Q-27 to Q-37) retired to a note: it reused R-57 to R-60.
+- Q-02, Q-08, Q-10, Q-13 reopened: listed as answered, but no answer was recorded.
 
 ## Shared-repo changes for the reviewer
 
