@@ -61,3 +61,18 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 
 **D-25 Standard gas filter (Claude proposal, awaiting approval).** One filter type at every gas port: the Part 1 inlet filter, the Part 1 final filter after the desiccant, the Part 1 chamber outlet (catches diaphragm-pump wear particles; it does not stop pump outgassing vapour, which D-01 handles by placing the pump downstream), and the Part 2 chamber-to-pump line. The type is a hydrophobic PTFE membrane, about 0.2 µm, in a housing that is vacuum-rated, has the membrane supported against flow in both directions (Part 2 vents back through it), and has a stainless steel or PFA/PTFE body with the same end fittings everywhere. Alternative considered: a different filter per position. Reason: one spare part, one fitting set, materials consistent with R-30. Limits: on the vacuum side a membrane stops oil mist and particles but not oil vapour, so R-57's trap and operating practice are still needed. It also lowers conductance in molecular flow, which costs pump-down time but not usable pressure (R-03). Part selection is open (Q-17).
 
+## 2026-11-20: Requirements rewritten to the document contract
+
+- **Decision (Claude, from the brief, user away):** `01-requirements.md` keeps every R-xx ID and sorts the rows into functions, objectives and constraints, each with a status: user-confirmed rows firm, Claude's proposals working, TBD rows open. Non-firm numbers, physics, the count-rate estimate, the gas-train working, Part 2 vacuum practice and the answered questions move to `docs/notes/`. Part-level detail (the SWF test port, the ring sign, ADC input mode) moves to the architecture. New R-73: build and assembly effort.
+- **Alternatives:** convert to F/O/C IDs (the user's call, not taken).
+- **Reason:** the document contract; the old draft was 6,100 words.
+- **Affects:** all R-xx; Q-02, Q-08, Q-10, Q-13 reopened because their answers were never recorded.
+- **Replaces:** none.
+
+## 2026-11-20: The first electrometer outline is retired
+
+- **Decision (Claude, user away):** requirements section 4.7 (the electrometer outline, R-57 to R-72 of that section, Q-27 to Q-37) moves to `docs/notes/electrometer-outline.md` as a record. The electrometer's own requirements, confirmed by the user, replace it. The outline reused R-57 to R-60, which also name detector requirements (Part 2 oil, sealed counting, gauge, test port): only the detector meanings are live.
+- **Alternatives:** renumber the outline's IDs.
+- **Reason:** nothing cites the outline's IDs, and the electrometer has its own local IDs.
+- **Affects:** R-48 to R-50, R-57 to R-60.
+- **Replaces:** D-15 in part (the electrometer is documented in `electrometer/`, not requirements section 4.7).
