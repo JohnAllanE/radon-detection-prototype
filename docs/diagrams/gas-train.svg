@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 250" width="1140" height="250" role="img" aria-label="Part 1 gas train, in order: sample gas (air, or bottled N2 as the control), inlet filter, desiccant column, final filter, chamber inlet ball valve, the chamber (304 SS tube, walls at about +1 kV, two detector boards), outlet ball valve, outlet filter, diaphragm pump, exhaust.">
+<title>Part 1 gas train, in order: sample gas (air, or bottled N2 as the control), inlet filter, desiccant column, final filter, chamber inlet ball valve, the chamber (304 SS tube, walls at about +1 kV, two detector boards), outlet ball valve, outlet filter, diaphragm pump, exhaust.</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --pwr:#8e44ad; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --pwr:#b783d6; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .off { fill:var(--box); stroke:var(--edge); stroke-width:1.2; stroke-dasharray:4 3; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .flow { fill:none; stroke:var(--ink2); stroke-width:1.6; stroke-linejoin:round; }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hpwr { fill:var(--pwr); } .hflow { fill:var(--ink2); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hflow" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1140" height="250" rx="10"/>
+<rect class="box" x="15" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="65.0" y="97.0" text-anchor="middle">Sample gas</text>
+<text class="s" x="65.0" y="114.0" text-anchor="middle">air or N<tspan dy="3.5" font-size="80%">2</tspan></text>
+<polyline class="flow" points="115,100 125,100" marker-end="url(#aflow)"/>
+<rect class="box" x="127" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="177.0" y="104.5" text-anchor="middle">Inlet filter</text>
+<polyline class="flow" points="227,100 237,100" marker-end="url(#aflow)"/>
+<rect class="box" x="239" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="289.0" y="97.0" text-anchor="middle">Desiccant</text>
+<text class="s" x="289.0" y="114.0" text-anchor="middle">column</text>
+<polyline class="flow" points="339,100 349,100" marker-end="url(#aflow)"/>
+<rect class="box" x="351" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="401.0" y="104.5" text-anchor="middle">Final filter</text>
+<polyline class="flow" points="451,100 461,100" marker-end="url(#aflow)"/>
+<rect class="box" x="463" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="513.0" y="97.0" text-anchor="middle">Ball valve</text>
+<text class="s" x="513.0" y="114.0" text-anchor="middle">SS + PTFE</text>
+<polyline class="flow" points="563,100 573,100" marker-end="url(#aflow)"/>
+<rect class="box" x="575" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="625.0" y="97.0" text-anchor="middle">Chamber</text>
+<text class="s" x="625.0" y="114.0" text-anchor="middle">304 SS, +1 kV</text>
+<polyline class="flow" points="675,100 685,100" marker-end="url(#aflow)"/>
+<rect class="box" x="687" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="737.0" y="97.0" text-anchor="middle">Ball valve</text>
+<text class="s" x="737.0" y="114.0" text-anchor="middle">SS + PTFE</text>
+<polyline class="flow" points="787,100 797,100" marker-end="url(#aflow)"/>
+<rect class="box" x="799" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="849.0" y="97.0" text-anchor="middle">Outlet filter</text>
+<text class="s" x="849.0" y="114.0" text-anchor="middle">D-25, working</text>
+<polyline class="flow" points="899,100 909,100" marker-end="url(#aflow)"/>
+<rect class="box" x="911" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="961.0" y="97.0" text-anchor="middle">Diaphragm</text>
+<text class="s" x="961.0" y="114.0" text-anchor="middle">pump</text>
+<polyline class="flow" points="1011,100 1021,100" marker-end="url(#aflow)"/>
+<rect class="box" x="1023" y="70" width="100" height="60" rx="6"/>
+<text class="t" x="1073.0" y="104.5" text-anchor="middle">Exhaust</text>
+<text class="g" x="20" y="40" text-anchor="start">PTFE TUBING THROUGHOUT. PUMP DOWNSTREAM, SO THE CHAMBER RUNS SLIGHTLY BELOW AMBIENT</text>
+<text class="s" x="20" y="170" text-anchor="start">Insulating PTFE sections between the +1 kV chamber and the valves (R-38). One filter type at every port is a working proposal (D-25).</text>
+<text class="s" x="20" y="190" text-anchor="start">Humidity is read at the outlet during the N<tspan dy="3.5" font-size="80%">2</tspan><tspan dy="-3.5"> purge with a manual sensor (R-34).</tspan></text>
+<polyline class="flow" points="30,225 80,225" marker-end="url(#aflow)"/>
+<text class="s" x="90" y="229" text-anchor="start">Gas flow</text>
+</svg>

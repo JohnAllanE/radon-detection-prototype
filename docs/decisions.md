@@ -76,3 +76,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** nothing cites the outline's IDs, and the electrometer has its own local IDs.
 - **Affects:** R-48 to R-50, R-57 to R-60.
 - **Replaces:** D-15 in part (the electrometer is documented in `electrometer/`, not requirements section 4.7).
+
+## 2026-11-20: Architecture rewritten to the document contract
+
+- **Decision (Claude, from the brief, user away):** `02-architecture.md` now holds choices A-01 to A-26 with a status, derived specs, expected performance, off-board connections, mechanics and ranked risks. The HV board and chambers get choice rows from D-11, D-20 to D-25. Derivations, the noise and gain budgets, the TLV90xx assessment, the JFET discussion and the detector-board detail move to notes. Part facts move to six candidate surveys. The three Mermaid diagrams become SVGs from `docs/diagrams/make_diagrams.py`.
+- **Alternatives:** keep the numbered draft with its findings section.
+- **Reason:** the document contract; the old draft was 5,400 words.
+- **Affects:** A-01 to A-26; the electrometer's HV fault-current request becomes A-21, open.
+- **Replaces:** none.
