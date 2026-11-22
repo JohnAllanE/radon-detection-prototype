@@ -52,3 +52,7 @@ No order planned.
 | Murata SWF probe and receptacles | Q-12 leakage, Q-13 space, part numbers |
 | MCP4922, MCP4821, REF5040, ADS1220, OPA2186, ESP32-S3-WROOM-1U | In stock: none to order |
 | HV op-amp, ±60 V boost, reed relay, analog SPDT, 1 GΩ resistor, T/RH sensor | Not selected |
+
+## Answers
+
+Written up with context: [questions](../questions/2026-11-21-electrometer.md). Question 2 is decided with the detector's A-21; question 7's Q-04, Q-10, Q-15 are settled there.

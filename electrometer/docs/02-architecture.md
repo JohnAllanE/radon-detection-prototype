@@ -128,6 +128,8 @@ Assembly:
 
 ## Open questions
 
+With context and recommendations: [questions](questions/2026-11-21-electrometer.md).
+
 1. A-06: accept $C_{inj}$ and an external cal plug in place of R-25's switched references?
 2. A-18: does the radon HV board take ≥ 10 MΩ output series resistance?
 3. Q-14: antenna on a bulkhead (working), or the control board outside the tin?

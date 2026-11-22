@@ -5,7 +5,7 @@
 | Project | A battery-powered bench electrometer for the radon detector boards: DC current from about 1 µA down to 10 fA, in situ in a grounded tin, ±50 V source, ESP-NOW control |
 | Pass | 1, a sketch of the head, range panel, source, control and power, ended by `docs/reviews/pass-1.md` |
 | Activity | Pass 1: requirements confirmed by the user, architecture awaiting approval. No hard stop near |
-| Next for the user | Approve the architecture (A-06 self-test, A-18 HV series resistance). Answer the pass 1 review's questions |
+| Next for the user | Answer `docs/questions/2026-11-21-electrometer.md` (A-06, antenna, power input, USB console, budget) |
 | Next for Claude | Pass 2: S-01 head and S-02 source simulations, part selection, the battery budget with real draws |
 | Open `VERIFY` items | The notes, the architecture, `docs/notes/proposed-targets.md` |
 

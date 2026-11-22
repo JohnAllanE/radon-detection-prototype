@@ -5,7 +5,7 @@
 | Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
 | This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Simulated: the chamber field (S-01) |
 | State | Accepted by the user while the requirements hold. Claude's choices working until simulated or tested |
-| Open questions | 5 |
+| Open questions | 6 |
 
 ## IDs from other documents
 

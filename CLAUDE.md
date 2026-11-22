@@ -6,7 +6,7 @@
 | Pass | 1, a sketch of the detector, MCU and HV boards and both chambers, ended by `docs/reviews/pass-1.md` |
 | Activity | Pass 1 architecture accepted by the user, answers recorded. Field simulation S-01 and the questions with context under way. No hard stop near: no part is ready to order |
 | Next for the user | Answer `docs/questions/2026-11-21-detector.md` and the electrometer's |
-| Next for Claude | Pass 2: CSA ngspice model, hold-chain simulation, HV board architecture, prices and stock |
+| Next for Claude | Pass 2: CSA ngspice model, hold-chain simulation, HV board architecture, prices and stock, a 3D field check of the array centre |
 | Open `VERIFY` items | Notes, the architecture, `parts/selection.md` Open |
 
 ## Workflow

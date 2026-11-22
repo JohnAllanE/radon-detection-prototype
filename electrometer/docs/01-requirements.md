@@ -6,7 +6,7 @@
 | Project | A battery-powered bench electrometer for the radon project's detector (CSA) boards: DC current from about 1 µA down to 10 fA, measured in situ in a grounded tin |
 | This document | Purpose, scope and the R-xx requirements as functions, objectives and constraints. IDs are local. Radon-project IDs are written "radon R-xx". `VERIFY` marks an unconfirmed fact |
 | State | Approved by the user. Numbers proposed since are working, in the architecture |
-| Open questions | 7 |
+| Open questions | 4 |
 
 ## Purpose
 
@@ -90,13 +90,14 @@ Ranked in table order (working).
 
 ## Open questions
 
-1. Q-04: 1 kV from the project HV board only, or also an adjustable lab HV supply and an HV probe for leakage-vs-voltage curves?
-2. Q-09: budget for the ADA4530-1, the Murata probe and the SWF receptacles.
-3. Q-10: typical lab RH, and is a tin purge (R-18) wanted?
-4. Q-12: SWF leakage and probe life, unpublished. Ask Murata for the approval sheet.
-5. Q-13: space for four SWF connectors with guard rings and the CSAs on the back of the detector board, and room for the probe in the tin.
-6. Q-14: ESP32 module with an external antenna on a bulkhead (working), or the control board outside the tin?
-7. Q-15: is the O-ring land copper or bare laminate, and is a 0 V ring inside it wanted to catch tube leakage? The field simulation decides.
+With context and recommendations: [questions](questions/2026-11-21-electrometer.md).
+
+1. Q-09: budget for the ADA4530-1, the Murata probe and the SWF receptacles.
+2. Q-14: antenna on a bulkhead (working), or the control board outside the tin?
+3. Q-12: SWF leakage and probe life: `DECIDE AT TEST`, on the bare test board.
+4. Q-13: space on the detector board's back: `DECIDE AT` detector layout.
+
+Settled: Q-04 (project HV board only), Q-10 (RH logged by R-17, purge `DECIDE AT TEST`), Q-15 (bare laminate; the detector's +20 V ring catches tube leakage), decisions "Questions settled by the detector answers and S-01".
 
 ## Notes
 

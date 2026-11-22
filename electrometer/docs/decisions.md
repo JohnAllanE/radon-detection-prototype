@@ -70,3 +70,11 @@ Reason (user): the two-cell figures are acceptable. If the measured draws miss R
 - **Reason:** the workflow's passes and document contract.
 - **Affects:** none (process only).
 - **Replaces:** none.
+
+## 2026-11-21: Questions settled by the detector answers and S-01
+
+- **Decision (Claude):** Q-04: the project HV board only (the user defers an HV probe to a funded effort). Q-10: the lab is not monitored; R-17's sensor logs T and RH, a purge is decided at test. Q-15: bare laminate under the O-ring; the detector's exposed ring on +20 V (radon A-10, S-01) is the nearest copper to the tube and catches surface leakage. Q-13's "≤ 20 mm" board is superseded: the detector board is at least the tube's 26.67 mm outside diameter.
+- **Alternatives:** a separate 0 V ring inside the O-ring land.
+- **Reason:** the user's radon answers of 2026-11-21 and radon S-01 (`sim/field/S-01-chamber/` in the parent repo).
+- **Affects:** Q-04, Q-10, Q-13, Q-15; A-18 is decided with radon A-21.
+- **Replaces:** none.
