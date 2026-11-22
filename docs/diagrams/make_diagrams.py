@@ -134,7 +134,55 @@ def gas_train():
     d.write(HERE / "gas-train.svg")
 
 
+def decay_chain():
+    d = Svg(1180, 495, "The radon-222 decay chain as this detector sees it: Rn-222 decays in the gas; Po-218, "
+                       "Po-214 and, over months, Po-210 decay on the die and their alphas are counted.")
+    W, H = 150, 66
+    xs = [20, 280, 505, 730, 955]
+    y1, y2 = 110, 310
+    groups = [(10, 180, y1 - 40, y1 + H + 22, "IN THE GAS"),
+              (265, 1115, y1 - 40, y1 + H + 22, "ON THE DIE: COUNTED IN EVERY RUN"),
+              (265, 890, y2 - 22, y2 + H + 36, "LONG-LIVED: BUILDS UP ON THE DIE OVER MONTHS")]
+    for x0, x1, ya, yb, t in groups:
+        d.add(f'<rect class="group" x="{x0}" y="{ya}" width="{x1 - x0}" height="{yb - ya}" rx="8"/>')
+        d.text(x0 + 12, ya + 18 if ya < 200 else yb - 10, t, "g")
+    row1 = [("Rn-222", ["3.82 d", "moves with the gas"]),
+            ("Po-218", ["3.10 min", "ion: drifts to the die"]),
+            ("Pb-214", ["about 27 min", "beta, not counted"]),
+            ("Bi-214", ["19.9 min", "beta, not counted"]),
+            ("Po-214", ["164 µs", "follows Bi-214 at once"])]
+    row2 = [("Pb-210", ["22.2 y", "beta, not counted"]),
+            ("Bi-210", ["5.0 d", "beta, not counted"]),
+            ("Po-210", ["138 d", "growing background"]),
+            ("Pb-206", ["stable", None])]
+    for x, (t, sub) in zip(xs, row1):
+        d.box(x, y1, W, H, t, sub)
+    for x, (t, sub) in zip(xs[1:], row2):
+        d.box(x, y2, W, H, t, [s for s in sub if s], cls="off" if t == "Pb-206" else "box")
+    ym1, ym2 = y1 + H / 2, y2 + H / 2
+    arrows1 = [("sig", "α 5.49 MeV"), ("sig", "α 6.00 MeV"), ("flow", "β"), ("flow", "β")]
+    for i, (k, lab) in enumerate(arrows1):
+        xa, xb = xs[i] + W, xs[i + 1]
+        d.line([(xa, ym1), (xb - 2, ym1)], k)
+        d.text((xa + xb) / 2, ym1 - 8, lab, "lsig" if k == "sig" else "s", "middle")
+    # Po-214 down to Pb-210
+    xc = xs[4] + W / 2
+    d.line([(xc, y1 + H), (xc, 250), (xs[1] + W / 2, 250), (xs[1] + W / 2, y2 - 2)], "sig")
+    d.text((xc + xs[1] + W / 2) / 2, 244, "α 7.69 MeV", "lsig", "middle")
+    arrows2 = [("flow", "β"), ("flow", "β"), ("sig", "α 5.30 MeV")]
+    for i, (k, lab) in enumerate(arrows2):
+        xa, xb = xs[i + 1] + W, xs[i + 2]
+        d.line([(xa, ym2), (xb - 2, ym2)], k)
+        d.text((xa + xb) / 2, ym2 - 8, lab, "lsig" if k == "sig" else "s", "middle")
+    d.text(20, 440, "Rn-222's own alpha reaches the die only from a few cm of gas, with energy lost on the way: "
+                    "a tail below 5.49 MeV, not a line.", "s")
+    legend(d, 470, ["sig", "flow"], sig="Alpha: counted when it goes into the die (about half do)",
+           flow="Beta: below the alpha threshold, not counted")
+    d.write(HERE / "decay-chain.svg")
+
+
 if __name__ == "__main__":
     system_block()
     signal_chain()
     gas_train()
+    decay_chain()

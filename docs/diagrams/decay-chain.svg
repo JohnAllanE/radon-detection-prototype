@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 495" width="1180" height="495" role="img" aria-label="The radon-222 decay chain as this detector sees it: Rn-222 decays in the gas; Po-218, Po-214 and, over months, Po-210 decay on the die and their alphas are counted.">
+<title>The radon-222 decay chain as this detector sees it: Rn-222 decays in the gas; Po-218, Po-214 and, over months, Po-210 decay on the die and their alphas are counted.</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --pwr:#8e44ad; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --pwr:#b783d6; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .off { fill:var(--box); stroke:var(--edge); stroke-width:1.2; stroke-dasharray:4 3; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .flow { fill:none; stroke:var(--ink2); stroke-width:1.6; stroke-linejoin:round; }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hpwr { fill:var(--pwr); } .hflow { fill:var(--ink2); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hflow" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1180" height="495" rx="10"/>
+<rect class="group" x="10" y="70" width="170" height="128" rx="8"/>
+<text class="g" x="22" y="88" text-anchor="start">IN THE GAS</text>
+<rect class="group" x="265" y="70" width="850" height="128" rx="8"/>
+<text class="g" x="277" y="88" text-anchor="start">ON THE DIE: COUNTED IN EVERY RUN</text>
+<rect class="group" x="265" y="288" width="625" height="124" rx="8"/>
+<text class="g" x="277" y="402" text-anchor="start">LONG-LIVED: BUILDS UP ON THE DIE OVER MONTHS</text>
+<rect class="box" x="20" y="110" width="150" height="66" rx="6"/>
+<text class="t" x="95.0" y="132.0" text-anchor="middle">Rn-222</text>
+<text class="s" x="95.0" y="149.0" text-anchor="middle">3.82 d</text>
+<text class="s" x="95.0" y="164.0" text-anchor="middle">moves with the gas</text>
+<rect class="box" x="280" y="110" width="150" height="66" rx="6"/>
+<text class="t" x="355.0" y="132.0" text-anchor="middle">Po-218</text>
+<text class="s" x="355.0" y="149.0" text-anchor="middle">3.10 min</text>
+<text class="s" x="355.0" y="164.0" text-anchor="middle">ion: drifts to the die</text>
+<rect class="box" x="505" y="110" width="150" height="66" rx="6"/>
+<text class="t" x="580.0" y="132.0" text-anchor="middle">Pb-214</text>
+<text class="s" x="580.0" y="149.0" text-anchor="middle">about 27 min</text>
+<text class="s" x="580.0" y="164.0" text-anchor="middle">beta, not counted</text>
+<rect class="box" x="730" y="110" width="150" height="66" rx="6"/>
+<text class="t" x="805.0" y="132.0" text-anchor="middle">Bi-214</text>
+<text class="s" x="805.0" y="149.0" text-anchor="middle">19.9 min</text>
+<text class="s" x="805.0" y="164.0" text-anchor="middle">beta, not counted</text>
+<rect class="box" x="955" y="110" width="150" height="66" rx="6"/>
+<text class="t" x="1030.0" y="132.0" text-anchor="middle">Po-214</text>
+<text class="s" x="1030.0" y="149.0" text-anchor="middle">164 µs</text>
+<text class="s" x="1030.0" y="164.0" text-anchor="middle">follows Bi-214 at once</text>
+<rect class="box" x="280" y="310" width="150" height="66" rx="6"/>
+<text class="t" x="355.0" y="332.0" text-anchor="middle">Pb-210</text>
+<text class="s" x="355.0" y="349.0" text-anchor="middle">22.2 y</text>
+<text class="s" x="355.0" y="364.0" text-anchor="middle">beta, not counted</text>
+<rect class="box" x="505" y="310" width="150" height="66" rx="6"/>
+<text class="t" x="580.0" y="332.0" text-anchor="middle">Bi-210</text>
+<text class="s" x="580.0" y="349.0" text-anchor="middle">5.0 d</text>
+<text class="s" x="580.0" y="364.0" text-anchor="middle">beta, not counted</text>
+<rect class="box" x="730" y="310" width="150" height="66" rx="6"/>
+<text class="t" x="805.0" y="332.0" text-anchor="middle">Po-210</text>
+<text class="s" x="805.0" y="349.0" text-anchor="middle">138 d</text>
+<text class="s" x="805.0" y="364.0" text-anchor="middle">growing background</text>
+<rect class="off" x="955" y="310" width="150" height="66" rx="6"/>
+<text class="t" x="1030.0" y="340.0" text-anchor="middle">Pb-206</text>
+<text class="s" x="1030.0" y="357.0" text-anchor="middle">stable</text>
+<polyline class="sig" points="170,143.0 278,143.0" marker-end="url(#asig)"/>
+<text class="lsig" x="225.0" y="135.0" text-anchor="middle">α 5.49 MeV</text>
+<polyline class="sig" points="430,143.0 503,143.0" marker-end="url(#asig)"/>
+<text class="lsig" x="467.5" y="135.0" text-anchor="middle">α 6.00 MeV</text>
+<polyline class="flow" points="655,143.0 728,143.0" marker-end="url(#aflow)"/>
+<text class="s" x="692.5" y="135.0" text-anchor="middle">β</text>
+<polyline class="flow" points="880,143.0 953,143.0" marker-end="url(#aflow)"/>
+<text class="s" x="917.5" y="135.0" text-anchor="middle">β</text>
+<polyline class="sig" points="1030.0,176 1030.0,250 355.0,250 355.0,308" marker-end="url(#asig)"/>
+<text class="lsig" x="692.5" y="244" text-anchor="middle">α 7.69 MeV</text>
+<polyline class="flow" points="430,343.0 503,343.0" marker-end="url(#aflow)"/>
+<text class="s" x="467.5" y="335.0" text-anchor="middle">β</text>
+<polyline class="flow" points="655,343.0 728,343.0" marker-end="url(#aflow)"/>
+<text class="s" x="692.5" y="335.0" text-anchor="middle">β</text>
+<polyline class="sig" points="880,343.0 953,343.0" marker-end="url(#asig)"/>
+<text class="lsig" x="917.5" y="335.0" text-anchor="middle">α 5.30 MeV</text>
+<text class="s" x="20" y="440" text-anchor="start">Rn-222's own alpha reaches the die only from a few cm of gas, with energy lost on the way: a tail below 5.49 MeV, not a line.</text>
+<polyline class="sig" points="30,470 80,470" marker-end="url(#asig)"/>
+<text class="s" x="90" y="474" text-anchor="start">Alpha: counted when it goes into the die (about half do)</text>
+<polyline class="flow" points="474.0,470 524.0,470" marker-end="url(#aflow)"/>
+<text class="s" x="534.0" y="474" text-anchor="start">Beta: below the alpha threshold, not counted</text>
+</svg>
