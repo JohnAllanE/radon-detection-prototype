@@ -17,6 +17,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Done
 
+- 2026-11-21 coordinator step B: `docs/notes/materials.md` (flange: aluminium, not brass; PTFE washer covers its face), linked from the requirements.
 - 2026-11-21 coordinator step A: 316 confirmed, firm (R-39, decisions).
 - 2026-11-21 (single-pd-sweep) step 3: `docs/questions/2026-11-21-single-pd.md` (2 questions: pipe size, V_top above 200 V), diagram rendered light and dark. Brief complete.
 - 2026-11-21 (single-pd-sweep) step 2: S-02 (`sim/field/S-02-single-pd/`): 21 pipe sizes × 10 V_top (0–600 V). Build point 1-1/4 in sch 40, V_top +200 V: 56 % to the active area, ID²f 684 mm² (old array 145). Fields ≤ about 1.0 kV/mm there; threads field-free inside the flange. A-29 updated, decisions entry.
@@ -32,7 +33,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Running
 
-- single-pd-sweep brief done. Next: the coordinator's steps B (`docs/notes/materials.md`), C (electrometer answers). Nothing pushed.
+- single-pd-sweep brief done. Next: the coordinator's step C (electrometer answers). Nothing pushed.
 
 ## Next
 

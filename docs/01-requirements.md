@@ -119,6 +119,7 @@ None. Resolved by the user's latest answers: Q-02 (R-27, R-76), Q-17 (option (a)
 - [HV spacing and readback](notes/hv-spacing-and-readback.md): creepage and clearance, 5.0 mm at 1 kV, the divider before the series resistor.
 - [Physics reference](notes/physics-reference.md): 44.3 fC per MeV, alpha lines, and why 1–10 mbar is enough for Part 2.
 - [Chamber sensitivity](notes/chamber-sensitivity.md): 2–5 counts/hour at 100 Bq/m³, days per 100 counts indoors.
+- [Materials](notes/materials.md): stainless, PTFE, Viton; no brass or leaded parts near the gas; an aluminium flange.
 - [Environment sensors](notes/candidates-environment-sensors.md): SHT45 on board and in a flow cell on the outlet, a barometer.
 - [Gas train](notes/gas-train.md): about 12.5 g of water a day into the desiccant at 1 L/min. No humidity sensor in the chamber.
 - [Part 2 vacuum](notes/part2-vacuum.md): pump to 10⁻² to 10⁻¹ mbar, trap the foreline, count sealed.
