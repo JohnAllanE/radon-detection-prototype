@@ -140,7 +140,7 @@ Assembly, from populated boards to a running chamber:
 2. Q-26: bond or epoxy the chips, and ask Excelitas about carriers?
 3. Q-20 remainder: board outline and O-ring size.
 4. Q-15: suppliers (`$ELECTRONICS_TOOLS/inventory/stock.csv`).
-5. A-29 against A-02: one detector per tube, from S-02.
+5. A-29: pipe size and top-copper bias: [questions](questions/2026-11-21-single-pd.md).
 
 ## Notes
 
