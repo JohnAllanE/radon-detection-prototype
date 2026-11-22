@@ -11,3 +11,9 @@ datasheets/*.pdf
 !datasheets/ADA4530-1.pdf
 !datasheets/ADA4817-1.pdf
 __pycache__/
+
+# Reference PDFs: only CC-licensed ones are committed (this repo is public). Others are re-fetchable from the
+# URLs in docs/references/README.md (SHA-256 there).
+docs/references/*.pdf
+!docs/references/hosokawa-2015-ptep-80L-radon-detector.pdf
+!docs/references/okamoto-2021-arxiv-2112.06614-large-pin.pdf

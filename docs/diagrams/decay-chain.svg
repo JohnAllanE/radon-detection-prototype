@@ -50,12 +50,12 @@
 <text class="s" x="355.0" y="164.0" text-anchor="middle">ion: drifts to the die</text>
 <rect class="box" x="505" y="110" width="150" height="66" rx="6"/>
 <text class="t" x="580.0" y="132.0" text-anchor="middle">Pb-214</text>
-<text class="s" x="580.0" y="149.0" text-anchor="middle">about 27 min</text>
-<text class="s" x="580.0" y="164.0" text-anchor="middle">beta, not counted</text>
+<text class="s" x="580.0" y="149.0" text-anchor="middle">27.1 min</text>
+<text class="s" x="580.0" y="164.0" text-anchor="middle">beta: small pulse</text>
 <rect class="box" x="730" y="110" width="150" height="66" rx="6"/>
 <text class="t" x="805.0" y="132.0" text-anchor="middle">Bi-214</text>
-<text class="s" x="805.0" y="149.0" text-anchor="middle">19.9 min</text>
-<text class="s" x="805.0" y="164.0" text-anchor="middle">beta, not counted</text>
+<text class="s" x="805.0" y="149.0" text-anchor="middle">19.7 min</text>
+<text class="s" x="805.0" y="164.0" text-anchor="middle">beta: small pulse</text>
 <rect class="box" x="955" y="110" width="150" height="66" rx="6"/>
 <text class="t" x="1030.0" y="132.0" text-anchor="middle">Po-214</text>
 <text class="s" x="1030.0" y="149.0" text-anchor="middle">164 µs</text>
@@ -63,11 +63,11 @@
 <rect class="box" x="280" y="310" width="150" height="66" rx="6"/>
 <text class="t" x="355.0" y="332.0" text-anchor="middle">Pb-210</text>
 <text class="s" x="355.0" y="349.0" text-anchor="middle">22.2 y</text>
-<text class="s" x="355.0" y="364.0" text-anchor="middle">beta, not counted</text>
+<text class="s" x="355.0" y="364.0" text-anchor="middle">beta: small pulse</text>
 <rect class="box" x="505" y="310" width="150" height="66" rx="6"/>
 <text class="t" x="580.0" y="332.0" text-anchor="middle">Bi-210</text>
 <text class="s" x="580.0" y="349.0" text-anchor="middle">5.0 d</text>
-<text class="s" x="580.0" y="364.0" text-anchor="middle">beta, not counted</text>
+<text class="s" x="580.0" y="364.0" text-anchor="middle">beta: small pulse</text>
 <rect class="box" x="730" y="310" width="150" height="66" rx="6"/>
 <text class="t" x="805.0" y="332.0" text-anchor="middle">Po-210</text>
 <text class="s" x="805.0" y="349.0" text-anchor="middle">138 d</text>
@@ -91,9 +91,9 @@
 <text class="s" x="692.5" y="335.0" text-anchor="middle">β</text>
 <polyline class="sig" points="880,343.0 953,343.0" marker-end="url(#asig)"/>
 <text class="lsig" x="917.5" y="335.0" text-anchor="middle">α 5.30 MeV</text>
-<text class="s" x="20" y="440" text-anchor="start">Rn-222's own alpha reaches the die only from a few cm of gas, with energy lost on the way: a tail below 5.49 MeV, not a line.</text>
+<text class="s" x="20" y="440" text-anchor="start">Rn-222's own alpha reaches the die only from a few cm of gas, with energy lost on the way: a tail below 5.49 MeV, not a line. Half-lives: IAEA LiveChart.</text>
 <polyline class="sig" points="30,470 80,470" marker-end="url(#asig)"/>
 <text class="s" x="90" y="474" text-anchor="start">Alpha: counted when it goes into the die (about half do)</text>
 <polyline class="flow" points="474.0,470 524.0,470" marker-end="url(#aflow)"/>
-<text class="s" x="534.0" y="474" text-anchor="start">Beta: below the alpha threshold, not counted</text>
+<text class="s" x="534.0" y="474" text-anchor="start">Beta: tens of keV, can trigger, outside the alpha window</text>
 </svg>

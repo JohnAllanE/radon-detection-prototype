@@ -148,11 +148,11 @@ def decay_chain():
         d.text(x0 + 12, ya + 18 if ya < 200 else yb - 10, t, "g")
     row1 = [("Rn-222", ["3.82 d", "moves with the gas"]),
             ("Po-218", ["3.10 min", "ion: drifts to the die"]),
-            ("Pb-214", ["about 27 min", "beta, not counted"]),
-            ("Bi-214", ["19.9 min", "beta, not counted"]),
+            ("Pb-214", ["27.1 min", "beta: small pulse"]),
+            ("Bi-214", ["19.7 min", "beta: small pulse"]),
             ("Po-214", ["164 µs", "follows Bi-214 at once"])]
-    row2 = [("Pb-210", ["22.2 y", "beta, not counted"]),
-            ("Bi-210", ["5.0 d", "beta, not counted"]),
+    row2 = [("Pb-210", ["22.2 y", "beta: small pulse"]),
+            ("Bi-210", ["5.0 d", "beta: small pulse"]),
             ("Po-210", ["138 d", "growing background"]),
             ("Pb-206", ["stable", None])]
     for x, (t, sub) in zip(xs, row1):
@@ -175,9 +175,9 @@ def decay_chain():
         d.line([(xa, ym2), (xb - 2, ym2)], k)
         d.text((xa + xb) / 2, ym2 - 8, lab, "lsig" if k == "sig" else "s", "middle")
     d.text(20, 440, "Rn-222's own alpha reaches the die only from a few cm of gas, with energy lost on the way: "
-                    "a tail below 5.49 MeV, not a line.", "s")
+                    "a tail below 5.49 MeV, not a line. Half-lives: IAEA LiveChart.", "s")
     legend(d, 470, ["sig", "flow"], sig="Alpha: counted when it goes into the die (about half do)",
-           flow="Beta: below the alpha threshold, not counted")
+           flow="Beta: tens of keV, can trigger, outside the alpha window")
     d.write(HERE / "decay-chain.svg")
 
 
