@@ -5,7 +5,7 @@
 | Project | Alpha detection with silicon photodiodes: radon progeny in a 1 kV steel chamber (Part 1) and weld samples in rough vacuum (Part 2), premium against low-cost detector boards |
 | Pass | 1, a sketch of the detector, MCU and HV boards and both chambers, ended by `docs/reviews/pass-1.md` |
 | Activity | Pass 1 architecture accepted, answers recorded. Field simulations S-01 to S-03 done; S-03 awaits the user. No hard stop near: no part is ready to order |
-| Next for the user | S-03: adopt the flat-lip reduced end and drop the ring bias (R-47)? Then `docs/questions/2026-11-21-detector.md` and the electrometer's |
+| Next for the user | Sketch the thin-plate seal; confirm R-47 (0 V board). Then `docs/questions/2026-11-21-detector.md` and the electrometer's |
 | Next for Claude | Pass 2: CSA ngspice model, hold-chain simulation, HV board architecture, prices and stock, a 3D field check of the array centre |
 | Open `VERIFY` items | Notes, the architecture, `parts/selection.md` Open |
 

@@ -158,3 +158,12 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** S-03 (`sim/field/S-03-reduced-end/`). Neutralisation rates in air (charged life 11–70 s) put the cost of the slower transit near 1 % in dried gas ([decay chain](notes/radon-chain-for-the-detector.md)).
 - **Affects:** A-29, A-15, R-47 (a biased ring would no longer be needed), R-39, A-11 (the 0 V copper in the mouth is the guard).
 - **Replaces:** none; S-02's build point stays the alternative until the user chooses.
+
+## 2026-11-22: thin flat plate for the reduced end; per-channel trigger threshold
+
+- **Decision (user):** build S-03's reduced end as a thin flat plate: waterjet-cut aluminium about 1.5 mm, or a laser-cut stainless stencil ordered with the PCBs. The user has a sealing strategy to sketch and share. Exposed board at 0 V (working; R-47's biased ring then changes, for the user to confirm).
+- **Decision (user):** trigger thresholds settable per channel. Default above the betas (alphas only); keep the hardware able to go down to about 15 keV so one detector can record Bi-214 betas with the Po-214 alphas.
+- **Alternatives:** a 6–8 mm part with a 1 mm land and a 60° chamfer (about 30 cm³, 10 % less); a thick plate with a straight hole (26.7–27.8 cm³ at 8 mm).
+- **Reason:** S-03 (`sim/field/S-03-reduced-end/`, thin plates section): aluminium 1.5 mm at $r_n$ 5, 33.1 cm³; stencil 34.2 cm³ with 2.0 kV/mm at its edge.
+- **Affects:** A-29, A-15, R-47, A-23 (seal to follow).
+- **Replaces:** the S-03 entry's "throat 0.5–1 mm" (1.5 mm plate accepted).

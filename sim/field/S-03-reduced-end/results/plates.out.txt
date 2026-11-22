@@ -1,0 +1,8 @@
+aluminium 1.5 mm           r_n 5.0 h 0.1: active 99.4 % index 33.0 t50 43 t90 374 ms | E lip edge 999 E die 560 E cu outer 914 V/mm
+aluminium 1.5 mm           r_n 5.0 h 0.05: active 99.6 % index 33.1 t50 45 t90 396 ms | E lip edge 1212 E die 692 E cu outer 1109 V/mm
+aluminium 1.5 mm           r_n 6.0 h 0.1: active 98.5 % index 32.8 t50 27 t90 231 ms | E lip edge 1005 E die 408 E cu outer 907 V/mm
+aluminium 1.5 mm           r_n 6.0 h 0.05: active 98.8 % index 32.9 t50 28 t90 240 ms | E lip edge 1220 E die 498 E cu outer 1100 V/mm
+stainless stencil 0.13 mm  r_n 5.0 h 0.05: active 98.9 % index 34.2 t50 25 t90 232 ms | E lip edge 1697 E die 644 E cu outer 1146 V/mm
+stainless stencil 0.13 mm  r_n 5.0 h 0.025: active 99.0 % index 34.2 t50 25 t90 238 ms | E lip edge 2005 E die 803 E cu outer 1424 V/mm
+stainless stencil 0.13 mm  r_n 6.0 h 0.05: active 90.7 % index 31.3 t50 17 t90 157 ms | E lip edge 1718 E die 454 E cu outer 1135 V/mm
+stainless stencil 0.13 mm  r_n 6.0 h 0.025: active 91.2 % index 31.5 t50 17 t90 160 ms | E lip edge 2033 E die 561 E cu outer 1410 V/mm

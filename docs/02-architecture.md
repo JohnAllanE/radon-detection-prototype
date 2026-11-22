@@ -38,7 +38,7 @@
 | A-12 | Detector-to-MCU connector: Molex PicoBlade-style, 14 pins proposed | working | R-24, R-07 | Pin count ≤ 15 `VERIFY` |
 | A-13 | MCU board analog chain on one filtered +5 V rail, TLV906x family, baseline 0.2–0.3 V | working | R-13, D-23 | TLV90xx can't take ±4.5 V. [TLV90xx](notes/tlv90xx-assessment.md) |
 | A-14 | Shaper: AC-coupled pole-zero and gain stage (inverting or non-inverting by jumper), then CR-RC^n, τ = 4 µs, footprints for 2–10 µs | working | R-09, R-14 | Low rates allow long shaping. Q-04 |
-| A-15 | Trigger: TLV9061 as comparator with hysteresis, TLV3201 as footprint alternate, threshold from filtered PWM or DAC, above betas for radon | working | R-13 | Held peak: µs delay harmless. [Betas](notes/radon-chain-for-the-detector.md) |
+| A-15 | Trigger: TLV9061 as comparator with hysteresis, TLV3201 as footprint alternate, per-channel threshold, PWM or DAC: above betas by default | working | R-13 | Held peak: µs delay harmless. [Betas](notes/radon-chain-for-the-detector.md) |
 | A-16 | Peak hold: TLV906x driver, low-leakage diode, 1 nF $C_{hold}$, TMUX1101 reset, TLV906x buffer | working | R-13, R-09 | 80 pA leakage budget. [Survey](notes/candidates-mux-hold.md) |
 | A-17 | ADCs: two ADS1220 on the eight holds (4 inputs each, ADS1220.json p1), an 8:1 mux into ADS8689, jumper to the ESP32-S3 ADC | firm | R-16, R-14 | D-16. Mux part open. [Survey](notes/candidates-adc.md) |
 | A-18 | MCU: ESP32-S3-WROOM-1, PCB antenna, USB data, ESP-NOW option | firm | R-15 | The user's choice (D-08). [Survey](notes/candidates-mcu.md) |

@@ -9,7 +9,7 @@
 | Method | S-01's axisymmetric Laplace solver (`../S-01-chamber/field.py`), unchanged; S-02's die model, start-point weighting and active-area share. Two unit solves per geometry (tube at 1 V, copper at 1 V), combined for each $V_{top}$ |
 | Sketch | [arrangement.svg](arrangement.svg) from `sketch.py`, confirmed by the user before the sweep |
 | Run | `.venv/bin/python sim/field/S-03-reduced-end/run.py` (121 geometries × 5 biases, about 15 minutes on the Intel Mac), then `points.py` (4 geometries at h = 0.05 mm with the die's three sections, about 4 minutes). `run.py --plots` redraws from `sweep.json` |
-| Outputs | `results/summary.md` (all 605 points), `sweep.json`, `points.json`, `run.out.txt`, `points.out.txt`, `run-lt1.out.txt` (first pass, L_t fixed at 1 mm), four SVG plots |
+| Outputs | `results/summary.md` (all 605 points), `sweep.json`, `points.json`, `plates.json`, `run.out.txt`, `points.out.txt`, `plates.out.txt`, `run-lt1.out.txt` (first pass, L_t fixed at 1 mm), four SVG plots |
 
 ![General arrangement: full section of the thick-walled aluminium tube, ID 35.05 mm, OD 2 in, at +1 kV, with an end piece from bar bolted on axially. The end piece reduces the bore to radius r_n over the VTH2110 with a straight throat L_t and a taper at half-angle theta up to the main bore. It stands on a 1 mm PTFE washer on the detector board. A detail shows the die at 0 V and the exposed board copper inside r_n, and a top view shows the round bore modelled against the optional rounded-square loft.](arrangement.svg)
 
@@ -68,6 +68,21 @@
 5. **Machining:** the result is a short tube section with an inward lip at its end, the lip about 1 mm thick with a 10 mm hole. The rounded-square loft is not needed for the field. A rounded-square hole hugging the die (1 mm clearance on the sides) would sit between the side and diagonal sections, which agree within 0.2 points.
 6. **Neutralisation:** at 2 cm²/(V·s), 90 % of ions arrive within 0.27 s. If the clusters' mobility is 0.7 (the low end), that is 0.76 s. At measured rates this loses 0.4–1.1 % in dry air and 2–6 % at 50 % RH. The sketched 45° taper would lose up to 14 % at 50 % RH.
 7. **Fields:** the lip's edge sits 1 mm over the 0 V board, as the tube's end did in S-02, so the gas field there is the same, about 1.2 kV/mm at 50 µm. With no copper bias, S-02's 0.85 kV/mm copper-edge field and its leakage path into the CSA disappear.
+
+## Thin plates (the user's construction, 2026-11-22)
+
+The user chose a thin flat plate: waterjet-cut aluminium about 1.5 mm thick, or a laser-cut stainless stencil ordered with the PCBs. Both are 2D cuts, so the hole can be the rounded square at no cost. `plates.py`, $V_{top}$ 0, finest grid shown:
+
+| Plate | $r_n$ | To active area | Index (cm³) | Median / 90 % transit (ms) | Peak gas field at the hole edge |
+|---|---|---|---|---|---|
+| **Aluminium 1.5 mm, 0.5 mm edge radius** | **5.0** | **99.6 %** | **33.1** | **45 / 396** | **1.21 kV/mm (h 0.05)** |
+| Aluminium 1.5 mm | 6.0 | 98.8 % | 32.9 | 28 / 240 | 1.22 kV/mm |
+| Stencil 0.13 mm (`VERIFY` thickness), 0.05 mm edge radius | 5.0 | 99.0 % | 34.2 | 25 / 238 | 2.0 kV/mm (h 0.025), still rising with refinement |
+| Stencil 0.13 mm | 6.0 | 91.2 % | 31.5 | 17 / 160 | 2.0 kV/mm |
+
+- Both score within 3 % of each other. Recommended: aluminium 1.5 mm, hole about 1 mm clear of the die (round 10 mm, or the rounded square), its board-side edge deburred to a radius.
+- The stencil's sharp edge doubles the local field. The whole 1 mm gap still holds only 1 kV, well under air's breakdown voltage for 1 mm, roughly 4 kV (Paschen, `VERIFY`). So this is a margin to watch (burrs, flatness of a 0.13 mm foil 1 mm over the board) rather than a stop.
+- A thin stencil shields less, so a wider stencil hole sends ions to the board around the die (91 % at $r_n$ 6). Keep its hole tight.
 
 ## Expected results (for the test plan)
 
