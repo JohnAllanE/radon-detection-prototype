@@ -6,7 +6,7 @@
 | Project | A battery-powered bench electrometer for the radon project's detector (CSA) boards: DC current from about 1 µA down to 10 fA, measured in situ in a grounded tin |
 | This document | Purpose, scope and the R-xx requirements as functions, objectives and constraints. IDs are local. Radon-project IDs are written "radon R-xx". `VERIFY` marks an unconfirmed fact |
 | State | Approved by the user. Numbers proposed since are working, in the architecture |
-| Open questions | 4 |
+| Open questions | 2 |
 
 ## Purpose
 
@@ -51,9 +51,9 @@
 | R-13 | Waits until a reading has settled after a probe move or source step, and logs the wait | firm | User | Test |
 | R-17 | Logs temperature and RH inside the tin with every reading | firm | User | Inspection, test |
 | R-18 | Optional dry-N₂ purge of the tin itself | firm | User | Inspection |
-| R-20 | Is controlled by SCPI-style text over ESP-NOW through `lab-gateway`, scripted from the user's API, and streams readings | firm | User (radon Q-23) | Test |
+| R-20 | Is controlled by SCPI-style text over a wired, galvanically isolated USB-C link, scripted from the user's API, and streams readings. ESP-NOW optional | firm | User (radon Q-23, answer 2) | Test |
 | R-21 | Each record carries timestamp, function, range, value, source level, probed channel and board, confirmed range, PD bias and ring state, T, RH and flags | firm | User | Inspection |
-| R-25 | Checks each range before a session: input zero, and a known reference | firm | User | Test |
+| R-25 | Checks each range before a session: input zero and a known current from an injection capacitor in place; resistor ranges with an external cal plug | firm | User (answer 1) | Test |
 | R-26 | Calibrates against the bench gear: a ramp into a known capacitor, the source against the SDM3055, the R-07 overlap. Constants stored on the instrument | firm | User | Test |
 
 ### R-01
@@ -68,7 +68,7 @@ Ranked in table order (working).
 |---|---|---|---|
 | R-14 | Triboelectric pickup from normal handling: lower is better | firm | Good enough: ≤ 50 fA (U-6) |
 | R-23 | Disturbance from the radio and digital activity: lower is better | firm | Good enough: radio on vs off differs by less than the R-01 noise floor |
-| R-24 | Battery life: longer is better | working | ≥ 24 h of logging proposed. Measured draws against D-08 |
+| R-24 | Battery life on the external pack: longer is better | working | ≥ 24 h of logging proposed. Measured with the pack |
 | R-22 | Reading rate: higher is better | working | Proposed values in the architecture |
 | R-34 | Build and assembly effort after the boards are populated: lower is better | working | Off-board connections and conductors in the architecture |
 
@@ -82,7 +82,8 @@ Ranked in table order (working).
 | R-19 | On the detector board (feeds radon R-60, the test port): a guarded switched coaxial connector per CSA input, shell on the 0 V guard ring, $C_{test}$ on the diode side | firm | User (D-02) | Inspection, test |
 | R-27 | The built-in source stays in the SELV range and is current-limited, ≤ 100 µA | firm | Safety | Inspection, test |
 | R-28 | A lid interlock disables and discharges the external HV. HV-present shown outside. HV off before the probe moves | firm | Safety (radon R-22, D-20) | Inspection, test |
-| R-29 | Hand-assembled. Input node on PTFE standoffs or in air, guarded, board washed after assembly | firm | User | Inspection |
+| R-29 | Hand-assembled. Input node on PTFE standoffs or in air, guarded, washed, sealed with desiccant and a humidity indicator | firm | User (answer 3) | Inspection |
+| R-35 | Powered from a separate battery pack or a PSU through the GX12-4 power input, charging outside this project | firm | User (answer 3) | Inspection, test |
 | R-30 | Portable to the test-gear repo: no dependency on radon paths except its use cases | firm | User | Inspection |
 | R-31 | Single-point grounding: coax shield is common and guard, one bond to the detector board's 0 V, tin bonded to common, HV return separate | firm | User (D-02) | Inspection, test |
 | R-32 | The radio antenna is outside the tin | firm | Physics: the tin blocks 2.4 GHz | Test: link holds with the tin closed |
@@ -92,12 +93,13 @@ Ranked in table order (working).
 
 With context and recommendations: [questions](questions/2026-11-21-electrometer.md).
 
-1. Q-09: budget for the ADA4530-1, the Murata probe and the SWF receptacles.
-2. Q-14: antenna on a bulkhead (working), or the control board outside the tin?
-3. Q-12: SWF leakage and probe life: `DECIDE AT TEST`, on the bare test board.
-4. Q-13: space on the detector board's back: `DECIDE AT` detector layout.
+1. Q-12: SWF leakage and probe life: `DECIDE AT TEST`, on the bare test board.
+2. Q-13: space on the detector board's back: `DECIDE AT` detector layout.
 
-Settled: Q-04 (project HV board only), Q-10 (RH logged by R-17, purge `DECIDE AT TEST`), Q-15 (bare laminate; the detector's +20 V ring catches tube leakage), decisions "Questions settled by the detector answers and S-01".
+Settled:
+
+- Q-09: tentatively, the minimum quantities. Q-14: wired USB-C, a bulkhead antenna only if the radio is used.
+- Q-04: project HV board only. Q-10: RH logged by R-17, purge `DECIDE AT TEST`. Q-15: bare laminate, the detector's +20 V ring catches tube leakage.
 
 ## Notes
 
@@ -106,4 +108,5 @@ Settled: Q-04 (project HV board only), Q-10 (RH logged by R-17, purge `DECIDE AT
 - [Bench gear](notes/bench-gear-coverage.md): the DMM and a powered CSA reach about 1 pA in situ. Bare boards and absolute $C_{test}$ need the electrometer.
 - [Test connection](notes/test-connection.md): SWF switch connectors, single-point grounding, a floating instrument.
 - [Answered questions](notes/user-answers.md): Q-01 to Q-11 and the architecture draft's questions.
+- [Data link and power](notes/data-link-and-power.md): isolated USB-C, GX12-4 battery pack, sealed head.
 - [Proposed targets](notes/proposed-targets.md): Claude's working numbers for each requirement, for the user to make firm.

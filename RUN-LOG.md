@@ -17,6 +17,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Done
 
+- 2026-11-21 coordinator step C: electrometer answers recorded (R-20, R-24, R-25, R-29, new R-35; A-06, A-10, A-12, A-13, A-16, A-18; decisions; questions table). Note `electrometer/docs/notes/data-link-and-power.md` (ADuM3160 isolated USB, GX12-4 pack, sealed head). doclint 0 both. The electrometer's block diagram still shows ESP-NOW: redraw in pass 2.
 - 2026-11-21 coordinator step B: `docs/notes/materials.md` (flange: aluminium, not brass; PTFE washer covers its face), linked from the requirements.
 - 2026-11-21 coordinator step A: 316 confirmed, firm (R-39, decisions).
 - 2026-11-21 (single-pd-sweep) step 3: `docs/questions/2026-11-21-single-pd.md` (2 questions: pipe size, V_top above 200 V), diagram rendered light and dark. Brief complete.
@@ -33,11 +34,11 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Running
 
-- single-pd-sweep brief done. Next: the coordinator's step C (electrometer answers). Nothing pushed.
+- Nothing running. The single-pd-sweep brief and the coordinator's steps A–C are committed; nothing pushed.
 
 ## Next
 
-- The user answers `docs/questions/2026-11-21-detector.md` (6) and `electrometer/docs/questions/2026-11-21-electrometer.md` (5). Then pass 2.
+- The user answers `docs/questions/2026-11-21-single-pd.md` (2: pipe size, top-copper bias above 200 V). Then pass 2.
 
 ## Decisions made while the user was away
 
@@ -52,6 +53,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 ## Shared-repo changes for the reviewer
 
 - Migrate `datasheets/*.json` (and PDFs) to `$ELECTRONICS_TOOLS/component-data/`, adding an `evaluations` entry for this project. Already there: ADS1220, ADS8689, TLV3201 (merge evaluations). Close relatives there: ESP32-S3-WROOM-1U-N16R8 (this repo has the -1 module), TLV9002 (this repo has TLV9001). New: ADA4530-1, ADA4817-1, CR-110-R2.1, ESP32-S3-WROOM-1, LM27762, LMP7721, OPA140, OPA656, OPA657, TLV9001, TLV9061, TMUX1101, TMUX1104, VTH2110 (VTH2110, ADA4530-1, ADA4817-1 PDFs have no stable download).
+- `bench-test-gear/PROJECTS.md`: the electrometer takes the GX12-4 power input from a battery pack or PSU (its answer 3, 2026-11-21) and a wired, isolated USB-C link.
 - `bench-test-gear/PROJECTS.md`: radon entry's status can say documents rewritten and pass 1 reviewed (both designs).
 
 ## Waiting on the user

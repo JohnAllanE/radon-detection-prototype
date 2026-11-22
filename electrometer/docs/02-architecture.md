@@ -5,11 +5,11 @@
 | Project | A battery-powered bench electrometer for the radon project's detector (CSA) boards: DC current from about 1 µA down to 10 fA, measured in situ in a grounded tin |
 | This document | How the head, range panel, readout, source, control and power are built, and what they should do. Stock parts named where they fit. `VERIFY` marks an unconfirmed fact |
 | State | Draft. Topology and ranges approved by the user, the rest awaits approval |
-| Open questions | 4 |
+| Open questions | 0 |
 
 ## IDs from other documents
 
-- Functions: R-01 DC current to 10 fA, R-02 charge, R-05 logging, R-07 DMM overlap, R-08 ±50 V source, R-10 survives faults, R-13 settling, R-17 T and RH, R-20 SCPI over ESP-NOW, R-21 records, R-25 range checks, R-26 calibration.
+- Functions: R-01 DC current to 10 fA, R-02 charge, R-05 logging, R-07 DMM overlap, R-08 ±50 V source, R-10 survives faults, R-13 settling, R-17 T and RH, R-20 SCPI over isolated USB, R-21 records, R-25 range checks, R-26 calibration.
 - Objectives: R-14 triboelectric pickup, R-23 radio disturbance, R-24 battery life, R-22 reading rate, R-34 build effort.
 - Constraints: R-09 HV outside, R-15 the tin, R-27 SELV source, R-28 HV interlock, R-29 build, R-31 grounding, R-32 antenna outside, R-33 off-board range panel.
 - Simulations: S-01 head (loop stability, integrator reset, range check), S-02 source (step and 0.1–10 Hz noise).
@@ -30,19 +30,19 @@
 | A-03 | Range panel off the head board: T-switch per branch, PTFE coax S, E1, E2 at most 30 cm, cheap SPST plus SPDT panel first | firm | R-33 | D-03. Rotary panel later, same interface |
 | A-04 | Reset switch as a T: Sa a reed relay with a shielded coil, off while integrating; Sb/Sc a low-leakage analog SPDT | firm | R-01, R-02 | Approved. Sa sees about 0 V |
 | A-05 | Input protection: 10 kΩ series resistor, then low-leakage clamps from the summing node to common | firm | R-10, R-01 | D-05 burden split. [Protection](notes/input-protection.md) |
-| A-06 | Self-test: permanent 1 pF $C_{inj}$ from an MCP4821, held at 0 V while measuring. Resistor ranges checked with an external cal plug | open | R-25, R-26 | Awaits the user. [Self-test](notes/self-test.md) |
+| A-06 | Self-test: permanent 1 pF $C_{inj}$ from an MCP4821, held at 0 V while measuring. Resistor ranges checked with an external cal plug | firm | R-25, R-26 | The user. [Self-test](notes/self-test.md) |
 | A-07 | Summing node millimetres long, in air or on PTFE standoffs, in a guard ring driven by the op-amp's guard pins (2, 7) | working | R-29, R-01 | Construction sets the floor |
 | A-08 | Readout: 24-bit ΔΣ ADC (ADS1220), slope fits over multiples of 100 ms on the integrator, 20 SPS 50/60 Hz mode on the resistor ranges | working | R-01, R-22 | No need to know the mains frequency (D-06) |
 | A-09 | One ±50 V source: MCP4922 coarse plus fine, REF5040, summing op-amp, HV amplifier from ±60 V, RC output filter, readback | firm | R-08, R-27 | D-06, D-07: about 24 µV steps, monotonic via readback |
-| A-10 | Power: two 18650 cells in parallel (3.0–4.2 V), floating. Charger only with the main switch off | firm | R-24, R-31 | D-08 |
+| A-10 | Power: an external battery pack or a PSU on the GX12-4 power input, floating. No cells or charger inside | firm | R-24, R-31, R-35 | The user. [Power](notes/data-link-and-power.md) |
 | A-11 | Rails: 3.3 V buck-boost, ±6.5 V converters at ≥ 1 MHz then ±5 V LDOs, ±60 V boost on only when the source is used | working | R-23, R-24 | Converters shielded and far from the head |
-| A-12 | Control: ESP32-S3-WROOM-1U (in stock), antenna on a bulkhead outside the tin | working | R-20, R-32 | Q-14 open |
-| A-13 | SCPI-style protocol over ESP-NOW through lab-gateway, Keithley 6514/6517B names where they overlap. Transmit between integration windows | working | R-20, R-23 | As the load-cell reader follows the SDM3055 |
+| A-12 | Control: ESP32-S3-WROOM-1U, USB-C through an ADuM3160-class isolator. Antenna on a bulkhead if the radio is used | working | R-20, R-31, R-32 | [Data link](notes/data-link-and-power.md). Optical UART the alternative |
+| A-13 | SCPI-style protocol over isolated USB (ESP-NOW optional), Keithley 6514/6517B names where they overlap. Unplug or stay quiet during integration windows | working | R-20, R-23 | As the load-cell reader follows the SDM3055 |
 | A-14 | T/RH: digital I²C sensor (SHT4x class) in the tin, away from the head | working | R-17 | — |
 | A-15 | One star point in the head: common, op-amp + input, guard, coax shields, head shield, tin. Digital ground joins at the ADC | firm | R-31 | D-02. [Test connection](notes/test-connection.md) |
-| A-16 | Head in its own non-ferrous (aluminium) shield box inside the tin, near the chamber end | working | R-15, R-23 | Short probe cable |
+| A-16 | Head in its own sealed aluminium shield box inside the tin, near the chamber end, with desiccant and a humidity indicator | working | R-15, R-23, R-29 | Humidity sets the floor (ADA4530-1.pdf p35) |
 | A-17 | Power-up range check: a $C_{inj}$ step whose decay identifies the connected range | working | R-33 | D-03, no extra parts |
-| A-18 | The radon HV board gets ≥ 10 MΩ output series resistance (radon A-21) | open | R-10 | Limits a flashover to about 100 µA |
+| A-18 | The radon HV board gets ≥ 10 MΩ output series resistance (radon A-21) | firm | R-10 | The user agreed. Limits a flashover to about 100 µA |
 | A-19 | PicoBlade breakout with manual selectors. PD bias: HV board, source or 0 V. Ring: its supply, source or 0 V. TEST: 0 V or pulse generator | working | R-12, R-08 | D-06. Filtered pass-through in the tin wall |
 | A-20 | HV feedthrough with a lid switch that disables the HV board and closes a bleeder on the tube | working | R-09, R-28 | Interlock design open |
 
@@ -92,8 +92,9 @@ Counted from the head and control board. Conductor counts marked open wait for t
 | Range panel S, E1, E2 | SMA ×3, PTFE | Yes | PTFE coax ≤ 30 cm | Head | 6 |
 | Head to control board | open | open | Shielded, inside the tin | open | open |
 | Source to the PicoBlade breakout | open | open | Coax | Control board | 2 |
-| Antenna | Module connector to a bulkhead | Yes | Coax pigtail | Control board | 1 cable |
-| Battery charger | open | open | Charger lead, main switch off | Control board | 2 |
+| USB-C, isolated | USB-C, IP-rated if on the sealed box | Yes | USB-C cable | Control board | 1 cable |
+| Power in | GX12-4 | Yes | Battery pack or PSU lead | Control board | 2–3 |
+| Antenna, if the radio is used | Module connector to a bulkhead | Yes | Coax pigtail | Control board | 1 cable |
 | Tin wall: HV feedthrough, interlock, filtered pass-through, gas grommets | — | — | Radon project's cables | Tin | open |
 | **Total** | at least 7 | | | | at least 12, plus open items |
 
@@ -102,7 +103,7 @@ Counted from the head and control board. Conductor counts marked open wait for t
 | Aspect | Value | Status |
 |---|---|---|
 | Head | Small board in an aluminium shield box inside the tin | working |
-| Control board | Inside the tin, battery beside it, antenna on a bulkhead | working |
+| Control board | Inside the tin; battery pack outside on GX12-4 | working |
 | The tin | Grounded, light-tight, lid contact good. Size open | open |
 | Chamber in the tin | On insulating standoffs, ≥ 10 mm from the tin (`VERIFY`, radon Q-12) | working |
 | Range panel | Small metal panel at common, outside the head box | working |
@@ -110,7 +111,7 @@ Counted from the head and control board. Conductor counts marked open wait for t
 Assembly:
 
 1. Build the head first and measure the self-baseline (U-6) before anything else.
-2. Fit the head box, control board, battery and range panel in the tin.
+2. Fit the head box, control board and range panel in the tin.
 3. Fit the HV feedthrough, interlock, filtered pass-through, antenna bulkhead and gas grommets.
 4. Mount the chamber on standoffs, tie down the probe cable.
 
@@ -124,16 +125,11 @@ Assembly:
 | 4 | Source noise in 0.1–10 Hz | Misses R-08 | Lower-noise reference, longer filter | S-02 |
 | 5 | Converter and radio interference at the head | Misses R-23 | Distance, shields, boost off, scheduling | Radio on vs off |
 | 6 | Triboelectric settling after probe moves and range changes | Long waits | Tie-down | Measure in U-6, sets the R-13 wait |
-| 7 | Battery life with the source on, about 25 h against 24 h | Misses R-24 | A third parallel cell | Measure the draws |
+| 7 | Battery life with the source on, about 25 h against 24 h | Misses R-24 | A larger pack | Measure the draws |
 
 ## Open questions
 
-With context and recommendations: [questions](questions/2026-11-21-electrometer.md).
-
-1. A-06: accept $C_{inj}$ and an external cal plug in place of R-25's switched references?
-2. A-18: does the radon HV board take ≥ 10 MΩ output series resistance?
-3. Q-14: antenna on a bulkhead (working), or the control board outside the tin?
-4. Power input: the bench power standard (GX12 2-pin) or the battery alone? The electrometer floats on its battery, and the standard notes it may need its own earth lug.
+None. The user's answers: [questions](questions/2026-11-21-electrometer.md), decisions.
 
 ## Notes
 

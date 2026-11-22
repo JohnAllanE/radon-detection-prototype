@@ -73,11 +73,11 @@ Five decisions from the pass 1 review (`docs/reviews/pass-1.md`), each with the 
 
 ## Your decisions
 
-| # | Decision | Recommendation |
-|---|---|---|
-| 1 | Self-test (A-06) | $C_{inj}$ plus an external cal plug; amend R-25 |
-| 2 | Antenna (Q-14) | SMA bulkhead, control board inside |
-| 3 | Power input | GX12 2-pin for charging only, main switch off |
-| 4 | USB console for bring-up | Yes, unplugged for femtoamp runs |
-| 5 | Budget (Q-09) | 2 ADA4530-1, 1 probe, about 20 receptacles, priced in pass 2 |
-| — | ≥ 10 MΩ at the HV board (A-18) | Decided with the detector's question 3 |
+| # | Decision | Recommendation | Your answer (2026-11-21) |
+|---|---|---|---|
+| 1 | Self-test (A-06) | $C_{inj}$ plus an external cal plug; amend R-25 | Yes: R-25 reworded |
+| 2 | Antenna (Q-14) | SMA bulkhead, control board inside | Wired USB-C now (bench strategy); (a) if the radio is used on battery; optical UART possible, would need the gateway HAT. Claude: an isolated USB link ([note](../notes/data-link-and-power.md)) |
+| 3 | Power input | GX12 2-pin for charging only, main switch off | A separate battery pack, charged elsewhere, on GX12-4, so PSU and battery can be compared; the board sealed with desiccant |
+| 4 | USB console for bring-up | Yes, unplugged for femtoamp runs | USB-C for firmware as on the other devices; second-wave project; IP-rated USB-C if sealed |
+| 5 | Budget (Q-09) | 2 ADA4530-1, 1 probe, about 20 receptacles, priced in pass 2 | Tentatively yes |
+| — | ≥ 10 MΩ at the HV board (A-18) | Decided with the detector's question 3 | Agreed (radon A-21) |

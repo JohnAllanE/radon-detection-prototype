@@ -78,3 +78,12 @@ Reason (user): the two-cell figures are acceptable. If the measured draws miss R
 - **Reason:** the user's radon answers of 2026-11-21 and radon S-01 (`sim/field/S-01-chamber/` in the parent repo).
 - **Affects:** Q-04, Q-10, Q-13, Q-15; A-18 is decided with radon A-21.
 - **Replaces:** none.
+
+## 2026-11-21: The user's answers to the electrometer questions
+
+- **Decision (user, recorded by Claude):** (1) Self-test by $C_{inj}$ and an external cal plug: R-25 reworded, A-06 firm. (2) Communication: wired USB-C, the bench gear's strategy now; the radio with a bulkhead antenna (option (a)) if battery operation suits it; an optical UART (TOSLINK class) is acceptable but would need adding to the gateway HAT. (3) Power: a separate, modular battery pack (the "power tool" strategy), charged outside this project, on the GX12-4 power input, so PSU and battery noise can be compared (new R-35, A-10). The board sealed with desiccant (R-29, A-16). (4) Bring-up and firmware over USB-C as on the other devices; a second-wave project, after the gateway HAT and the DMM expander; an IP-rated USB-C receptacle if the sealing needs it. (5) Budget quantities: tentatively yes. A-18 firm with radon A-21.
+- **Claude's recommendation (adopted as working, A-12):** an ADuM3160-class USB isolator inside the electrometer plus the battery pack makes it fully floating with no change to the gateway HAT; an optical fibre link is the alternative. Seal the head box with desiccant, a humidity indicator and the SHT4x (ADA4530-1 datasheet: humidity is the main leakage source below 70 °C). [Data link and power](notes/data-link-and-power.md).
+- **Alternatives:** ESP-NOW only through lab-gateway (the old R-20); internal 18650 cells with a GX12 charge input (the questions' recommendation 3); an optical UART now.
+- **Reason:** the user's answers of 2026-11-21 (`questions/2026-11-21-electrometer.md`).
+- **Affects:** R-20, R-24, R-25, R-29, new R-35; A-06, A-10, A-12, A-13, A-16, A-18; Q-09, Q-14.
+- **Replaces:** D-08's internal cells and charger (A-10).
