@@ -150,3 +150,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the user's confirmation.
 - **Affects:** R-39, A-23, A-29.
 - **Replaces:** the `VERIFY` on 316 in the 2026-11-21 answers entry.
+
+## 2026-11-22: S-03, a reduced end over the single die; radon-run trigger threshold
+
+- **Decision (Claude, working, for the user to confirm):** for A-29, the user's aluminium tube (ID 35.05 mm) with a reduced end is best as a flat lip at +1 kV, hole radius about 5.0 mm (die corner + 1 mm), throat 0.5–1 mm, no taper, exposed board at 0 V. Index 33.5–33.8 cm³ per detector, against 20.4 at S-02's build point, with no top-copper supply. In radon runs the trigger threshold (A-15) sits above the betas, a few hundred keV.
+- **Alternatives:** tapers of 20–75° (1.5–18 cm³ less index, slower ions); longer throats (index falls past 2 mm); $r_n$ 6 mm (2 % less index, a third faster); top-copper bias (under 1 point of share at $r_n$ ≤ 6 mm). For the threshold: keep 15 keV and accept losing 6–44 % of Po-214 counts to dead time after a Bi-214 beta.
+- **Reason:** S-03 (`sim/field/S-03-reduced-end/`). Neutralisation rates in air (charged life 11–70 s) put the cost of the slower transit near 1 % in dried gas ([decay chain](notes/radon-chain-for-the-detector.md)).
+- **Affects:** A-29, A-15, R-47 (a biased ring would no longer be needed), R-39, A-11 (the 0 V copper in the mouth is the guard).
+- **Replaces:** none; S-02's build point stays the alternative until the user chooses.

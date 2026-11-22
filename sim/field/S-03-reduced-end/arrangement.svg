@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 600" width="1340" height="600" role="img" aria-label="S-03 general arrangement: tube with a reduced, tapered end over one photodiode">
+<title>S-03 general arrangement: tube with a reduced, tapered end over one photodiode</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --pwr:#8e44ad; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --pwr:#b783d6; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .off { fill:var(--box); stroke:var(--edge); stroke-width:1.2; stroke-dasharray:4 3; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .flow { fill:none; stroke:var(--ink2); stroke-width:1.6; stroke-linejoin:round; }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hpwr { fill:var(--pwr); } .hflow { fill:var(--ink2); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hflow" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<style>
+  .die { fill:var(--sig); fill-opacity:.45; stroke:var(--sig); stroke-width:1; }
+  .cu { fill:var(--ctl); stroke:none; }
+  .fr4 { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .al { fill:var(--pwr); fill-opacity:.22; stroke:var(--pwr); stroke-width:1.4; }
+  .ptfe { fill:var(--bg); stroke:var(--edge); stroke-width:1; stroke-dasharray:3 2; }
+  .scr { fill:var(--edge); fill-opacity:.35; stroke:var(--edge); stroke-width:1; }
+  .dim { fill:none; stroke:var(--ink2); stroke-width:1; }
+  .axis { fill:none; stroke:var(--ink2); stroke-width:1; stroke-dasharray:10 3 2 3; }
+  .sym { fill:none; stroke:var(--ink2); stroke-width:1; stroke-dasharray:5 4; }
+  .bore { fill:none; stroke:var(--ink2); stroke-width:1.2; stroke-dasharray:4 3; }
+  .sq { fill:var(--pwr); fill-opacity:.12; stroke:var(--pwr); stroke-width:1.4; }
+</style>
+
+<rect class="bg" x="0" y="0" width="1340" height="600" rx="10"/>
+<rect class="fr4" x="400.0" y="470.0" width="246.6" height="14.4"/>
+<rect class="cu" x="428.2" y="468.9" width="14.1" height="1.1"/>
+<rect class="ptfe" x="446.8" y="461.0" width="181.8" height="9.0"/>
+<polygon class="al" points="445.0,461.0 628.6,461.0 628.6,339.3 557.7,339.3 445.0,452.0"/>
+<polygon class="al" points="557.7,339.3 628.6,339.3 628.6,92.0 557.7,92.0"/>
+<rect class="scr" x="574.6" y="434.0" width="46.8" height="27.0"/>
+<rect class="scr" x="584.5" y="267.3" width="27.0" height="166.7"/>
+<path class="dim" d="M557.725,92.0 L589.1625,87.0 L597.1625,97.0 L628.6,92.0"/>
+<rect class="fr4" x="153.4" y="470.0" width="246.6" height="14.4"/>
+<rect class="cu" x="357.7" y="468.9" width="14.1" height="1.1"/>
+<rect class="ptfe" x="171.4" y="461.0" width="181.8" height="9.0"/>
+<polygon class="al" points="355.0,461.0 171.4,461.0 171.4,339.3 242.3,339.3 355.0,452.0"/>
+<polygon class="al" points="242.3,339.3 171.4,339.3 171.4,92.0 242.3,92.0"/>
+<rect class="scr" x="178.6" y="434.0" width="46.8" height="27.0"/>
+<rect class="scr" x="188.5" y="267.3" width="27.0" height="166.7"/>
+<path class="dim" d="M242.275,92.0 L202.8375,87.0 L210.8375,97.0 L171.4,92.0"/>
+<rect class="die" x="374.5" y="467.3" width="51.0" height="2.7"/>
+<line class="axis" x1="400.0" y1="74.0" x2="400.0" y2="506.0"/>
+<text class="s" x="404.0" y="76.0" text-anchor="start">axis</text>
+<line class="sym" x1="144.4" y1="128.0" x2="655.6" y2="128.0"/>
+<rect class="encl" x="391.0" y="425.0" width="94.5" height="64.8"/>
+<text class="s" x="489.5" y="503.8" text-anchor="start">detail</text>
+<polyline class="flow" points="400.0,182.0 242.275,182.0" marker-end="url(#aflow)" marker-start="url(#aflow)"/>
+<text class="s" x="321.1375" y="176.0" text-anchor="middle">R<tspan dy="3.5" font-size="80%">b</tspan><tspan dy="-3.5"> 17.5, fixed</tspan></text>
+<polyline class="flow" points="148.9,452.0 148.9,339.275" marker-end="url(#aflow)" marker-start="url(#aflow)"/>
+<text class="s" x="142.9" y="392.6375" text-anchor="end">taper</text>
+<text class="s" x="142.9" y="407.6375" text-anchor="end">12.5 at θ 45°</text>
+<polyline class="flow" points="148.9,339.275 148.9,128.0" marker-end="url(#aflow)" marker-start="url(#aflow)"/>
+<text class="s" x="142.9" y="230.6375" text-anchor="end">board to</text>
+<text class="s" x="142.9" y="245.6375" text-anchor="end">symmetry plane 38</text>
+<polyline class="flow" points="404.5,128.0 694,74"/>
+<text class="s" x="700" y="78" text-anchor="start">Symmetry plane: middle of a 76 mm tube</text>
+<text class="s" x="700" y="93" text-anchor="start">between two boards, as S-02</text>
+<polyline class="flow" points="580.225,164.0 694,136"/>
+<text class="lpwr" x="700" y="140" text-anchor="start">Main tube, +1 kV</text>
+<text class="s" x="700" y="155" text-anchor="start">Thick-wall aluminium, ID 35.05 (1-1/4 in</text>
+<text class="s" x="700" y="170" text-anchor="start">sch 40, as S-02), OD 2 in (VERIFY stock)</text>
+<polyline class="flow" points="611.5,285.275 694,218"/>
+<text class="s" x="700" y="222" text-anchor="start">Axial screws into tapped holes in the tube</text>
+<text class="s" x="700" y="237" text-anchor="start">wall, heads in counterbores in the end-piece</text>
+<text class="s" x="700" y="252" text-anchor="start">face (positions schematic)</text>
+<polyline class="flow" points="628.6,339.275 694,286"/>
+<text class="s" x="700" y="290" text-anchor="start">Join: face to face, both pieces at +1 kV</text>
+<text class="s" x="700" y="305" text-anchor="start">(seals not drawn)</text>
+<polyline class="flow" points="517.0,416.0 694,358"/>
+<text class="lpwr" x="700" y="362" text-anchor="start">End piece from solid bar, +1 kV</text>
+<text class="s" x="700" y="377" text-anchor="start">Reduced bore r<tspan dy="3.5" font-size="80%">n</tspan><tspan dy="-3.5"> with a straight throat L</tspan><tspan dy="3.5" font-size="80%">t</tspan><tspan dy="-3.5">,</tspan></text>
+<text class="s" x="700" y="392" text-anchor="start">then a taper at θ up to the main bore</text>
+<polyline class="flow" points="619.6,477.2 694,436"/>
+<text class="s" x="700" y="440" text-anchor="start">Detector board on a 1 mm PTFE washer</text>
+<text class="s" x="700" y="455" text-anchor="start">(VERIFY, as S-02): details at right</text>
+<text class="g" x="1179.0" y="105.4" text-anchor="middle">Detail at the die (26 px/mm)</text>
+<rect class="fr4" x="1049.0" y="255.0" width="260.0" height="41.6"/>
+<rect class="cu" x="1156.5" y="253.4" width="40.7" height="1.6"/>
+<rect class="die" x="1049.0" y="247.2" width="99.7" height="7.8"/>
+<rect class="ptfe" x="1210.2" y="229.0" width="98.8" height="26.0"/>
+<polygon class="al" points="1205.0,229.0 1309.0,229.0 1309.0,135.4 1272.6,135.4 1205.0,203.0"/>
+<line class="axis" x1="1075.0" y1="119.80000000000001" x2="1075.0" y2="312.2"/>
+<polyline class="flow" points="1075.0,148.4 1205.0,148.4" marker-end="url(#aflow)" marker-start="url(#aflow)"/>
+<text class="s" x="1140.0" y="142.4" text-anchor="middle">r<tspan dy="3.5" font-size="80%">n</tspan><tspan dy="-3.5"> (sweep)</tspan></text>
+<polyline class="flow" points="1193.3,229.0 1193.3,203.0"/>
+<line class="dim" x1="1189.3" y1="229.0" x2="1197.3" y2="229.0"/>
+<line class="dim" x1="1189.3" y1="203.0" x2="1197.3" y2="203.0"/>
+<text class="s" x="1187.3" y="220.0" text-anchor="end">L<tspan dy="3.5" font-size="80%">t</tspan><tspan dy="-3.5"> (sweep)</tspan></text>
+<polyline class="flow" points="1201.1,255.0 1201.1,229.0"/>
+<line class="dim" x1="1197.1" y1="255.0" x2="1205.1" y2="255.0"/>
+<line class="dim" x1="1197.1" y1="229.0" x2="1205.1" y2="229.0"/>
+<text class="s" x="1195.1" y="246.0" text-anchor="end">g 1.0</text>
+<line class="dim" x1="1205.0" y1="203.0" x2="1205.0" y2="143.2"/>
+<path class="dim" d="M1205.0,151.0 A52.0,52.0 0 0 1 1241.8,166.2"/>
+<text class="s" x="1219.3" y="132.8" text-anchor="middle">θ</text>
+<text class="lpwr" x="1267.4" y="216.0" text-anchor="middle">end piece</text>
+<text class="s" x="1262.2" y="246.0" text-anchor="middle">PTFE</text>
+<text class="lsig" x="1049.0" y="318.6" text-anchor="start">Blue: VTH2110 at 0 V (CSA input), side section</text>
+<text class="lctl" x="1049.0" y="334.6" text-anchor="start">Orange: exposed board copper at V<tspan dy="3.5" font-size="80%">top</tspan><tspan dy="-3.5">, 0 V</tspan></text>
+<text class="lctl" x="1049.0" y="350.6" text-anchor="start">or modest (sweep 0, 20, 100, 200 V)</text>
+<text class="g" x="1179.0" y="433" text-anchor="middle">Throat from above (9 px/mm)</text>
+<circle class="bore" cx="1080.2" cy="505" r="45.0"/>
+<rect class="sq" x="1045.685" y="470.485" width="69.03" height="69.03" rx="13.5"/>
+<rect class="die" x="1054.685" y="479.485" width="51.03" height="51.03"/>
+<text class="s" x="1139.2" y="467" text-anchor="start">Dashed: round bore r<tspan dy="3.5" font-size="80%">n</tspan><tspan dy="-3.5"> (modelled)</tspan></text>
+<text class="s" x="1139.2" y="482" text-anchor="start">Purple: rounded square with</text>
+<text class="s" x="1139.2" y="497" text-anchor="start">1 mm clearance, the optional</text>
+<text class="s" x="1139.2" y="512" text-anchor="start">CNC loft. Not modelled: the die's</text>
+<text class="s" x="1139.2" y="527" text-anchor="start">side and diagonal sections</text>
+<text class="s" x="1139.2" y="542" text-anchor="start">bracket it, as in S-02</text>
+<text class="s" x="40" y="582" text-anchor="start">Full section through the axis, to scale on both axes (9 px/mm); the model is axisymmetric (one half). Drawn at r<tspan dy="3.5" font-size="80%">n</tspan><tspan dy="-3.5"> 5.0, L</tspan><tspan dy="3.5" font-size="80%">t</tspan><tspan dy="-3.5"> 1.0, θ 45°. Dimensions in mm.</tspan></text>
+</svg>

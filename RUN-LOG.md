@@ -17,6 +17,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Done
 
+- 2026-11-22 (session with the user): S-03 reduced-end sweep (`sim/field/S-03-reduced-end/`, sketch confirmed by the user): flat lip, $r_n$ 5, throat ≤ 1 mm, 0 V board, index 33.7 cm³. Decay-chain reading note `docs/notes/radon-chain-for-the-detector.md` (e01ea02), sourced from `docs/references/` (4d9bdc6): neutralisation 11–70 s, 88 % charged, Bi-214 beta vs dead time. A-15, A-29, decisions entry.
 - 2026-11-21 coordinator step C: electrometer answers recorded (R-20, R-24, R-25, R-29, new R-35; A-06, A-10, A-12, A-13, A-16, A-18; decisions; questions table). Note `electrometer/docs/notes/data-link-and-power.md` (ADuM3160 isolated USB, GX12-4 pack, sealed head). doclint 0 both. The electrometer's block diagram still shows ESP-NOW: redraw in pass 2.
 - 2026-11-21 coordinator step B: `docs/notes/materials.md` (flange: aluminium, not brass; PTFE washer covers its face), linked from the requirements.
 - 2026-11-21 coordinator step A: 316 confirmed, firm (R-39, decisions).
@@ -38,7 +39,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Next
 
-- The user answers `docs/questions/2026-11-21-single-pd.md` (2: pipe size, top-copper bias above 200 V). Then pass 2.
+- The user decides on S-03's reduced end (it may replace `docs/questions/2026-11-21-single-pd.md`'s two questions) and R-47's ring bias. Then pass 2.
 
 ## Decisions made while the user was away
 

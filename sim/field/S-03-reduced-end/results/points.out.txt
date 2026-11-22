@@ -1,0 +1,16 @@
+r_n  5.01 θ 45 L_t 1.0 0 V equal area h=0.1: active 0.990 index 27.1 t50 107 t90 668 | E die 559 cu_in 394 cu_out 913 throat 1000 join 0
+r_n  5.01 θ 45 L_t 1.0 0 V equal area h=0.05: active 0.994 index 27.3 t50 111 t90 700 | E die 689 cu_in 409 cu_out 1108 throat 1213 join 0
+r_n  5.01 θ 45 L_t 1.0 0 V side       h=0.05: active 0.995 index 27.3 t50 113 t90 708 | E die 621 cu_in 352 cu_out 1112 throat 1211 join 0
+r_n  5.01 θ 45 L_t 1.0 0 V diagonal   h=0.05: active 0.994 index 27.2 t50 108 t90 678 | E die 996 cu_in 783 cu_out 1068 throat 1232 join 0
+r_n  5.01 θ 90 L_t 0.5 0 V equal area h=0.1: active 0.991 index 33.7 t50 28 t90 252 | E die 526 cu_in 374 cu_out 897 throat 1019 join 713
+r_n  5.01 θ 90 L_t 0.5 0 V equal area h=0.05: active 0.994 index 33.8 t50 29 t90 265 | E die 652 cu_in 391 cu_out 1093 throat 1231 join 723
+r_n  5.01 θ 90 L_t 0.5 0 V side       h=0.05: active 0.994 index 33.8 t50 29 t90 268 | E die 587 cu_in 335 cu_out 1097 throat 1229 join 723
+r_n  5.01 θ 90 L_t 0.5 0 V diagonal   h=0.05: active 0.992 index 33.7 t50 28 t90 256 | E die 958 cu_in 770 cu_out 1054 throat 1250 join 723
+r_n  6.01 θ 90 L_t 1.0 0 V equal area h=0.1: active 0.974 index 32.9 t50 22 t90 197 | E die 397 cu_in 260 cu_out 902 throat 1010 join 1
+r_n  6.01 θ 90 L_t 1.0 0 V equal area h=0.05: active 0.978 index 33.0 t50 23 t90 206 | E die 485 cu_in 266 cu_out 1096 throat 1224 join 1
+r_n  6.01 θ 90 L_t 1.0 0 V side       h=0.05: active 0.981 index 33.1 t50 23 t90 208 | E die 454 cu_in 241 cu_out 1097 throat 1224 join 1
+r_n  6.01 θ 90 L_t 1.0 0 V diagonal   h=0.05: active 0.973 index 32.9 t50 22 t90 201 | E die 612 cu_in 362 cu_out 1091 throat 1227 join 1
+r_n 17.52 θ 90 L_t 1.0 0 V equal area h=0.1: active 0.400 index 14.0 t50 13 t90 42 | E die 118 cu_in 67 cu_out 876 throat 1033 join 1011
+r_n 17.52 θ 90 L_t 1.0 0 V equal area h=0.05: active 0.401 index 14.1 t50 13 t90 43 | E die 140 cu_in 67 cu_out 1057 throat 1151 join 1140
+r_n 17.52 θ 90 L_t 1.0 0 V side       h=0.05: active 0.403 index 14.1 t50 15 t90 44 | E die 139 cu_in 66 cu_out 1057 throat 1151 join 1140
+r_n 17.52 θ 90 L_t 1.0 0 V diagonal   h=0.05: active 0.391 index 13.7 t50 11 t90 40 | E die 141 cu_in 67 cu_out 1057 throat 1151 join 1140

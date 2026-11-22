@@ -38,7 +38,7 @@
 | A-12 | Detector-to-MCU connector: Molex PicoBlade-style, 14 pins proposed | working | R-24, R-07 | Pin count ≤ 15 `VERIFY` |
 | A-13 | MCU board analog chain on one filtered +5 V rail, TLV906x family, baseline 0.2–0.3 V | working | R-13, D-23 | TLV90xx can't take ±4.5 V. [TLV90xx](notes/tlv90xx-assessment.md) |
 | A-14 | Shaper: AC-coupled pole-zero and gain stage (inverting or non-inverting by jumper), then CR-RC^n, τ = 4 µs, footprints for 2–10 µs | working | R-09, R-14 | Low rates allow long shaping. Q-04 |
-| A-15 | Trigger: TLV9061 as comparator with hysteresis, TLV3201 as footprint alternate, threshold from filtered PWM or DAC | working | R-13 | The held peak makes µs delay harmless |
+| A-15 | Trigger: TLV9061 as comparator with hysteresis, TLV3201 as footprint alternate, threshold from filtered PWM or DAC, above betas for radon | working | R-13 | Held peak: µs delay harmless. [Betas](notes/radon-chain-for-the-detector.md) |
 | A-16 | Peak hold: TLV906x driver, low-leakage diode, 1 nF $C_{hold}$, TMUX1101 reset, TLV906x buffer | working | R-13, R-09 | 80 pA leakage budget. [Survey](notes/candidates-mux-hold.md) |
 | A-17 | ADCs: two ADS1220 on the eight holds (4 inputs each, ADS1220.json p1), an 8:1 mux into ADS8689, jumper to the ESP32-S3 ADC | firm | R-16, R-14 | D-16. Mux part open. [Survey](notes/candidates-adc.md) |
 | A-18 | MCU: ESP32-S3-WROOM-1, PCB antenna, USB data, ESP-NOW option | firm | R-15 | The user's choice (D-08). [Survey](notes/candidates-mcu.md) |
@@ -49,7 +49,7 @@
 | A-21 | HV output series resistance ≥ 10 MΩ after the readback divider, limiting a flashover to about 100 µA | firm | R-22, electrometer R-10 | The user agreed |
 | A-22 | HV safety: insulated outer enclosure, lid interlock (PWM off, NC discharge), trained staff, no HV below ambient | firm | R-22, R-43 | D-20, Q-12. Darkness check optional: [HV spacing](notes/hv-spacing-and-readback.md) |
 | A-23 | Part 1 chamber: 304 or 316 SS 3/4 in NPT pipe, lapped to 21–22 mm, boards 76 mm apart. Seal: threaded flange, triangular O-ring groove, PTFE compression washer | firm | R-39, R-44, R-54 | D-22, the user |
-| A-29 | Proposal beside A-02: one centred VTH2110 and CSA per tube, more tubes in an NPT manifold for more area | open | R-06, R-39, R-53 | S-02: 1-1/4 in sch 40, copper +200 V |
+| A-29 | Proposal beside A-02: one centred VTH2110 and CSA per tube, more tubes in an NPT manifold for more area | open | R-06, R-39, R-53 | S-02; S-03 (flat lip, 0 V) |
 | A-30 | SHT45 and barometer on the MCU board, SHT45-AD1F in an outlet flow cell | working | R-76, R-27, R-34 | [Sensors](notes/candidates-environment-sensors.md) |
 | A-24 | Gas train per D-02: PTFE tubing, insulating sections, Drierite column, PTFE syringe filters in polypropylene | working | R-29, R-30, R-37, R-38 | D-13, D-25 amended (Q-17). [Gas train](notes/gas-train.md) |
 | A-25 | Part 2: aluminium chamber, Viton, E2M8 on NW25 with a foreline trap, Pirani gauge on an NW25 tee | working | R-46, R-57, R-59 | D-24. [Part 2](notes/part2-vacuum.md) |
