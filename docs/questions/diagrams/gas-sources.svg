@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 170" width="700" height="170" role="img" aria-label="Gas train parts to source">
+<title>Gas train parts to source</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --pwr:#8e44ad; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --pwr:#b783d6; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .off { fill:var(--box); stroke:var(--edge); stroke-width:1.2; stroke-dasharray:4 3; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .flow { fill:none; stroke:var(--ink2); stroke-width:1.6; stroke-linejoin:round; }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hpwr { fill:var(--pwr); } .hflow { fill:var(--ink2); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hflow" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<style>
+  .die { fill:var(--group); stroke:var(--edge); stroke-width:1.2; }
+  .act { fill:var(--sig); fill-opacity:.18; stroke:var(--sig); stroke-width:1; }
+  .dead { fill:var(--ctl); fill-opacity:.28; stroke:none; }
+  .ring50 { fill:none; stroke:var(--ctl); stroke-width:1.8; stroke-dasharray:5 3; }
+  .tube { fill:var(--pwr); fill-opacity:.18; stroke:var(--pwr); stroke-width:1.4; }
+  .bar { fill:var(--sig); fill-opacity:.75; }
+  .barx { fill:var(--sig); fill-opacity:.3; }
+  .hl { fill:none; stroke:var(--ctl); stroke-width:2.2; }
+</style>
+
+<rect class="bg" x="0" y="0" width="700" height="170" rx="10"/>
+<rect class="box" x="14" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="57.0" y="82.5" text-anchor="middle">Sample</text>
+<polyline class="flow" points="100,78 114,78" marker-end="url(#aflow)"/>
+<rect class="box" x="114" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="157.0" y="75.0" text-anchor="middle">Filter</text>
+<text class="s" x="157.0" y="92.0" text-anchor="middle">PTFE 0.2 µm</text>
+<rect class="hl" x="110" y="46" width="94" height="64" rx="8"/>
+<polyline class="flow" points="200,78 214,78" marker-end="url(#aflow)"/>
+<rect class="box" x="214" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="257.0" y="75.0" text-anchor="middle">Desiccant</text>
+<text class="s" x="257.0" y="92.0" text-anchor="middle">Drierite</text>
+<rect class="hl" x="210" y="46" width="94" height="64" rx="8"/>
+<polyline class="flow" points="300,78 314,78" marker-end="url(#aflow)"/>
+<rect class="box" x="314" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="357.0" y="75.0" text-anchor="middle">Filter</text>
+<text class="s" x="357.0" y="92.0" text-anchor="middle">PTFE 0.2 µm</text>
+<rect class="hl" x="310" y="46" width="94" height="64" rx="8"/>
+<polyline class="flow" points="400,78 414,78" marker-end="url(#aflow)"/>
+<rect class="box" x="414" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="457.0" y="75.0" text-anchor="middle">Chamber</text>
+<text class="s" x="457.0" y="92.0" text-anchor="middle">2 ball valves</text>
+<polyline class="flow" points="500,78 514,78" marker-end="url(#aflow)"/>
+<rect class="box" x="514" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="557.0" y="75.0" text-anchor="middle">Filter</text>
+<text class="s" x="557.0" y="92.0" text-anchor="middle">PTFE 0.2 µm</text>
+<rect class="hl" x="510" y="46" width="94" height="64" rx="8"/>
+<polyline class="flow" points="600,78 614,78" marker-end="url(#aflow)"/>
+<rect class="box" x="614" y="50" width="86" height="56" rx="6"/>
+<text class="t" x="657.0" y="82.5" text-anchor="middle">Pump</text>
+<text class="s" x="14" y="140" text-anchor="start">Outlined: the parts Q-17 asks about (D-02, D-13, D-25). One filter type at every port.</text>
+</svg>

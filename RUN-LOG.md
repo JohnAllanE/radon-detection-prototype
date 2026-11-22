@@ -25,11 +25,11 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Running
 
-- 2026-11-21 brief (`docs/briefs/pass-1-answers.md`), home Intel Mac. Steps 1 and 2 committed. Next: step 3, the questions documents.
+- 2026-11-21 brief (`docs/briefs/pass-1-answers.md`), home Intel Mac. Steps 1 and 2 committed; step 3 half done (detector). Next: the electrometer questions.
 
 ## Next
 
-- Step 3: `docs/questions/2026-11-21-detector.md` (Q-02, Q-17, review 2, 7, 8, Q-20 with S-01 inputs, the S-01 dead-cross finding; review 3 settled from OPA657.json: minimum stable gain about 7 fails the R-60 unity-noise-gain requirement) and `electrometer/docs/questions/2026-11-21-electrometer.md` (its review 1, 3–7; 2 is the detector's A-21 question). Diagrams from `make_diagrams.py` beside each, house style, rendered light and dark. Then doclint both, RUN-LOG, commit.
+- Step 3 in progress: detector questions written and committed (6 questions, diagrams rendered light and dark). Remaining: (Q-02, Q-17, review 2, 7, 8, Q-20 with S-01 inputs, the S-01 dead-cross finding; review 3 settled from OPA657.json: minimum stable gain about 7 fails the R-60 unity-noise-gain requirement) and `electrometer/docs/questions/2026-11-21-electrometer.md` (its review 1, 3–7; 2 is the detector's A-21 question). Diagrams from `make_diagrams.py` beside each, house style, rendered light and dark. Then doclint both, RUN-LOG, commit.
 
 ## Decisions made while the user was away
 

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="Electronic peak width per CSA op-amp against the resolution target">
+<title>Electronic peak width per CSA op-amp against the resolution target</title>
+
+<style>
+  svg { --bg:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --box:#ffffff; --edge:#898781;
+        --group:#f3f2ee; --sig:#2a78d6; --ctl:#d95926; --pwr:#8e44ad; }
+  @media (prefers-color-scheme: dark) {
+    svg { --bg:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --box:#262624; --edge:#6f6e69;
+          --group:#222220; --sig:#3987e5; --ctl:#ec835a; --pwr:#b783d6; }
+  }
+  .bg { fill:var(--bg); }
+  .box { fill:var(--box); stroke:var(--edge); stroke-width:1.2; }
+  .group { fill:var(--group); stroke:var(--edge); stroke-width:1; }
+  .encl { fill:none; stroke:var(--edge); stroke-width:1.4; stroke-dasharray:7 4; }
+  .off { fill:var(--box); stroke:var(--edge); stroke-width:1.2; stroke-dasharray:4 3; }
+  .t { fill:var(--ink); font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .s { fill:var(--ink2); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .g { fill:var(--ink2); font:600 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.02em; }
+  .lsig { fill:var(--sig); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lctl { fill:var(--ctl); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .lpwr { fill:var(--pwr); font:400 11.5px system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .sig { fill:none; stroke:var(--sig); stroke-width:2.2; stroke-linejoin:round; }
+  .ctl { fill:none; stroke:var(--ctl); stroke-width:1.6; stroke-dasharray:6 4; stroke-linejoin:round; }
+  .pwr { fill:none; stroke:var(--pwr); stroke-width:3; stroke-linejoin:round; }
+  .flow { fill:none; stroke:var(--ink2); stroke-width:1.6; stroke-linejoin:round; }
+  .hsig { fill:var(--sig); } .hctl { fill:var(--ctl); } .hpwr { fill:var(--pwr); } .hflow { fill:var(--ink2); }
+  .dot { fill:var(--ctl); stroke:var(--box); stroke-width:1.5; }
+</style>
+<defs>
+  <marker id="asig" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hsig" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="actl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hctl" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="apwr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hpwr" d="M0,0 L10,5 L0,10 z"/></marker>
+  <marker id="aflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="hflow" d="M0,0 L10,5 L0,10 z"/></marker>
+</defs>
+<style>
+  .die { fill:var(--group); stroke:var(--edge); stroke-width:1.2; }
+  .act { fill:var(--sig); fill-opacity:.18; stroke:var(--sig); stroke-width:1; }
+  .dead { fill:var(--ctl); fill-opacity:.28; stroke:none; }
+  .ring50 { fill:none; stroke:var(--ctl); stroke-width:1.8; stroke-dasharray:5 3; }
+  .tube { fill:var(--pwr); fill-opacity:.18; stroke:var(--pwr); stroke-width:1.4; }
+  .bar { fill:var(--sig); fill-opacity:.75; }
+  .barx { fill:var(--sig); fill-opacity:.3; }
+  .hl { fill:none; stroke:var(--ctl); stroke-width:2.2; }
+</style>
+
+<rect class="bg" x="0" y="0" width="640" height="300" rx="10"/>
+<text class="s" x="140" y="63" text-anchor="end">OPA140 (low-cost)</text>
+<rect class="bar" x="150" y="50" width="28.980000000000004" height="18"/>
+<rect class="barx" x="178.98000000000002" y="50" width="2.1" height="18"/>
+<text class="s" x="189.08" y="63" text-anchor="start">6.9–7.4 keV</text>
+<text class="s" x="140" y="97" text-anchor="end">LMP7721 (premium)</text>
+<rect class="bar" x="150" y="84" width="28.56" height="18"/>
+<rect class="barx" x="178.56" y="84" width="2.1" height="18"/>
+<text class="s" x="188.66" y="97" text-anchor="start">6.8–7.3 keV</text>
+<text class="s" x="140" y="131" text-anchor="end">OPA656</text>
+<rect class="bar" x="150" y="118" width="25.200000000000003" height="18"/>
+<rect class="barx" x="175.2" y="118" width="2.1" height="18"/>
+<text class="s" x="185.3" y="131" text-anchor="start">6.0–6.5 keV</text>
+<text class="s" x="140" y="165" text-anchor="end">ADA4817-1</text>
+<rect class="bar" x="150" y="152" width="16.8" height="18"/>
+<rect class="barx" x="166.8" y="152" width="2.940000000000001" height="18"/>
+<text class="s" x="177.74" y="165" text-anchor="start">4.0–4.7 keV</text>
+<text class="s" x="140" y="199" text-anchor="end">OPA657</text>
+<rect class="bar" x="150" y="186" width="21.419999999999998" height="18"/>
+<rect class="barx" x="171.42" y="186" width="2.5200000000000022" height="18"/>
+<text class="s" x="181.94" y="199" text-anchor="start">5.1–5.7 keV</text>
+<polyline class="flow" points="150,224 570.0,224"/>
+<polyline class="flow" points="150.0,224 150.0,229"/>
+<text class="s" x="150.0" y="242" text-anchor="middle">0</text>
+<polyline class="flow" points="255.0,224 255.0,229"/>
+<text class="s" x="255.0" y="242" text-anchor="middle">25</text>
+<polyline class="flow" points="360.0,224 360.0,229"/>
+<text class="s" x="360.0" y="242" text-anchor="middle">50</text>
+<polyline class="flow" points="465.0,224 465.0,229"/>
+<text class="s" x="465.0" y="242" text-anchor="middle">75</text>
+<polyline class="flow" points="570.0,224 570.0,229"/>
+<text class="s" x="570.0" y="242" text-anchor="middle">100</text>
+<text class="s" x="360.0" y="260" text-anchor="middle">keV FWHM at 4 µs (sim/analytic/enc_budget.out.txt)</text>
+<polyline class="ctl" points="570.0,36 570.0,224"/>
+<text class="lctl" x="564.0" y="30" text-anchor="end">R-09: 100 keV total</text>
+</svg>

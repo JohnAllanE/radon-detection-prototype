@@ -117,3 +117,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** S-01 (`sim/field/S-01-chamber/`): 95–99 % of field lines from the gas end on the dies unaided; peak field about 1.5 kV/mm at the sharp tube edge, 1.2 kV/mm rounded, against roughly 3 kV/mm for air at 1 atm (`VERIFY`).
 - **Affects:** A-10, R-38, R-43, R-47, R-75, risk 1, `chamber-sensitivity.md` (about 16 % per alpha). New finding for the user: about two-thirds of the ions land where the four dies meet.
 - **Replaces:** none.
+
+## 2026-11-21: No OPA657 tier; LMP7721 supply range
+
+- **Decision (Claude, from the datasheets):** OPA657 is not a third CSA tier: its minimum stable gain is about 7 (OPA657.json), and the CSA must be stable at a noise gain of 1 with the test port open (R-60, electrometer R-19). Found on the way: the LMP7721 is a 1.8–5.5 V part (LMP7721.json p5), so it can't sit on the ±4.5 V CSA rails; the premium board needs a local ±2.5 V pair (questions 2026-11-21, question 2).
+- **Alternatives:** OPA657 with a compensation network (not worth it for an invisible noise gain).
+- **Reason:** review question 3; the user asked for a write-up only where needed.
+- **Affects:** A-06, A-07, D-17's swap list (OPA656 stays), D-18.
+- **Replaces:** none.

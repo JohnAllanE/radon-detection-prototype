@@ -10,3 +10,4 @@ datasheets/*.pdf
 !datasheets/VTH2110.pdf
 !datasheets/ADA4530-1.pdf
 !datasheets/ADA4817-1.pdf
+__pycache__/
