@@ -17,6 +17,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Done
 
+- 2026-11-21 (single-pd-sweep) step 2: S-02 (`sim/field/S-02-single-pd/`): 21 pipe sizes × 10 V_top (0–600 V). Build point 1-1/4 in sch 40, V_top +200 V: 56 % to the active area, ID²f 684 mm² (old array 145). Fields ≤ about 1.0 kV/mm there; threads field-free inside the flange. A-29 updated, decisions entry.
 - 2026-11-21 (single-pd-sweep) step 1: answers recorded: R-17, R-27, R-34, R-39, R-54, new R-76; A-07, A-21 firm, A-23, A-24, new A-29 (one detector per tube, open), A-30; decisions entry; questions table answered. Notes `csa-rails.md` (no programmable rail) and `candidates-environment-sensors.md` (SHT45, BME280, flow cell). doclint 0.
 - 2026-11-20: repo level with GitHub at 12943f4 (last work 2026-11-15). Brief and this log written by the coordinating session.
 - 2026-11-20: detector requirements to the contract, 0d583d5 (6,103 → 1,580 words; 5 numbers carried to the architecture commit: 0.14 keV, 100 cycles, 2.5 mm, 20 mm, 200 V).
@@ -29,7 +30,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Running
 
-- single-pd-sweep brief: step 2 (S-02 sweep in `sim/field/S-02-single-pd/`) next, then step 3 (questions). Nothing pushed.
+- single-pd-sweep brief: step 3 (questions) next; then the coordinator's steps A (316 firm), B (`docs/notes/materials.md`), C (electrometer answers). Nothing pushed.
 
 ## Next
 

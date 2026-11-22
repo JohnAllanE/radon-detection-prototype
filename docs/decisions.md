@@ -134,3 +134,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the user's answers of 2026-11-21 (`docs/briefs/single-pd-sweep.md`).
 - **Affects:** R-17, R-27, R-34, R-39, R-54, new R-76; A-07, A-21, A-23, A-24, new A-29, A-30; D-06 (chamber volume only), D-18, D-25.
 - **Replaces:** D-25's housing material for Part 1; the questions document's recommendations 2–6 where the user chose otherwise.
+
+## 2026-11-21: Single-detector sweep S-02
+
+- **Decision (Claude, from the simulation; the user's rule adopts simulated values):** for A-29, build around 1-1/4 in schedule 40 pipe (ID 35.05 mm) with the board's top copper at +200 V from the HV board's transformer stage: 56 % of the gas volume to the active area (50–58 % between the die sections), $ID^2 f$ = 684 mm² against 145 for the old four-die array. Peak fields about 1.0 kV/mm or less. The NPT thread inside the flange carries no field; the PTFE washer should cover the seam at the pipe OD. A 0 V guard trace between the die and the copper.
+- **Alternatives:** 1-1/2 in (7 % more index, 44 % share); 3/4 in (today's pipe, 83 % share, half the index); $V_{top}$ up to 600 V (up to 20 points more share, 2.6 kV/mm at the copper edge): left to the user (`docs/questions/2026-11-21-single-pd.md`). Schedule 10S: thin for a thread.
+- **Reason:** S-02 (`sim/field/S-02-single-pd/`).
+- **Affects:** A-29, R-39, R-47, R-75.
+- **Replaces:** none.

@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
-| This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Simulated: the chamber field (S-01) |
+| This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Simulated: the chamber field (S-01, S-02) |
 | State | Accepted by the user while the requirements hold. Claude's choices working until simulated or tested |
 | Open questions | 5 |
 
@@ -49,7 +49,7 @@
 | A-21 | HV output series resistance ≥ 10 MΩ after the readback divider, limiting a flashover to about 100 µA | firm | R-22, electrometer R-10 | The user agreed |
 | A-22 | HV safety: insulated outer enclosure, lid interlock (PWM off, NC discharge), trained staff, no HV below ambient | firm | R-22, R-43 | D-20, Q-12. Darkness check optional: [HV spacing](notes/hv-spacing-and-readback.md) |
 | A-23 | Part 1 chamber: 304 or 316 SS 3/4 in NPT pipe, lapped to 21–22 mm, boards 76 mm apart. Seal: threaded flange, triangular O-ring groove, PTFE compression washer | firm | R-39, R-44, R-54 | D-22, the user |
-| A-29 | Proposal beside A-02: one centred VTH2110 and CSA per tube, more tubes in an NPT manifold for more area | open | R-06, R-39, R-53 | Ions centre themselves (S-01). Tube ID, top-copper bias: S-02 |
+| A-29 | Proposal beside A-02: one centred VTH2110 and CSA per tube, more tubes in an NPT manifold for more area | open | R-06, R-39, R-53 | S-02: 1-1/4 in sch 40, copper +200 V |
 | A-30 | SHT45 and barometer on the MCU board, SHT45-AD1F in an outlet flow cell | working | R-76, R-27, R-34 | [Sensors](notes/candidates-environment-sensors.md) |
 | A-24 | Gas train per D-02: PTFE tubing, insulating sections, Drierite column, PTFE syringe filters in polypropylene | working | R-29, R-30, R-37, R-38 | D-13, D-25 amended (Q-17). [Gas train](notes/gas-train.md) |
 | A-25 | Part 2: aluminium chamber, Viton, E2M8 on NW25 with a foreline trap, Pirani gauge on an NW25 tee | working | R-46, R-57, R-59 | D-24. [Part 2](notes/part2-vacuum.md) |

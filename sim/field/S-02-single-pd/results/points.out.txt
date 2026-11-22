@@ -1,0 +1,12 @@
+3/4 40S 20 V equal area h=0.1: die 0.833 active 0.779 cu 0.159 ne 0.004 | E die 234 cu_in 112 cu_out 664 tube 974 seam 717 Vdrop(thread root) 0
+3/4 40S 20 V equal area h=0.05: die 0.838 active 0.781 cu 0.157 ne 0.001 | E die 284 cu_in 126 cu_out 805 tube 1166 seam 727 Vdrop(thread root) 0
+3/4 40S 20 V side       h=0.05: die 0.816 active 0.786 cu 0.180 ne 0.001 | E die 282 cu_in 124 cu_out 805 tube 1166 seam 727 Vdrop(thread root) 0
+3/4 40S 20 V diagonal   h=0.05: die 0.883 active 0.771 cu 0.112 ne 0.001 | E die 296 cu_in 144 cu_out 805 tube 1166 seam 727 Vdrop(thread root) 0
+1-1/4 40S 200 V equal area h=0.1: die 0.660 active 0.556 cu 0.340 ne 0.000 | E die 456 cu_in 577 cu_out 444 tube 924 seam 714 Vdrop(thread root) 0
+1-1/4 40S 200 V equal area h=0.05: die 0.665 active 0.555 cu 0.335 ne 0.000 | E die 592 cu_in 853 cu_out 458 tube 1014 seam 724 Vdrop(thread root) 0
+1-1/4 40S 200 V side       h=0.05: die 0.634 active 0.581 cu 0.366 ne 0.000 | E die 598 cu_in 847 cu_out 458 tube 1014 seam 724 Vdrop(thread root) 0
+1-1/4 40S 200 V diagonal   h=0.05: die 0.726 active 0.504 cu 0.274 ne 0.000 | E die 580 cu_in 862 cu_out 458 tube 1014 seam 724 Vdrop(thread root) 0
+1-1/2 40S 600 V equal area h=0.1: die 0.738 active 0.688 cu 0.259 ne 0.000 | E die 1233 cu_in 1744 cu_out 1012 tube 828 seam 713 Vdrop(thread root) 0
+1-1/2 40S 600 V equal area h=0.05: die 0.741 active 0.687 cu 0.256 ne 0.000 | E die 1608 cu_in 2583 cu_out 1425 tube 886 seam 722 Vdrop(thread root) 0
+1-1/2 40S 600 V side       h=0.05: die 0.715 active 0.706 cu 0.283 ne 0.000 | E die 1622 cu_in 2566 cu_out 1425 tube 886 seam 722 Vdrop(thread root) 0
+1-1/2 40S 600 V diagonal   h=0.05: die 0.793 active 0.609 cu 0.205 ne 0.000 | E die 1584 cu_in 2611 cu_out 1425 tube 886 seam 722 Vdrop(thread root) 0
