@@ -142,3 +142,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** S-02 (`sim/field/S-02-single-pd/`).
 - **Affects:** A-29, R-39, R-47, R-75.
 - **Replaces:** none.
+
+## 2026-11-21: 316 stainless confirmed
+
+- **Decision (user, through the coordinator):** the "306" in the user's answer 1 was a typo for 316. The Part 1 chamber is 304 or 316 stainless NPT pipe and fittings, firm; the `VERIFY` on 316 is removed.
+- **Alternatives:** none.
+- **Reason:** the user's confirmation.
+- **Affects:** R-39, A-23, A-29.
+- **Replaces:** the `VERIFY` on 316 in the 2026-11-21 answers entry.

@@ -98,7 +98,7 @@ Ranked in table order (Claude's ranking, working).
 | R-33 | Flow, pressure drop and desiccant service interval are characterised after build, not designed to | firm | User (D-13) | Test |
 | R-38 | No conductive path from the +1 kV chamber to valves, tubing, pump or mounts. Creepage and clearance at the O-ring land and photodiode corners | firm | Safety | Inspection, simulation |
 | R-75 | Spacing from +1 kV: 5.0 mm on bare board surfaces (IPC-2221 B2, `VERIFY`). Inside the chamber, from the field simulation | working | Claude (Q-12) | Inspection, simulation |
-| R-39 | Part 1 chamber: 304 or 316 SS NPT pipe and cross fittings (316 `VERIFY`), walls at HV, standard pipe IDs. Now 3/4 in, bore 21–22 mm. Manifold proposed (A-29) | firm | User (D-22, answer 1) | Simulation, inspection |
+| R-39 | Part 1 chamber: 304 or 316 SS NPT pipe and cross fittings, walls at HV, standard pipe IDs. Now 3/4 in, bore 21–22 mm. Manifold proposed (A-29) | firm | User (D-22, answer 1) | Simulation, inspection |
 | R-40 | Detector signals pass through the board itself. HV connects to the tube. Part 2 ports are standard | firm | User | Inspection, test |
 | R-41 | Pump vibration and drive noise do not degrade the noise floor | firm | User (D-01) | Test with the pump running |
 | R-43 | HV is not applied to the chamber below ambient pressure. Procedure first, a hardware interlock optional | working | Claude: Paschen estimate | Inspection |
