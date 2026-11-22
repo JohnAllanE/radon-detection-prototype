@@ -1,0 +1,4 @@
+coax h = 0.1 mm: max |V - exact| = 0.082 V of 1000 V (0.008 %)
+slab h = 0.1 mm: E_gas = 293.92 V/mm (axis 293.92), exact 297.30 V/mm
+coax h = 0.05 mm: max |V - exact| = 0.021 V of 1000 V (0.002 %)
+slab h = 0.05 mm: E_gas = 295.60 V/mm (axis 295.60), exact 297.30 V/mm

@@ -109,3 +109,11 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the user's answers of 2026-11-21 (`docs/briefs/pass-1-answers.md`).
 - **Affects:** R-06, R-09, R-18, R-22, R-23, R-27, R-28, R-38, R-51, new R-74; A-07, A-17, A-20, A-22, new A-27.
 - **Replaces:** the working answers in the pass 1 review's questions 1, 4 and 5 (Q-08, Q-10, Q-13).
+
+## 2026-11-21: Chamber field simulation S-01 adopted
+
+- **Decision (Claude, from the simulation; the user's rule adopts simulated values):** the 2.1–2.6 mm die-to-wall gap is accepted. The ring (A-10) is tied to the filtered +20 V PD bias (Q-24: slightly positive). No sloped electrode. Both edges of each tube end get about a 0.5 mm radius. Inside the chamber, peak field replaces the 5.0 mm surface rule (R-75).
+- **Alternatives:** a sloped electrode at +300 to +700 V (takes 4–9 % of the ions); a +100 V ring rail (1.6 points more, not worth a rail); a 22 mm bore (no gain in collection).
+- **Reason:** S-01 (`sim/field/S-01-chamber/`): 95–99 % of field lines from the gas end on the dies unaided; peak field about 1.5 kV/mm at the sharp tube edge, 1.2 kV/mm rounded, against roughly 3 kV/mm for air at 1 atm (`VERIFY`).
+- **Affects:** A-10, R-38, R-43, R-47, R-75, risk 1, `chamber-sensitivity.md` (about 16 % per alpha). New finding for the user: about two-thirds of the ions land where the four dies meet.
+- **Replaces:** none.

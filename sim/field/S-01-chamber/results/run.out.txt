@@ -1,0 +1,43 @@
+grid study, base, diagonal         h=0.1: PD 0.992  Emax 1243 V/mm at (10.50,0.90)  avg gap 446 V/mm  t_med 0.0058805384656361575  (1.0 s)
+grid study, base, diagonal         h=0.05: PD 0.995  Emax 1548 V/mm at (10.50,0.95)  avg gap 446 V/mm  t_med 0.006164320253274352  (3.2 s)
+grid study, base, diagonal         h=0.025: PD 0.996  Emax 1934 V/mm at (10.50,0.97)  avg gap 446 V/mm  t_med 0.006415478254784624  (15.4 s)
+base, diagonal                     h=0.05: PD 0.995  Emax 1548 V/mm at (10.50,0.95)  avg gap 446 V/mm  t_med 0.006164320253274352  (3.8 s)
+base, side                         h=0.05: PD 0.950  Emax 1539 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.007051352765270055  (4.2 s)
+22 mm bore, diagonal               h=0.05: PD 0.991  Emax 1499 V/mm at (11.00,0.95)  avg gap 368 V/mm  t_med 0.005738693346536707  (3.8 s)
+22 mm bore, side                   h=0.05: PD 0.940  Emax 1494 V/mm at (11.00,0.95)  avg gap 195 V/mm  t_med 0.006640281563469054  (3.6 s)
+ring +20 V (PD bias), side         h=0.05: PD 0.954  Emax 1524 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.007003837514600108  (3.9 s)
+ring +50 V, side                   h=0.05: PD 0.959  Emax 1501 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.0070001797557879475  (3.4 s)
+ring +100 V, side                  h=0.05: PD 0.966  Emax 1464 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.007005353028953486  (3.5 s)
+ring +100 V, diagonal              h=0.05: PD 0.997  Emax 1486 V/mm at (10.50,0.95)  avg gap 446 V/mm  t_med 0.006183179029730133  (4.6 s)
+O-ring gap 2 mm, diagonal          h=0.05: PD 0.998  Emax 1021 V/mm at (10.50,1.95)  avg gap 367 V/mm  t_med 0.006723711878045545  (3.5 s)
+tube edge rounded 0.5 mm, diagonal h=0.05: PD 0.994  Emax 1145 V/mm at (13.05,1.00)  avg gap 446 V/mm  t_med 0.0061830329863226795  (4.0 s)
+sloped +300 V, diagonal            h=0.05: PD 0.910  Emax 2124 V/mm at (10.00,6.95)  avg gap 446 V/mm  t_med 0.003994546478094254  (3.9 s)
+sloped +300 V, side                h=0.05: PD 0.868  Emax 2124 V/mm at (10.00,6.95)  avg gap 216 V/mm  t_med 0.004422040920119989  (3.1 s)
+sloped +500 V, diagonal            h=0.05: PD 0.937  Emax 1570 V/mm at (10.50,0.95)  avg gap 446 V/mm  t_med 0.00442342880122966  (3.0 s)
+sloped +500 V, side                h=0.05: PD 0.917  Emax 1565 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.004672351967286893  (3.5 s)
+sloped +700 V, side                h=0.05: PD 0.938  Emax 1525 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.005606058060310382  (3.8 s)
+FR4 charged (no flux), side        h=0.05: PD 0.953  Emax 2176 V/mm at (9.65,0.00)  avg gap 216 V/mm  t_med 0.007057470182796882  (4.2 s)
+base, diagonal (landing)           h=0.05: PD 0.995  Emax 1548 V/mm at (10.50,0.95)  avg gap 446 V/mm  t_med 0.006164320253274352  (4.5 s)
+base, side (landing)               h=0.05: PD 0.950  Emax 1539 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.007051352765270055  (3.7 s)
+sloped +500 V, side (landing)      h=0.05: PD 0.917  Emax 1565 V/mm at (10.50,0.95)  avg gap 216 V/mm  t_med 0.004672351967286893  (4.3 s)
+| Case | h (mm) | To photodiodes | Ring | Sloped | Bare FR4 | Peak E (V/mm), where | E near die corner | E on board at O-ring land (tangential) | Median transit | Volume where 1 L/min flow beats drift | Landing in the central dead cross |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| grid study, base, diagonal | 0.1 | 99.2 % | 0.4 % | 0.0 % | 0.1 % | 1243 at (10.50, 0.90) | 490 | 725 (318) | 5.9 ms | 19.5 % | 67 % |
+| grid study, base, diagonal | 0.05 | 99.5 % | 0.4 % | 0.0 % | 0.0 % | 1548 at (10.50, 0.95) | 595 | 735 (416) | 6.2 ms | 19.5 % | 67 % |
+| grid study, base, diagonal | 0.025 | 99.6 % | 0.4 % | 0.0 % | 0.0 % | 1934 at (10.50, 0.97) | 723 | 797 (571) | 6.4 ms | 19.5 % | 67 % |
+| base, diagonal | 0.05 | 99.5 % | 0.4 % | 0.0 % | 0.0 % | 1548 at (10.50, 0.95) | 595 | 735 (416) | 6.2 ms | 19.5 % | 67 % |
+| base, side | 0.05 | 95.0 % | 4.7 % | 0.0 % | 0.3 % | 1539 at (10.50, 0.95) | 323 | 735 (418) | 7.1 ms | 19.9 % | 70 % |
+| 22 mm bore, diagonal | 0.05 | 99.1 % | 0.7 % | 0.0 % | 0.1 % | 1499 at (11.00, 0.95) | 508 | 731 (344) | 5.7 ms | 16.2 % | 64 % |
+| 22 mm bore, side | 0.05 | 94.0 % | 6.0 % | 0.0 % | 0.0 % | 1494 at (11.00, 0.95) | 298 | 731 (347) | 6.6 ms | 16.5 % | 68 % |
+| ring +20 V (PD bias), side | 0.05 | 95.4 % | 4.3 % | 0.0 % | 0.2 % | 1524 at (10.50, 0.95) | 356 | 734 (380) | 7.0 ms | 19.9 % | 70 % |
+| ring +50 V, side | 0.05 | 95.9 % | 3.9 % | 0.0 % | 0.1 % | 1501 at (10.50, 0.95) | 404 | 733 (323) | 7.0 ms | 20.0 % | 70 % |
+| ring +100 V, side | 0.05 | 96.6 % | 3.3 % | 0.0 % | 0.0 % | 1464 at (10.50, 0.95) | 486 | 732 (229) | 7.0 ms | 20.2 % | 69 % |
+| ring +100 V, diagonal | 0.05 | 99.7 % | 0.2 % | 0.0 % | 0.0 % | 1486 at (10.50, 0.95) | 725 | 732 (215) | 6.2 ms | 19.6 % | 67 % |
+| O-ring gap 2 mm, diagonal | 0.05 | 99.8 % | 0.1 % | 0.0 % | 0.0 % | 1021 at (10.50, 1.95) | 496 | 423 (244) | 6.7 ms | 19.8 % | 67 % |
+| tube edge rounded 0.5 mm, diagonal | 0.05 | 99.4 % | 0.4 % | 0.0 % | 0.1 % | 1145 at (13.05, 1.00) | 578 | 731 (388) | 6.2 ms | 19.5 % | 67 % |
+| sloped +300 V, diagonal | 0.05 | 91.0 % | 0.2 % | 8.8 % | 0.0 % | 2124 at (10.00, 6.95) | 427 | 735 (402) | 4.0 ms | 9.3 % | 58 % |
+| sloped +300 V, side | 0.05 | 86.8 % | 3.9 % | 8.9 % | 0.4 % | 2124 at (10.00, 6.95) | 174 | 735 (403) | 4.4 ms | 9.3 % | 60 % |
+| sloped +500 V, diagonal | 0.05 | 93.7 % | 0.3 % | 6.0 % | 0.0 % | 1570 at (10.50, 0.95) | 540 | 735 (411) | 4.4 ms | 12.2 % | 62 % |
+| sloped +500 V, side | 0.05 | 91.7 % | 2.1 % | 6.0 % | 0.2 % | 1565 at (10.50, 0.95) | 248 | 735 (412) | 4.7 ms | 12.2 % | 63 % |
+| sloped +700 V, side | 0.05 | 93.8 % | 2.3 % | 3.8 % | 0.1 % | 1525 at (10.50, 0.95) | 323 | 735 (421) | 5.6 ms | 15.8 % | 67 % |
+| FR4 charged (no flux), side | 0.05 | 95.3 % | 4.6 % | 0.0 % | 0.0 % | 2176 at (9.65, 0.00) | 333 | 1566 (1332) | 7.1 ms | 19.9 % | 70 % |

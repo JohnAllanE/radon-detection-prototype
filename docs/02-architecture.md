@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
-| This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Nothing is simulated yet |
+| This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Simulated: the chamber field (S-01) |
 | State | Accepted by the user while the requirements hold. Claude's choices working until simulated or tested |
 | Open questions | 5 |
 
@@ -33,7 +33,7 @@
 | A-07 | Premium CSA op-amp: LMP7721, guard on its NC pins, own footprint | working | R-10, R-53, R-74 | Awaits the user (D-18). Leakage control, not noise. Over R-74: 1–2 channels only |
 | A-08 | Test charge: about 1 pF C0G per channel from a common TEST line | working | R-49 | Gain calibration is mandatory: stray makes the nominal gain wrong |
 | A-09 | Test port: Murata SWF switched coax per CSA input on the back, shell on the 0 V guard ring, $C_{test}$ on the diode side | firm | R-60 | Electrometer D-02. Stable-at-unity CSA needed |
-| A-10 | Ion-steering ring: exposed ENIG around the diodes, from a filtered rail, never raw 48 V | open | R-47 | Sign and value from the field simulation (Q-24) |
+| A-10 | Ion-steering ring: exposed ENIG out to about 9.6 mm radius, on the filtered +20 V PD bias. No sloped electrode | working | R-47 | S-01: 95–99 % of ions reach the dies unaided |
 | A-11 | Input guarding and cleaning: 0 V guard trace, RMA flux, ultrasonic IPA clean, 125 °C bake, gloves | working | R-48, R-52 | Flux residue is a leakage path (ADA4530-1.json p38) |
 | A-12 | Detector-to-MCU connector: Molex PicoBlade-style, 14 pins proposed | working | R-24, R-07 | Pin count ≤ 15 `VERIFY` |
 | A-13 | MCU board analog chain on one filtered +5 V rail, TLV906x family, baseline 0.2–0.3 V | working | R-13, D-23 | TLV90xx can't take ±4.5 V. [TLV90xx](notes/tlv90xx-assessment.md) |
@@ -75,7 +75,7 @@
 | Peak width, R-09 | tens of keV, set by dead layer and straggling | A-02 | Estimated |
 | ADC resolution | 0.52 keV per code (ADS8689), sub-eV (ADS1220) | A-17 | Calculated: [signal levels](notes/signal-levels.md) |
 | Offset before calibration | 2.7–11 keV (TLV9001 offset) | A-13 | Calculated |
-| Count rate at 100 Bq/m³, R-01 | about 2–5 counts/hour per chamber | A-23 | Estimated: [chamber](notes/chamber-sensitivity.md) |
+| Count rate at 100 Bq/m³, R-01 | about 2–5 counts/hour per chamber, about 16 % per alpha | A-23, A-10 | Simulated collection: S-01, `sim/field/` |
 | Dead time per event, R-14 | tens of µs (ADS8689), about 0.5 ms (ADS1220) | A-17 | Datasheet |
 
 ## Off-board connections
@@ -120,7 +120,7 @@ Assembly, from populated boards to a running chamber:
 
 | # | Risk | Effect | Mitigation | Test first |
 |---|---|---|---|---|
-| 1 | Die corner to 1 kV wall only 2.1–2.6 mm, breakdown estimate close to 1 kV at 100 mbar | Discharge, damaged diodes | R-43, procedure | Field simulation of the corners |
+| 1 | Tube end edges at about 1.5 kV/mm (S-01), die corner 0.3–0.7 kV/mm | Discharge below ambient | R-43, 0.5 mm edge radius on the tube ends | Done: S-01 |
 | 2 | Diode polarity unknown | Wrong bias, pulse and steering polarity | Measure before layout | DMM diode test on a spare chip |
 | 3 | CSA stability and gain with $C_f$ = 1 pF and stray, 33 pF plus $C_{in}$ at the input | Oscillation, wrong gain | Test charge | ngspice AC and noise, then test charge |
 | 4 | Ring bias couples noise into the input | Wider peaks | Filtered source | Simulate the coupling capacitance |
@@ -135,13 +135,13 @@ Assembly, from populated boards to a running chamber:
 ## Open questions
 
 1. Q-11: which VTH2110 electrode is on top? Measure a spare chip.
-2. Q-24: ring bias sign. Claude's view: slightly positive relative to the diode front, so positive ions are repelled toward the diodes.
+2. Ions land mostly where the four dies meet (S-01): [questions](questions/2026-11-21-detector.md).
 3. Q-26: bond or epoxy the chips, and ask Excelitas about carriers?
 4. Q-20 remainder: board outline and O-ring land diameter.
 5. Q-15: suppliers. `$ELECTRONICS_TOOLS/inventory/stock.csv` now replaces the planned `parts/inventory.csv`.
 6. D-16 to D-18, ADA4817-1, OPA657: [questions](questions/2026-11-21-detector.md).
 
-Settled since: the die-corner gap (field simulation S-01), one MCU board per chamber (A-27).
+Settled since: the die-corner gap and Q-24 (S-01), one MCU board per chamber (A-27).
 
 ## Notes
 

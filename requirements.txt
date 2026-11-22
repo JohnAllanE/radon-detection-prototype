@@ -1,0 +1,7 @@
+# Python packages for sim/field (S-01). Build: ~/.local/bin/uv venv --managed-python .venv
+#   then ~/.local/bin/uv pip install --python .venv -r requirements.txt  (wheels only, MACHINES.md)
+# Pinned as resolved on the Intel Mac (x86_64) on 2026-11-21. The M4 has not built it yet:
+# if a pin has no arm64 wheel there, add a platform_machine marker line rather than lowering both.
+numpy==2.5.5
+scipy==1.18.1
+matplotlib==3.11.2

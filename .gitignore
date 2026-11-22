@@ -1,4 +1,5 @@
 .DS_Store
+.venv/
 
 # Datasheet PDFs are re-fetchable from source_url in datasheets/<MPN>.json (sha256 there to verify).
 # The JSON summaries stay tracked: they are the working copy (PCB-WORKFLOW.md section 2).

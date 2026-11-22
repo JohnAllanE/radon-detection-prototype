@@ -20,15 +20,16 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 - 2026-11-20: detector architecture, a2658a8 (5,427 → about 1,990 words; 11 notes, 6 candidate surveys, 3 SVGs from the Mermaid blocks). Part selection, 0e323ec. MACHINES.md, 60db0d0. CLAUDE.md, a2d70f6. Detector check: all IDs and numbers present (one false positive, the heading "2.4 Why").
 - 2026-11-20: electrometer requirements, 303daf6 (4,896 → 1,336 doclint words). Architecture, be8f48b (2,882 → 1,870). CLAUDE.md, d0982aa. All IDs and numbers present.
 - 2026-11-20: pass 1 reviews for both designs, 1d6dab5 and 10bcf6f. doclint 0 findings for the root and `electrometer/` (one `words` allowance on each requirements file).
+- 2026-11-21 step 2: S-01 field simulation (`sim/field/S-01-chamber/`), `.venv` built (numpy 2.5.5, scipy 1.18.1, matplotlib 3.11.2), architecture A-10 and risk 1, decisions entry. 95–99 % of ions reach the dies, about two-thirds where the dies meet, peak 1.5 kV/mm at the tube edge.
 - 2026-11-21 step 1: the user's answers recorded (requirements R-74, R-75, architecture A-27, A-28, decisions, review, notes `decay-chain-lines.md` and `hv-spacing-and-readback.md` with NuDat and NRC sources). doclint 0.
 
 ## Running
 
-- 2026-11-21 brief (`docs/briefs/pass-1-answers.md`), home Intel Mac. Step 1 (record answers) committed. Next: step 2, field simulation S-01 in `sim/field/S-01-chamber/` (needs a `.venv` with numpy and matplotlib: none yet), then step 3, the questions documents.
+- 2026-11-21 brief (`docs/briefs/pass-1-answers.md`), home Intel Mac. Steps 1 and 2 committed. Next: step 3, the questions documents.
 
 ## Next
 
-- Step 2: S-01 axisymmetric Laplace, field lines, die-corner field, sloped electrode. Step 3: `docs/questions/2026-11-21-detector.md` and `electrometer/docs/questions/2026-11-21-electrometer.md`.
+- Step 3: `docs/questions/2026-11-21-detector.md` (Q-02, Q-17, review 2, 7, 8, Q-20 with S-01 inputs, the S-01 dead-cross finding; review 3 settled from OPA657.json: minimum stable gain about 7 fails the R-60 unity-noise-gain requirement) and `electrometer/docs/questions/2026-11-21-electrometer.md` (its review 1, 3–7; 2 is the detector's A-21 question). Diagrams from `make_diagrams.py` beside each, house style, rendered light and dark. Then doclint both, RUN-LOG, commit.
 
 ## Decisions made while the user was away
 
