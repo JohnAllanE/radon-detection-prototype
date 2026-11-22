@@ -4,6 +4,8 @@ Kept per the shared rules for long or delegated work. A new session reads this f
 
 ## Goal
 
+- 2026-11-21: the user's answers, the 2D field simulation, and the open questions written with context (brief: `docs/briefs/pass-1-answers.md`).
+
 Rewrite both designs' documents to the document contract (brief: `docs/briefs/doc-rewrite-and-review.md`, Part 1), then a pass-1 review for each (Part 2).
 
 ## Standing instructions
