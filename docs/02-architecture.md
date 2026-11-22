@@ -5,7 +5,7 @@
 | Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
 | This document | How the detector board, MCU board, HV board and chambers are built, and what they should do. `VERIFY` marks an unconfirmed fact. Simulated: the chamber field (S-01) |
 | State | Accepted by the user while the requirements hold. Claude's choices working until simulated or tested |
-| Open questions | 6 |
+| Open questions | 5 |
 
 ## IDs from other documents
 
@@ -30,7 +30,7 @@
 | A-04 | PD bias 20 V from the HV board, a per-board RC filter, a resistor per diode | working | R-20, R-09 | Specified at 20 V. Fully depleted for alphas |
 | A-05 | CSA: + input at 0 V, ±4.5 V rails, $C_f$ = 1 pF C0G with $R_f$ = 100 MΩ, output series R | working | R-09, R-13 | 44.3 mV/MeV. [Signal levels](notes/signal-levels.md) |
 | A-06 | Low-cost CSA op-amp: OPA140 on a standard SOIC-8 with pins 1, 5, 8 unconnected | working | R-10, R-09 | 6.9–7.4 keV at 4 µs. [Survey](notes/candidates-csa-opamp.md) |
-| A-07 | Premium CSA op-amp: LMP7721, guard on its NC pins, own footprint | working | R-10, R-53, R-74 | Awaits the user (D-18). Leakage control, not noise. Over R-74: 1–2 channels only |
+| A-07 | Premium CSA op-amp: LMP7721, guard on NC pins, own footprint, local ±2.5 V. ADA4817-1 SOIC (about CAD 13, user) on 1–2 channels | working | R-10, R-53, R-74 | Leakage control, not noise. [CSA rails](notes/csa-rails.md) |
 | A-08 | Test charge: about 1 pF C0G per channel from a common TEST line | working | R-49 | Gain calibration is mandatory: stray makes the nominal gain wrong |
 | A-09 | Test port: Murata SWF switched coax per CSA input on the back, shell on the 0 V guard ring, $C_{test}$ on the diode side | firm | R-60 | Electrometer D-02. Stable-at-unity CSA needed |
 | A-10 | Ion-steering ring: exposed ENIG out to about 9.6 mm radius, on the filtered +20 V PD bias. No sloped electrode | working | R-47 | S-01: 95–99 % of ions reach the dies unaided |
@@ -40,16 +40,18 @@
 | A-14 | Shaper: AC-coupled pole-zero and gain stage (inverting or non-inverting by jumper), then CR-RC^n, τ = 4 µs, footprints for 2–10 µs | working | R-09, R-14 | Low rates allow long shaping. Q-04 |
 | A-15 | Trigger: TLV9061 as comparator with hysteresis, TLV3201 as footprint alternate, threshold from filtered PWM or DAC | working | R-13 | The held peak makes µs delay harmless |
 | A-16 | Peak hold: TLV906x driver, low-leakage diode, 1 nF $C_{hold}$, TMUX1101 reset, TLV906x buffer | working | R-13, R-09 | 80 pA leakage budget. [Survey](notes/candidates-mux-hold.md) |
-| A-17 | ADCs: ADS1220 on the holds, a mux into ADS8689, jumper to the ESP32-S3 ADC. Eight holds: two ADS1220 (4 inputs each, ADS1220.json p1), an 8:1 mux | firm | R-16, R-14 | The user's choice (D-16). Mux part open. [Survey](notes/candidates-adc.md) |
+| A-17 | ADCs: two ADS1220 on the eight holds (4 inputs each, ADS1220.json p1), an 8:1 mux into ADS8689, jumper to the ESP32-S3 ADC | firm | R-16, R-14 | D-16. Mux part open. [Survey](notes/candidates-adc.md) |
 | A-18 | MCU: ESP32-S3-WROOM-1, PCB antenna, USB data, ESP-NOW option | firm | R-15 | The user's choice (D-08). [Survey](notes/candidates-mcu.md) |
 | A-27 | One MCU board per chamber takes all eight CSA inputs. Peak holds handle closely spaced events | firm | R-13, R-14, R-73 | The user (review question 4) |
 | A-19 | MCU board power: 5 V adapter, a 3.3 V LDO (not chosen) and an LM27762 for ±4.5 V to the detector boards only | working | R-25 | LM27762 noise and PSRR `VERIFY` |
-| A-20 | HV board: 48 V, PWM-driven PCB transformer to 100–200 V, Walton multiplier, divider feedback. Point-to-point HV section, potted later. No accuracy target | firm | R-18, R-21 | D-11, D-20, Q-10. [Survey](notes/candidates-hv-generation.md) |
+| A-20 | HV board: 48 V, PWM-driven PCB transformer to 100–200 V, Walton multiplier, divider feedback. Point-to-point HV section, potted later | firm | R-18, R-21 | D-11, D-20, Q-10. [Survey](notes/candidates-hv-generation.md) |
 | A-28 | HV readback: the feedback divider (about 1000:1, before the series resistor) tapped to an MCU ADC and a test point | working | R-23 | [Readback](notes/hv-spacing-and-readback.md) |
-| A-21 | HV output series resistance ≥ 10 MΩ, limiting a tube flashover to about 100 µA | open | R-22, electrometer R-10 | Asked by the electrometer, awaits the user |
-| A-22 | HV safety: tube in an insulated outer enclosure with a lid interlock (PWM enable off, NC discharge), trained staff only, no HV below ambient | firm | R-22, R-43 | D-20, Q-12. Darkness check optional: [HV spacing](notes/hv-spacing-and-readback.md) |
-| A-23 | Part 1 chamber: 304 SS 3/4 in NPS pipe ground and lapped to 21–22 mm, possibly etched. A board at each end, 76 mm apart | firm | R-39, R-44, R-05 | D-22 |
-| A-24 | Gas train per D-02, PTFE tubing and insulating sections, Drierite desiccant, one PTFE membrane filter type | working | R-29, R-30, R-37, R-38 | D-13. Filter D-25 awaits the user. [Gas train](notes/gas-train.md) |
+| A-21 | HV output series resistance ≥ 10 MΩ after the readback divider, limiting a flashover to about 100 µA | firm | R-22, electrometer R-10 | The user agreed |
+| A-22 | HV safety: insulated outer enclosure, lid interlock (PWM off, NC discharge), trained staff, no HV below ambient | firm | R-22, R-43 | D-20, Q-12. Darkness check optional: [HV spacing](notes/hv-spacing-and-readback.md) |
+| A-23 | Part 1 chamber: 304 or 316 SS 3/4 in NPT pipe, lapped to 21–22 mm, boards 76 mm apart. Seal: threaded flange, triangular O-ring groove, PTFE compression washer | firm | R-39, R-44, R-54 | D-22, the user |
+| A-29 | Proposal beside A-02: one centred VTH2110 and CSA per tube, more tubes in an NPT manifold for more area | open | R-06, R-39, R-53 | Ions centre themselves (S-01). Tube ID, top-copper bias: S-02 |
+| A-30 | SHT45 and barometer on the MCU board, SHT45-AD1F in an outlet flow cell | working | R-76, R-27, R-34 | [Sensors](notes/candidates-environment-sensors.md) |
+| A-24 | Gas train per D-02: PTFE tubing, insulating sections, Drierite column, PTFE syringe filters in polypropylene | working | R-29, R-30, R-37, R-38 | D-13, D-25 amended (Q-17). [Gas train](notes/gas-train.md) |
 | A-25 | Part 2: aluminium chamber, Viton, E2M8 on NW25 with a foreline trap, Pirani gauge on an NW25 tee | working | R-46, R-57, R-59 | D-24. [Part 2](notes/part2-vacuum.md) |
 | A-26 | Event firmware: on a trigger, wait the peaking time, convert that channel, reset it only. A pulse counter flags pile-up | working | R-13, R-14 | [Signal levels](notes/signal-levels.md) |
 
@@ -99,7 +101,7 @@ Per Part 1 chamber with its two detector boards and one MCU board (A-27). Pin as
 | Aspect | Value | Status |
 |---|---|---|
 | Detector board outline | Circular, covers the 21–22 mm bore and O-ring land. Diameter from the mechanical design | open |
-| O-ring land and size | From the mechanical design (Q-20) | open |
+| O-ring land and size | A-23. O-ring size open | working |
 | Mounting | A board at each end of the tube, O-ring sealed | firm |
 | Tallest part, chamber side | VTH2110 chips, exposed | firm |
 | Tallest part, atmosphere side | Connector or SWF ports, height open | open |
@@ -121,30 +123,27 @@ Assembly, from populated boards to a running chamber:
 | # | Risk | Effect | Mitigation | Test first |
 |---|---|---|---|---|
 | 1 | Tube end edges at about 1.5 kV/mm (S-01), die corner 0.3–0.7 kV/mm | Discharge below ambient | R-43, 0.5 mm edge radius on the tube ends | Done: S-01 |
-| 2 | Diode polarity unknown | Wrong bias, pulse and steering polarity | Measure before layout | DMM diode test on a spare chip |
+| 2 | Diode polarity unknown | Wrong bias and pulse polarity | Measure before layout | DMM diode test on a spare chip |
 | 3 | CSA stability and gain with $C_f$ = 1 pF and stray, 33 pF plus $C_{in}$ at the input | Oscillation, wrong gain | Test charge | ngspice AC and noise, then test charge |
 | 4 | Ring bias couples noise into the input | Wider peaks | Filtered source | Simulate the coupling capacitance |
 | 5 | Hold leakage and charge injection beyond 80 pA | Droop, offset | Smaller or better parts | Simulate the hold chain, measure a node |
 | 6 | Charge-pump and ESP32 noise on the analog rails | Wider peaks | LC and LDO post-filter | Rail noise measurement |
 | 7 | Plated vias as a rough-vacuum seal | Leak | Bulkhead fallback (Q-20) | Leak test a bare board on the Part 2 chamber |
-| 8 | Hand bonding to a 0.4 mm pad | Yield | Carrier option | Practice on spare chips |
+| 8 | Bonding a 0.4 mm pad | Yield | Carrier | Practice on spares |
 | 9 | TLV9061 peak detector driving $C_{hold}$ | Instability, error | Smaller $C_{hold}$ | ngspice transient with the real model |
 | 10 | Baseline offset and TLV90xx offset, ±0.3 to ±1.6 mV, 2–11 keV | Drift (R-52) | Per-channel baseline in firmware | Drift over a week |
-| 11 | ADA4817-1 power, 0.7 W per board, if chosen | Heats the diode side | Choose it for one channel only | Thermal check |
+| 11 | ADA4817-1, 0.7 W per board | Heats the diodes | One channel only | Thermal check |
 
 ## Open questions
 
 1. Q-11: which VTH2110 electrode is on top? Measure a spare chip.
-2. Ions land mostly where the four dies meet (S-01): [questions](questions/2026-11-21-detector.md).
-3. Q-26: bond or epoxy the chips, and ask Excelitas about carriers?
-4. Q-20 remainder: board outline and O-ring land diameter.
-5. Q-15: suppliers. `$ELECTRONICS_TOOLS/inventory/stock.csv` now replaces the planned `parts/inventory.csv`.
-6. D-16 to D-18, ADA4817-1, OPA657: [questions](questions/2026-11-21-detector.md).
-
-Settled since: the die-corner gap and Q-24 (S-01), one MCU board per chamber (A-27).
+2. Q-26: bond or epoxy the chips, and ask Excelitas about carriers?
+3. Q-20 remainder: board outline and O-ring size.
+4. Q-15: suppliers (`$ELECTRONICS_TOOLS/inventory/stock.csv`).
+5. A-29 against A-02: one detector per tube, from S-02.
 
 ## Notes
 
-- Design: [detector board](notes/detector-board.md) (measure the diode polarity first), [signal levels](notes/signal-levels.md), [noise budget](notes/noise-budget.md) (4–14 keV from the electronics), [JFET and module noise](notes/jfet-and-module-noise.md), [TLV90xx assessment](notes/tlv90xx-assessment.md), [HV spacing and readback](notes/hv-spacing-and-readback.md), [decay-chain lines](notes/decay-chain-lines.md).
+- Design: [detector board](notes/detector-board.md) (measure the diode polarity first), [signal levels](notes/signal-levels.md), [noise budget](notes/noise-budget.md) (4–14 keV from the electronics), [JFET and module noise](notes/jfet-and-module-noise.md), [TLV90xx assessment](notes/tlv90xx-assessment.md), [HV spacing and readback](notes/hv-spacing-and-readback.md), [decay-chain lines](notes/decay-chain-lines.md), [CSA rails](notes/csa-rails.md).
 - Candidate surveys: [photodiode](notes/candidates-photodiode.md), [CSA op-amp](notes/candidates-csa-opamp.md), [ADC](notes/candidates-adc.md), [hold and mux](notes/candidates-mux-hold.md), [MCU](notes/candidates-mcu.md), [HV generation](notes/candidates-hv-generation.md).
 - Requirements notes: [physics](notes/physics-reference.md), [chamber](notes/chamber-sensitivity.md), [gas train](notes/gas-train.md), [Part 2](notes/part2-vacuum.md).

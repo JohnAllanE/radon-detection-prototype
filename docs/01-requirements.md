@@ -5,8 +5,8 @@
 |---|---|
 | Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
 | This document | Purpose, scope, and the R-xx requirements sorted into functions, objectives and constraints. `VERIFY` marks an unconfirmed fact |
-| State | Draft. The user's latest answers recorded: Q-04, Q-08, Q-10, Q-12, Q-13, Q-14 resolved |
-| Open questions | 2 |
+| State | Draft. The user's latest answers recorded: Q-02, Q-17 and Q-20 resolved. One detector per tube proposed (A-29) |
+| Open questions | 0 |
 
 ## Purpose
 
@@ -26,7 +26,7 @@
 ### Out of scope
 
 - Operating the pump and valves: manual, outside the electronics (D-12)
-- Chamber sensors and compensation for pressure, temperature or humidity (D-06)
+- Sensors inside the chamber volume, and compensation for pressure, temperature or humidity (D-06). Ambient and purge-line sensors are in scope (R-76)
 - Gases other than air and N₂ (D-05)
 - HV in Part 2
 
@@ -46,7 +46,7 @@
 | R-20 | Supplies a regulated photodiode bias | firm | User (D-11) | Simulation, test |
 | R-23 | The HV output can be read back, which matters more than accuracy: a divider tap now, an HV probe in a later funded effort | firm | User (Q-10, Q-14) | Test |
 | R-31 | Closing both valves seals the Part 1 chamber, so it can run static | firm | User (D-03) | Test |
-| R-34 | Humidity is measured at the outlet during the purge, with a manual sensor | firm | User (D-06) | Inspection |
+| R-34 | Humidity is measured at the outlet during the purge, by a flow-through RH/T sensor if one fits (R-76), otherwise a manual one | firm | User (D-06, Q-02) | Inspection |
 | R-37 | Filters remove aerosols and radon progeny from incoming gas and stop desiccant dust | firm | User (D-02) | Test |
 | R-47 | A biased exposed ring around the photodiodes steers ions onto them | firm | User (D-09) | Simulation, test |
 | R-48 | Bare boards can be characterised before assembly: leakage between input pad, guard and ring, and node capacitance | firm | User (D-15) | Test |
@@ -56,6 +56,7 @@
 | R-58 | Part 2 can count with the chamber sealed and the pump off | working | Claude (D-24) | Test |
 | R-59 | Part 2 reads the chamber pressure with a vacuum gauge | working | Claude (D-24) | Inspection |
 | R-60 | Each CSA input has a non-destructive test port, so a populated, cleaned board is measured without soldering | firm | User (electrometer D-02) | Inspection, test |
+| R-76 | Logs its environment, not compensated: ambient temperature, RH and other useful quantities on the board in room air, and the purge air through a flow-through RH/T sensor | firm | User (Q-02) | Inspection, test |
 
 ## Objectives
 
@@ -79,17 +80,17 @@ Ranked in table order (Claude's ranking, working).
 | R-10 | Low-cost: one standard single 8-pin op-amp footprint, general-purpose parts, no NC pins for guard or feedback. Premium may use dedicated parts and their guard pins | firm | User (D-17) | Inspection |
 | R-74 | Cost: CAD 20 average per channel at most, CAD 10 preferred. Best parts that don't fit go on 1–2 channels per premium board, not all four | firm | User (Q-08) | Inspection of the priced BOM |
 | R-11 | Works in vacuum and in the Part 1 gas: only the photodiode side is exposed, and parts avoid outgassing | firm | User | Inspection, test |
-| R-54 | The detector board is the pressure boundary: O-ring sealed, photodiodes inside, back at atmosphere with the connectors | firm | User (Q-20) | Inspection, test |
+| R-54 | The detector board is the pressure boundary: O-ring sealed, photodiodes inside, connectors on the back at atmosphere. Seal concept in A-23 | firm | User (Q-20) | Inspection, test |
 | R-55 | Detector board: two layers | firm | User (D-14) | Inspection |
 | R-56 | MCU board outside the chambers, two layers if possible, four if needed | firm | User (D-14) | Inspection |
 | R-16 | ADC chosen on merit. The in-stock 24-bit delta-sigma part and a 16-bit SAR are both fitted | firm | User (D-16) | Simulation |
-| R-17 | The MCU board reads no chamber sensors and applies no compensation | firm | User (D-06) | Inspection |
+| R-17 | The MCU board reads no sensor inside the chamber volume and applies no compensation; ambient and purge-line sensors are allowed (R-76) | firm | User (D-06, Q-02) | Inspection |
 | R-19 | HV ripple and switching noise do not degrade the preamp noise floor | firm | Physics, R-09 | Simulation, test |
 | R-21 | HV built on a PCB up to the transformer, point-to-point beyond it, potted only after it works | firm | User (D-11) | Inspection, test |
 | R-22 | Nothing at HV is user-touchable, including the +1 kV chamber tube: an insulated outer enclosure with an interlock | firm | Safety (D-20), user (Q-12) | Inspection, test |
 | R-24 | Detector to MCU board through a small board-to-board wire connector | firm | User | Inspection |
 | R-25 | Wall adapters only: 48 V for the HV board, 5 V for the other boards | firm | User (D-08) | Inspection |
-| R-27 | Lab ambient environment, not monitored | working | User (Q-02). What to record per run is proposed in the questions | Test |
+| R-27 | Lab ambient environment. Per run: times, T, RH and pressure (R-76), gas and flow mode, HV readback, PD bias, board serials and channels fitted | firm | User (Q-02) | Test |
 | R-28 | Hand-assembled prototype. No BGA; any other package, QFN at 0.5 mm pitch included | firm | User (Q-13) | Inspection |
 | R-29 | Part 1 gas train in the order of D-02, with a manual SS/PTFE ball valve on the chamber inlet and outlet | firm | User (D-02, D-03) | Inspection |
 | R-30 | Nothing upstream of the chamber outgasses or passes radon: no silicone, rubber or PVC. PTFE tubing | firm | User (D-13) | Inspection |
@@ -97,7 +98,7 @@ Ranked in table order (Claude's ranking, working).
 | R-33 | Flow, pressure drop and desiccant service interval are characterised after build, not designed to | firm | User (D-13) | Test |
 | R-38 | No conductive path from the +1 kV chamber to valves, tubing, pump or mounts. Creepage and clearance at the O-ring land and photodiode corners | firm | Safety | Inspection, simulation |
 | R-75 | Spacing from +1 kV: 5.0 mm on bare board surfaces (IPC-2221 B2, `VERIFY`). Inside the chamber, from the field simulation | working | Claude (Q-12) | Inspection, simulation |
-| R-39 | Part 1 chamber: 304 SS, 3/4 in NPS pipe, bore 21–22 mm, walls at HV | firm | User (D-22) | Simulation, inspection |
+| R-39 | Part 1 chamber: 304 or 316 SS NPT pipe and cross fittings (316 `VERIFY`), walls at HV, standard pipe IDs. Now 3/4 in, bore 21–22 mm. Manifold proposed (A-29) | firm | User (D-22, answer 1) | Simulation, inspection |
 | R-40 | Detector signals pass through the board itself. HV connects to the tube. Part 2 ports are standard | firm | User | Inspection, test |
 | R-41 | Pump vibration and drive noise do not degrade the noise floor | firm | User (D-01) | Test with the pump running |
 | R-43 | HV is not applied to the chamber below ambient pressure. Procedure first, a hardware interlock optional | working | Claude: Paschen estimate | Inspection |
@@ -109,10 +110,7 @@ Ranked in table order (Claude's ranking, working).
 
 With their context and Claude's proposals: [questions with context](questions/2026-11-21-detector.md).
 
-1. Q-02: which lab conditions to record for R-27. The lab is not monitored.
-2. Q-17: desiccant and filter sourcing (D-25): low cost first.
-
-Resolved by the user's latest answers: Q-04 (target set, shaping time after first runs), Q-08 (R-74), Q-10 (R-18, R-23), Q-12 (R-22, R-38), Q-13 (R-28), Q-14 (R-51).
+None. Resolved by the user's latest answers: Q-02 (R-27, R-76), Q-17 (option (a): PTFE syringe filters in polypropylene, D-25 amended), Q-20 (R-54). Earlier: Q-04 (target set, shaping time after first runs), Q-08 (R-74), Q-10 (R-18, R-23), Q-12 (R-22, R-38), Q-13 (R-28), Q-14 (R-51).
 
 ## Notes
 
@@ -121,6 +119,7 @@ Resolved by the user's latest answers: Q-04 (target set, shaping time after firs
 - [HV spacing and readback](notes/hv-spacing-and-readback.md): creepage and clearance, 5.0 mm at 1 kV, the divider before the series resistor.
 - [Physics reference](notes/physics-reference.md): 44.3 fC per MeV, alpha lines, and why 1–10 mbar is enough for Part 2.
 - [Chamber sensitivity](notes/chamber-sensitivity.md): 2–5 counts/hour at 100 Bq/m³, days per 100 counts indoors.
+- [Environment sensors](notes/candidates-environment-sensors.md): SHT45 on board and in a flow cell on the outlet, a barometer.
 - [Gas train](notes/gas-train.md): about 12.5 g of water a day into the desiccant at 1 L/min. No humidity sensor in the chamber.
 - [Part 2 vacuum](notes/part2-vacuum.md): pump to 10⁻² to 10⁻¹ mbar, trap the foreline, count sealed.
 - [Electrometer outline](notes/electrometer-outline.md): the first outline, retired. Its R-57 to R-72 are replaced by `electrometer/`.

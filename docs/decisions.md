@@ -125,3 +125,12 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** review question 3; the user asked for a write-up only where needed.
 - **Affects:** A-06, A-07, D-17's swap list (OPA656 stays), D-18.
 - **Replaces:** none.
+
+## 2026-11-21: The user's answers to the detector questions
+
+- **Decision (user, recorded by Claude):** (1) The ions centre themselves (S-01), so four packed dies lose much of what they catch: evaluate one detector per tube, centred, with more area from more tubes in parallel in a manifold of 304 or 316 stainless NPT pipe and cross fittings (316 assumed for the user's "306", `VERIFY`), one inlet and one outlet; proposal A-29, simulated in S-02. A board with several widely spaced detectors under a tube array is rejected as an assembly headache. (2) ADA4817-1 at about CAD 13 in SOIC (preferred for leakage) is doable; the LMP7721's supply range is no concern. (3) A-21 agreed: ≥ 10 MΩ after the divider. (4) Q-02: ambient T and RH on the board in room air, other environmental sensors as useful, a flow-through RH/T sensor on the purge air if one exists (R-76, A-30). (5) Q-17 option (a): PTFE-membrane syringe filters in polypropylene, Drierite column; D-25's stainless or PFA body requirement is dropped for Part 1. (6) Q-20: flange screwed onto the pipe thread, end machined parallel, edges rounded where reachable, O-ring in a triangular groove with a PTFE washer setting compression; the threads' distance from the field checked in S-02.
+- **Claude's additions:** a programmable CSA rail is not needed ([CSA rails](notes/csa-rails.md)): fixed LDO and RC per board, ANY-OUT parts strapped if used. Sensor candidates: SHT45 and a barometer on the board, SHT45-AD1F in a flow cell on the outlet.
+- **Alternatives:** the 2×2 array with a centre electrode (question 1 option (b)); stainless filter housings (Q-17 (b)); a programmable rail.
+- **Reason:** the user's answers of 2026-11-21 (`docs/briefs/single-pd-sweep.md`).
+- **Affects:** R-17, R-27, R-34, R-39, R-54, new R-76; A-07, A-21, A-23, A-24, new A-29, A-30; D-06 (chamber volume only), D-18, D-25.
+- **Replaces:** D-25's housing material for Part 1; the questions document's recommendations 2–6 where the user chose otherwise.
