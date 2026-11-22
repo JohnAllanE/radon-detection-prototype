@@ -24,8 +24,7 @@
 3. R-09: the electronics give 4–14 keV against 100 keV, from a model without 1/f noise or CR-RC^n. An ngspice `.noise` run, and a dead-layer and straggling estimate from NIST ASTAR, decide whether the premium board can show anything (R-53).
 4. A-16: hold-node leakage `VERIFY`s (BAS116, TLV906x maximum bias, $C_{hold}$ absorption, TMUX1101 polarity) against 80 pA. Simulate the hold chain (risks 5, 9).
 5. A-20, A-21: the HV board has topology only. Its fault-current limit (≥ 10 MΩ, from the electrometer) and the ripple limit (R-19, needs C(tube → input)) come first.
-6. Architecture question 9: one MCU board per detector board, or one eight-channel board.
-7. Detector board outline: the electrometer quotes "≤ 20 mm", but it must cover a 21–22 mm bore and O-ring land.
+6. Detector board outline: the electrometer quotes "≤ 20 mm", but it must cover a 21–22 mm bore and O-ring land.
 
 ## Last mile
 
@@ -61,3 +60,7 @@ No order planned: prices, stock and suppliers are unchecked.
 | LM27762 | Noise and PSRR |
 | PicoBlade, SWF | Circuit count, part number |
 | HV parts | No design |
+
+## Answers
+
+In decisions ("The user's answers to the pass 1 questions"); 2, 3, 7, 8 in the [questions](../questions/2026-11-21-detector.md).

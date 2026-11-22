@@ -4,8 +4,8 @@
 |---|---|
 | Project | Alpha detection with silicon photodiodes: radon progeny in a 1 kV steel chamber (Part 1) and weld samples in rough vacuum (Part 2), premium against low-cost detector boards |
 | Pass | 1, a sketch of the detector, MCU and HV boards and both chambers, ended by `docs/reviews/pass-1.md` |
-| Activity | Pass 1 architecture, not yet reviewed by the user. No hard stop near: no part is ready to order |
-| Next for the user | Review the architecture. Answer the pass 1 review's questions |
+| Activity | Pass 1 architecture accepted by the user, answers recorded. Field simulation S-01 and the questions with context under way. No hard stop near: no part is ready to order |
+| Next for the user | Answer `docs/questions/2026-11-21-detector.md` and the electrometer's |
 | Next for Claude | Pass 2: CSA ngspice model, hold-chain simulation, HV board architecture, prices and stock |
 | Open `VERIFY` items | Notes, the architecture, `parts/selection.md` Open |
 

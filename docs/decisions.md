@@ -100,3 +100,12 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** the workflow's passes and document contract (`PCB-WORKFLOW.md`).
 - **Affects:** none (process only).
 - **Replaces:** none.
+
+## 2026-11-21: The user's answers to the pass 1 questions
+
+- **Decision (user, recorded by Claude):** the architecture is accepted as long as the requirements don't change. Q-04: the target is to tell the radon chain's members apart; shaping time after the first runs. Q-08: eight channels per chamber, CAD 20 average per channel at most, CAD 10 preferred; premium parts on 1–2 channels if they don't fit, four identical channels assumed, partial population acceptable (R-74). Q-10: HV accuracy not needed, readback more important, an HV probe later (R-18, R-23). Q-12: an insulated outer enclosure with an interlock, a darkness check as a possible second check (R-22). Q-13: no BGA, QFN at 0.5 mm pitch fine (R-28). Q-14: a smoke-alarm Am-241 check source, transferred from a RAD7 later; the kV read by a divider (R-51). Q-02: the lab is not monitored. Q-17: open to suggestion, low cost first. One MCU board per chamber takes all eight inputs (A-27). The die-to-wall gap goes to a field simulation (S-01).
+- **Claude's working additions:** IPC-2221 B2, 5.0 mm at 1 kV, as the bare-board spacing rule (`VERIFY`); the readback divider sits before the ≥ 10 MΩ series resistor and is the feedback divider's tap; the darkness check proves the chamber is closed, not that the enclosure is shut. R-09's 100 keV separates Po-210 and Rn-222 (185 keV apart, NuDat). Notes: `decay-chain-lines.md`, `hv-spacing-and-readback.md`.
+- **Alternatives:** one MCU board per detector board (the old drawing), an HV probe now.
+- **Reason:** the user's answers of 2026-11-21 (`docs/briefs/pass-1-answers.md`).
+- **Affects:** R-06, R-09, R-18, R-22, R-23, R-27, R-28, R-38, R-51, new R-74; A-07, A-17, A-20, A-22, new A-27.
+- **Replaces:** the working answers in the pass 1 review's questions 1, 4 and 5 (Q-08, Q-10, Q-13).

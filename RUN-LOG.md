@@ -20,14 +20,15 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 - 2026-11-20: detector architecture, a2658a8 (5,427 → about 1,990 words; 11 notes, 6 candidate surveys, 3 SVGs from the Mermaid blocks). Part selection, 0e323ec. MACHINES.md, 60db0d0. CLAUDE.md, a2d70f6. Detector check: all IDs and numbers present (one false positive, the heading "2.4 Why").
 - 2026-11-20: electrometer requirements, 303daf6 (4,896 → 1,336 doclint words). Architecture, be8f48b (2,882 → 1,870). CLAUDE.md, d0982aa. All IDs and numbers present.
 - 2026-11-20: pass 1 reviews for both designs, 1d6dab5 and 10bcf6f. doclint 0 findings for the root and `electrometer/` (one `words` allowance on each requirements file).
+- 2026-11-21 step 1: the user's answers recorded (requirements R-74, R-75, architecture A-27, A-28, decisions, review, notes `decay-chain-lines.md` and `hv-spacing-and-readback.md` with NuDat and NRC sources). doclint 0.
 
 ## Running
 
-- Nothing running. Brief complete; nothing pushed. Fact-check script: scratchpad `factcheck.py` (IDs and numbers with units against commit ea7fd29).
+- 2026-11-21 brief (`docs/briefs/pass-1-answers.md`), home Intel Mac. Step 1 (record answers) committed. Next: step 2, field simulation S-01 in `sim/field/S-01-chamber/` (needs a `.venv` with numpy and matplotlib: none yet), then step 3, the questions documents.
 
 ## Next
 
-- The user reviews both pass 1 reviews and answers their questions. Pass 2 is not started.
+- Step 2: S-01 axisymmetric Laplace, field lines, die-corner field, sloped electrode. Step 3: `docs/questions/2026-11-21-detector.md` and `electrometer/docs/questions/2026-11-21-electrometer.md`.
 
 ## Decisions made while the user was away
 
