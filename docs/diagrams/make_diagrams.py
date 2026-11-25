@@ -19,20 +19,21 @@ HERE = Path(__file__).resolve().parent
 
 
 def system_block():
-    d = Svg(1000, 470, "System block diagram: in each chamber, two detector boards (premium and low-cost) each carry "
-                       "four photodiodes and four charge-sensitive preamps and connect to the MCU board, which shapes, "
-                       "holds, digitises and reports to the host. The HV board makes about +1 kV for the Part 1 "
+    d = Svg(1000, 470, "System block diagram: four probes, two on the radon tube and two on the vacuum chamber, each carry "
+                       "one photodiode, one charge-sensitive preamp and a test-pulse switch, and connect to one "
+                       "four-channel MCU board, which shapes, holds, digitises, reports to the host and buffers each "
+                       "preamp output to a rear SMA for a scope. The HV board makes about +1 kV for the Part 1 "
                        "chamber walls and the regulated photodiode bias.")
     d.add('<rect class="encl" x="20" y="20" width="330" height="300" rx="12"/>')
-    d.text(36, 42, "CHAMBER (DETECTOR BOARD IS THE SEAL)", "g")
-    d.box(40, 60, 290, 60, "4 × silicon photodiode", "chamber side, 2 × 2 array")
-    d.box(40, 150, 290, 70, "4 × charge-sensitive preamp", ["atmosphere side", "detector board: premium or low-cost"])
+    d.text(36, 42, "CHAMBER (THE PROBE IS THE SEAL)", "g")
+    d.box(40, 60, 290, 60, "Silicon photodiode", "chamber side, on the axis")
+    d.box(40, 150, 290, 70, "Charge-sensitive preamp", ["atmosphere side, test-pulse switch", "probe type P-A, P-L, P-T or P-J"])
     d.line([(185, 120), (185, 148)])
-    d.box(40, 245, 290, 55, "Second detector board", "the other variant, same field")
+    d.box(40, 245, 290, 55, "Second probe", "another type; 2 chambers, 4 probes")
 
     d.box(430, 120, 280, 150, "MCU board",
-          ["pulse shaping, peak hold", "comparator trigger, channel mux", "ADCs, ESP32-S3 microcontroller",
-           "outside the chamber"])
+          ["4 channels: shaping, peak hold", "comparator trigger, channel mux", "ADCs, ESP32-S3 microcontroller",
+           "test-pulse trigger and level"])
     d.line([(330, 185), (428, 185)])
     d.line([(330, 272), (380, 272), (380, 200), (428, 200)])
     d.text(379, 176, "board-to-board", "lsig", "middle")
@@ -50,6 +51,9 @@ def system_block():
     d.line([(430, 420), (12, 420), (12, 90), (38, 90)], "pwr")
     d.text(120, 412, "regulated PD bias", "lpwr", "middle")
 
+    d.box(790, 40, 180, 60, "Scope, optional", "4 × rear SMA")
+    d.line([(640, 120), (640, 70), (788, 70)])
+    d.text(714, 62, "buffered CSA outputs", "lsig", "middle")
     d.box(790, 345, 180, 40, "48 V wall adapter")
     d.line([(790, 365), (712, 365)], "pwr")
     d.box(790, 250, 180, 40, "5 V wall adapter")
@@ -61,14 +65,14 @@ def system_block():
 
 
 def signal_chain():
-    d = Svg(1100, 520, "Per-channel signal chain, repeated four times per detector board: photodiode into a "
-                       "charge-sensitive preamp with a test-charge input and a filtered bias, over the connector to "
+    d = Svg(1100, 520, "Per-channel signal chain, one per probe, four in the instrument: photodiode into a "
+                       "charge-sensitive preamp with a switched test charge and a filtered bias, over the connector to "
                        "the MCU board, where a pole-zero and gain stage feeds a CR-RC^n shaper, a comparator that "
                        "interrupts the ESP32-S3, and a peak detector with a reset switch and a hold buffer. The "
                        "buffered hold goes straight to the ADS1220 and through a 4:1 mux to the ADS8689 or, as an "
                        "option, the ESP32-S3's own ADC.")
     d.add('<rect class="group" x="20" y="20" width="300" height="300" rx="10"/>')
-    d.text(36, 42, "DETECTOR BOARD (ATMOSPHERE SIDE EXCEPT PD)", "g")
+    d.text(36, 42, "PROBE (ATMOSPHERE SIDE EXCEPT PD)", "g")
     d.box(40, 140, 90, 45, "VTH2110", "photodiode")
     d.box(170, 135, 130, 55, "CSA", "C_{f}, R_{f}, op-amp")
     d.line([(130, 162), (168, 162)])
@@ -76,13 +80,15 @@ def signal_chain():
     d.line([(235, 190), (235, 228)])
     d.box(40, 60, 120, 50, "PD bias filter", "from the HV board")
     d.line([(100, 110), (100, 138)], "pwr")
-    d.box(180, 60, 120, 50, "Test charge", "C_{test}")
+    d.box(180, 60, 120, 50, "Test pulse", "switch, C_{test}")
     d.line([(240, 110), (240, 133)])
 
     d.add('<rect class="group" x="360" y="20" width="720" height="460" rx="10"/>')
     d.text(376, 42, "MCU BOARD (SINGLE +5 V, TLV90XX)", "g")
     d.line([(300, 252), (380, 252)])
     d.text(330, 244, "PicoBlade", "lsig", "middle")
+    d.box(382, 330, 120, 55, "Monitor buffer", "to rear SMA")
+    d.line([(345, 252), (345, 357), (380, 357)])
     d.box(382, 225, 120, 55, "Pole-zero", "and gain stage")
     d.box(540, 225, 120, 55, "Shaper", ["CR-RC^{n}", "τ 2 to 10 µs"])
     d.line([(502, 252), (538, 252)])

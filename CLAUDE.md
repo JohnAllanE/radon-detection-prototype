@@ -2,11 +2,11 @@
 
 | | |
 |---|---|
-| Project | Alpha detection with silicon photodiodes: radon progeny in a 1 kV steel chamber (Part 1) and weld samples in rough vacuum (Part 2), premium against low-cost detector boards |
+| Project | Alpha detection with silicon photodiodes: radon progeny in a 1 kV chamber (Part 1), weld samples in rough vacuum (Part 2). Four single-diode probes, different preamps, one four-channel MCU board |
 | Pass | 1, a sketch of the detector, MCU and HV boards and both chambers, ended by `docs/reviews/pass-1.md` |
-| Activity | Pass 1 architecture accepted, answers recorded. Field simulations S-01 to S-03 done; S-03 awaits the user. No hard stop near: no part is ready to order |
-| Next for the user | Sketch the thin-plate seal; confirm R-47 (0 V board). Then `docs/questions/2026-11-21-detector.md` and the electrometer's |
-| Next for Claude | Pass 2: CSA ngspice model, hold-chain simulation, HV board architecture, prices and stock, a 3D field check of the array centre |
+| Activity | Pass 1 accepted. Field simulations S-01 to S-03 done. Four-probe plan, on-probe test pulse and scope outputs recorded. No hard stop near |
+| Next for the user | Sketch the thin-plate seal; confirm R-47 (0 V board). |
+| Next for Claude | Pass 2: CSA ngspice models (four types, JFET pair stability), test-pulse and monitor parts, hold chain, HV board, prices and stock |
 | Open `VERIFY` items | Notes, the architecture, `parts/selection.md` Open |
 
 ## Workflow
@@ -20,7 +20,7 @@ Follow `$ELECTRONICS_TOOLS/pcb-design-workflow/PCB-WORKFLOW.md`. Tier: full (ana
 - Requirement IDs stay R-xx until the user decides to convert. R-57 to R-72 of the retired electrometer outline are not live (`docs/notes/electrometer-outline.md`).
 - Instruments: Claude writes scripts and shows them, the user runs them. This includes the electrometer (Q-23).
 - Effort goes into building and then measuring, not characterising everything in advance (D-13).
-- Expected outcome of the comparison is "similar" (R-53). Don't add premium capability that won't show in the spectrum.
+- Expected outcome of the comparison is "similar" (R-53). Don't add premium capability that won't show in the spectrum or the test-pulse width.
 
 ## Facts
 

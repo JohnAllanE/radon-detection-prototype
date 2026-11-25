@@ -3,22 +3,22 @@
 
 | | |
 |---|---|
-| Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing a premium and a low-cost detector board |
+| Project | Alpha detection with silicon photodiodes: radon progeny in air (Part 1) and weld samples in rough vacuum (Part 2), comparing four preamp variants on single-diode probes |
 | This document | Purpose, scope, and the R-xx requirements sorted into functions, objectives and constraints. `VERIFY` marks an unconfirmed fact |
-| State | Draft. The user's latest answers recorded: Q-02, Q-17 and Q-20 resolved. One detector per tube proposed (A-29) |
+| State | Draft. The user's latest answers recorded: Q-02, Q-17 and Q-20 resolved. One detector per probe, four channels |
 | Open questions | 0 |
 
 ## Purpose
 
 - Measure alpha particles from radon progeny in air (Part 1) and from weld samples that would matter for low-background scientific apparatus (Part 2).
-- Find out whether a low-cost detector board gives the same radiation readings as a premium one: event type and event frequency, on the same radiation field.
+- Find out whether a low-cost preamp gives the same radiation readings as premium ones: event type and event frequency, on the same radiation field.
 - A low-cost design that works could later be used in large numbers (the user mentions ~100 detectors in parallel).
 
 ## Scope
 
 ### In scope
 
-- Detector board, premium and low-cost variants: one of each per chamber, 4 boards in all
+- Detector boards (probes) in four variants that differ in the preamp: 4 in all, two per chamber
 - MCU board and HV board
 - Both chambers, the Part 1 gas train, board mounting and feedthroughs: mechanics is part of the project (D-04)
 - Test requirements on the boards for the electrometer, which is a separate project in `electrometer/`
@@ -38,7 +38,7 @@
 | R-02 | Part 1 runs on ambient air, with bottled N₂ as the control for self-contamination between runs | firm | User (D-05) | Test |
 | R-03 | Part 2 detects alphas from weld samples held close to the detectors in rough vacuum | firm | User (D-10, D-19) | Test |
 | R-04 | One detector board design serves Part 1 and Part 2 | firm | User | Inspection, test |
-| R-05 | Each chamber runs one premium and one low-cost board at once in the same field, about 3 in (76 mm) apart in Part 1 | firm | User (D-07) | Test |
+| R-05 | Each chamber runs two probes of different variants at once in the same field, facing each other in Part 1. Probes are swapped between positions and chambers at intervals | firm | User | Test |
 | R-12 | Channel gain and noise are matched or characterised, so channels can be compared | working | Claude | Test |
 | R-13 | Each channel is shaped, held at its peak and triggers by itself. The MCU converts the triggered channel, then clears only that one | firm | User | Simulation, test |
 | R-15 | Reports each event's energy code, channel and timestamp to the host | firm | User (D-08) | Test |
@@ -56,6 +56,8 @@
 | R-58 | Part 2 can count with the chamber sealed and the pump off | working | Claude (D-24) | Test |
 | R-59 | Part 2 reads the chamber pressure with a vacuum gauge | working | Claude (D-24) | Inspection |
 | R-60 | Each CSA input has a non-destructive test port, so a populated, cleaned board is measured without soldering | firm | User (electrometer D-02) | Inspection, test |
+| R-77 | Each probe generates a test charge at its preamp input on the MCU's command, often enough to track short-term drift | firm | User | Test |
+| R-78 | Each channel's preamp signal is available on a rear-panel output for an oscilloscope, to see what the peak reading hides | firm | User | Inspection, test |
 | R-76 | Logs its environment, not compensated: ambient temperature, RH and other useful quantities on the board in room air, and the purge air through a flow-through RH/T sensor | firm | User (Q-02) | Inspection, test |
 
 ## Objectives
@@ -64,21 +66,21 @@ Ranked in table order (Claude's ranking, working).
 
 | ID | Objective | Status | Scoring |
 |---|---|---|---|
-| R-53 | Low-cost board's event types and frequencies match the premium board's: closer is better | firm | No quantitative criterion until there is much more data (Q-07, D-17) |
+| R-53 | The low-cost probe's event types and frequencies match the premium probes': closer is better | firm | No quantitative criterion until there is much more data (Q-07, D-17) |
 | R-09 | Energy resolution (FWHM): lower is better. The aim is to tell the radon chain's members apart (Q-04) | firm | Good enough: 100 keV at about 5.5 MeV (D-21), which separates the closest pair, Po-210 and Rn-222 (185 keV apart). Shaping time after the first runs |
 | R-08 | Energy range: the radon chain is required, wider is better | firm | Radon chain 6.0–7.7 MeV required. Weld work, roughly 4–9 MeV, best effort (D-21) |
 | R-14 | Events handled without loss on other channels while one converts: more is better | firm | Good enough: 100 events/s total. Pile-up on one channel detected and flagged (D-21) |
-| R-52 | Gain, baseline and leakage drift over long runs (hours to days, a week or more for calibration): lower is better | working | Limits derived from R-09 in the architecture |
+| R-52 | Gain, baseline and leakage drift over long runs (hours to days, a week or more for calibration): lower is better | working | Limits derived from R-09 in the architecture. Tracked by the radon lines and the test pulse (R-77) |
 | R-73 | Build and assembly effort after the boards are populated: lower is better | working | Off-board connections and conductors in the architecture: fewer is better |
 
 ## Constraints
 
 | ID | Constraint | Status | Source | Verification |
 |---|---|---|---|---|
-| R-06 | Four silicon photodiodes (5 mm active, 5.67 mm die) in a 2×2 array, each with its own charge-sensitive preamp. Eight identical channels per chamber, partial population acceptable at first | firm | User (D-09, Q-08) | Inspection |
-| R-07 | Both variants share connector, pinout and mechanical interface | firm | User | Inspection |
-| R-10 | Low-cost: one standard single 8-pin op-amp footprint, general-purpose parts, no NC pins for guard or feedback. Premium may use dedicated parts and their guard pins | firm | User (D-17) | Inspection |
-| R-74 | Cost: CAD 20 average per channel at most, CAD 10 preferred. Best parts that don't fit go on 1–2 channels per premium board, not all four | firm | User (Q-08) | Inspection of the priced BOM |
+| R-06 | One silicon photodiode (5 mm active, 5.67 mm die) per probe, centred on the chamber axis, with its own charge-sensitive preamp. Four channels in the instrument | firm | User | Inspection |
+| R-07 | All variants share connector, pinout and mechanical interface | firm | User | Inspection |
+| R-10 | Low-cost variant: one standard single 8-pin op-amp footprint, general-purpose parts, no NC pins for guard or feedback. The other variants may use dedicated parts, guard pins and discrete input stages | firm | User (D-17) | Inspection |
+| R-74 | Cost: CAD 20 average per channel at most, CAD 10 preferred, across the four variants | firm | User (Q-08) | Inspection of the priced BOM |
 | R-11 | Works in vacuum and in the Part 1 gas: only the photodiode side is exposed, and parts avoid outgassing | firm | User | Inspection, test |
 | R-54 | The detector board is the pressure boundary: O-ring sealed, photodiodes inside, connectors on the back at atmosphere. Seal concept in A-23 | firm | User (Q-20) | Inspection, test |
 | R-55 | Detector board: two layers | firm | User (D-14) | Inspection |
@@ -115,6 +117,7 @@ None. Resolved by the user's latest answers: Q-02 (R-27, R-76), Q-17 (option (a)
 ## Notes
 
 - [Answered questions](notes/user-answers.md): the user's answers to Q-01 to Q-37.
+- [Four-probe plan](notes/four-probe-plan.md): the four variants, swapping, the radon lines as a calibration, Po-210 carried across.
 - [Decay-chain lines](notes/decay-chain-lines.md): Po-210 to Rn-222 is the closest pair, 185 keV; the smoke-alarm Am-241 source.
 - [HV spacing and readback](notes/hv-spacing-and-readback.md): creepage and clearance, 5.0 mm at 1 kV, the divider before the series resistor.
 - [Physics reference](notes/physics-reference.md): 44.3 fC per MeV, alpha lines, and why 1–10 mbar is enough for Part 2.

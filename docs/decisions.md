@@ -167,3 +167,37 @@ Consequence noted by Claude: a metal valve body touching a chamber wall at +1 kV
 - **Reason:** S-03 (`sim/field/S-03-reduced-end/`, thin plates section): aluminium 1.5 mm at $r_n$ 5, 33.1 cm³; stencil 34.2 cm³ with 2.0 kV/mm at its edge.
 - **Affects:** A-29, A-15, R-47, A-23 (seal to follow).
 - **Replaces:** the S-03 entry's "throat 0.5–1 mm" (1.5 mm plate accepted).
+
+## 2026-11-24: One instrument, four channels, four probe types
+
+- **Decision (user):** one detector per probe is settled (A-29). One MCU board with four channels: two probes on the radon tube, one per end, and two on the vacuum chamber, swapped at intervals. Four probe types: ADA4817-1, LMP7721 (the user said "LT": `VERIFY`), OPA140, and OPA140 behind a dual JFET (Claude: JFE2140 pair, cascode only if simulation asks). The radon lines serve as a running calibration.
+- **Alternatives:** eight channels per chamber on two MCU boards; premium against low-cost boards of four diodes.
+- **Reason:** ions centre on the axis (S-01 to S-03). Swapping separates probe from position.
+- **Affects:** R-05, R-06, R-07, R-10, R-74; A-02, A-06, A-07, A-12, A-17, A-27, A-29, new A-31.
+- **Replaces:** D-07; 2026-11-21 answers, "eight channels per chamber" and A-27.
+
+## 2026-11-24: On-probe test pulse and scope monitor outputs
+
+- **Decision (user):** each probe generates its own test-charge step on an MCU trigger, about once a minute, as a short-term drift check. Each channel has a buffered SMA output on the rear panel for a four-channel scope.
+- **Claude's working additions:** the step's DC level comes from one reference and DAC on the MCU board (one reference for all probes, programmable). The SMA carries the CSA output, not the shaped pulse. A Po-210 line grows on probes that have been on the radon side: blank run after each swap.
+- **Alternatives:** a common TEST line driven from the MCU board or a bench generator (A-08 as it was); a reference on each probe; an FPGA digitiser.
+- **Reason:** no fast analog edge on the cable; the MCU sees only the peak.
+- **Affects:** new R-77, R-78; A-08, new A-32, A-33; R-52.
+- **Replaces:** none.
+
+## 2026-11-24: Probe P-L is the LMP7721; LTC6268 not taken
+
+- **Decision (user):** the "LT" part was the LMP7721, misremembered. P-L is the LMP7721.
+- **Claude, from the user's LTC6268 datasheet:** not a fifth probe. 3 fA and 0.55 pF input, but a 1/f corner at 80 kHz, so about 7 keV at 4 µs like the OPA140, at 16.5 mA on 5 V. Listed as P-L's alternate.
+- **Alternatives:** LTC6268 as P-L or as a fifth type.
+- **Reason:** same leakage test as the LMP7721, no noise gain at this shaping time.
+- **Affects:** A-07.
+- **Replaces:** the `VERIFY` on P-L in the 2026-11-24 four-probe entry.
+
+## 2026-11-24: Test-pulse level from the MCU board's DAC
+
+- **Decision (user):** the test pulse's DC level comes from one reference and DAC on the MCU board, switched on each probe.
+- **Alternatives:** a reference and divider on each probe.
+- **Reason:** one reference for all four probes, programmable amplitude.
+- **Affects:** A-32.
+- **Replaces:** "Claude's working addition" on the level in the 2026-11-24 test-pulse entry.

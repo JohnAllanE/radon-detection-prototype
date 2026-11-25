@@ -37,6 +37,11 @@ amps = {
     # HYPOTHETICAL discrete-JFET front end (not a pulled datasheet): NXP BF862 as quoted by a web search
     # result (e_n about 0.8 nV/rtHz at 100 kHz, Ciss about 10 pF). Loop GBW is a placeholder. VERIFY everything.
     "BF862 + op-amp (hypothetical)": (0.8, 10.0, 100.0, "BF862 figures from a search snippet, datasheet NOT pulled; GBW assumed"),
+    # TI JFE2140 matched dual JFET as a differential pair ahead of the OPA140 (A-31). e_n per device from the TI
+    # product page (0.9 nV/rtHz at 5 mA, 1.1 at 2 mA, 1 kHz); a pair has two devices, so sqrt(2) times that.
+    # Cin = 13 pF (one gate, at V_DS = 5 V). Loop GBW is a placeholder. Datasheet tables NOT extracted: VERIFY.
+    "JFE2140 pair + OPA140, 5 mA each": (0.9 * 2 ** 0.5, 13.0, 100.0, "TI product page figures; pair = sqrt(2) x one device; GBW assumed"),
+    "JFE2140 pair + OPA140, 2 mA each": (1.1 * 2 ** 0.5, 13.0, 100.0, "TI product page figures; pair = sqrt(2) x one device; GBW assumed"),
 }
 shaping_us = [1, 2, 4, 10]
 
@@ -66,7 +71,7 @@ for name, (en, cin, gbw, note) in amps.items():
     ctot = C_pd + C_stray + cin * 1e-12
     gain_noise = ctot / Cf
     tau_amp = gain_noise / (2 * math.pi * gbw * 1e6)
-    print(f"{name}: e_n = {en} nV/rtHz, Ctot = {ctot*1e12:.0f} pF, noise gain Ctot/Cf = {gain_noise:.0f}, "
+    print(f"{name}: e_n = {en:.3g} nV/rtHz, Ctot = {ctot*1e12:.0f} pF, noise gain Ctot/Cf = {gain_noise:.0f}, "
           f"GBW = {gbw:.0f} MHz -> amp time const {tau_amp*1e9:.0f} ns, 10-90% rise ~ {2.2*tau_amp*1e9:.0f} ns  [{note}]")
     for t in shaping_us:
         tau = t * 1e-6

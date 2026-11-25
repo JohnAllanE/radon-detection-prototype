@@ -2,7 +2,7 @@
 
 **Need:** the charge-sensitive preamp's op-amp on each detector board: lowest series noise into about 35 pF, stable with $C_f$ = 1 pF, ±4.5 V rails (R-09, R-10, A-05). Low-cost variant on one standard SOIC-8 footprint, premium free to use guard pins.
 
-**Pick:** Texas Instruments OPA140 for the low-cost board, working (D-17). LMP7721 for the premium board, working and awaiting the user's approval (D-18): it differs by leakage control and guarding, not by noise.
+**Pick:** one part per probe type ([four-probe plan](four-probe-plan.md)), all working: OPA140 (P-T, and behind a JFE2140 pair in P-J), LMP7721 (P-L: leakage control and guarding, not noise), ADA4817-1 (P-A: noise).
 
 **Relied on by:** A-06 (low-cost CSA), A-07 (premium CSA), R-09 (energy resolution), R-10 (low-cost footprint), R-53 (similar readings), R-60 (stable at noise gain 1 with the diode unplugged).
 
@@ -18,6 +18,7 @@ Prices and stock are open (pass 2). The user's estimates: general op-amps about 
 | TL071-class | various | open | open | SOIC-8 | open | Cheapest tier | Not pulled. Noise unknown |
 | **LMP7721** | TI | open (user: $8.40) | open | SOIC-8, non-standard pinout: own footprint | open | 3 fA bias, NC pins separate the inputs for guarding (LMP7721.json p3), 17 MHz | 6.5 nV/√Hz: 6.8–7.3 keV at 4 µs, no noise gain over OPA140 |
 | ADA4817-1 | ADI | open (user: expensive) | open | SOIC-8, FB pin next to −IN, hand-solderable | open | 4.0 nV/√Hz, 1.4 pF, 410 MHz: about 4 keV at 4 µs | 19 mA per amplifier, about 0.7 W per board: heats the diode side |
+| LTC6268 | ADI (Linear) | open | open | SOIC-8, two NC pins for a guard ring (p1, p11) | open | 3 fA typical, 0.55 pF input, 500 MHz, unity-gain stable (p1, p3, p4) | 1/f corner at 80 kHz (p12): about 7 nV/√Hz near 40 kHz, so about 7 keV at 4 µs. 3.1–5.25 V, 16.5 mA |
 | ADA4530-1 | ADI | open (user: expensive) | open | SOIC-8, guard pins both sides | open | 20 fA, built-in guard buffer | 14 nV/√Hz, 2 MHz, 8 pF: about 15 keV at 4 µs. Kept for the electrometer |
 
 Prices: none checked. Exchange rate: not applicable yet.
@@ -28,6 +29,13 @@ Prices: none checked. Exchange rate: not applicable yet.
 - The noise idea (ADA4817-1, about 4 against 7 keV at 4 µs) is the one with a visible effect on peak width, at a power and price cost.
 - So ADA4817-1 gives the information-rich answer and LMP7721 the affordable one. The cheapest informative step is one or two ADA4817-1 on a single-channel test, not eight.
 - Expected outcome: both boards measure similar spectra. Differences show in baseline leakage and drift (R-52), not peak widths.
+
+### LTC6268, read and not taken
+
+- Its 4.3 nV/√Hz is quoted at 1 MHz. The datasheet puts the 1/f corner at 80 kHz (p12), above the 4 µs shaper's band near 40 kHz.
+- Taking $e_n^2 = 4.3^2 (1 + 80\ \text{kHz}/f)$, the density near 40 kHz is about 7.4 nV/√Hz (Claude's estimate from the stated corner, not a datasheet figure).
+- Series noise goes as $e_n C_{tot}$: 7.4 × 35.6 pF for the LTC6268 against 5.1 × 52 pF for the OPA140, the same within 1 %. Its small input capacitance is cancelled by the 1/f noise.
+- So it would repeat the LMP7721's test (fA bias, guard pins, a 5 V supply) at 16.5 mA, and is not a fifth probe. It would be the better part at shaping times of 1 µs or less.
 
 ### The two variants
 
@@ -48,5 +56,5 @@ Prices: none checked. Exchange rate: not applicable yet.
 
 ## Sources
 
-- `datasheets/OPA140.json` p7, `OPA656.json` p5, `OPA657.json`, `LMP7721.json` p3, `ADA4817-1.json` p1, p4, `ADA4530-1.json` (to migrate to component-data, which has none of these yet).
+- `datasheets/OPA140.json` p7, `OPA656.json` p5, `OPA657.json`, `LMP7721.json` p3, `ADA4817-1.json` p1, p4, `ADA4530-1.json`, `LTC6268.pdf` (the user's copy, 62689f, no JSON extract yet) (to migrate to component-data, which has none of these yet).
 - [Noise budget](noise-budget.md), [JFET and module noise](jfet-and-module-noise.md).

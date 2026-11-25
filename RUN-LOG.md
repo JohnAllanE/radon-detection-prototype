@@ -17,6 +17,7 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Done
 
+- 2026-11-24 (session with the user): four-probe plan. One four-channel MCU board, probes P-A (ADA4817-1), P-L (LMP7721, confirmed; LTC6268 read and not taken), P-T (OPA140), P-J (JFE2140 pair + OPA140); on-probe test pulse (A-32), SMA monitor outputs (A-33); R-05, R-06, new R-77, R-78; notes `four-probe-plan.md`, `test-pulse-and-monitor.md`; `enc_budget.py` JFE2140 rows; diagrams redrawn. doclint 0.
 - 2026-11-22: the user chose a thin flat plate (1.5 mm aluminium or stencil); `plates.py` run, both within 3 %. Per-channel threshold, one detector low for Bi-214 betas. Seal design: the user sketches it.
 - 2026-11-22 (session with the user): S-03 reduced-end sweep (`sim/field/S-03-reduced-end/`, sketch confirmed by the user): flat lip, $r_n$ 5, throat ≤ 1 mm, 0 V board, index 33.7 cm³. Decay-chain reading note `docs/notes/radon-chain-for-the-detector.md` (e01ea02), sourced from `docs/references/` (4d9bdc6): neutralisation 11–70 s, 88 % charged, Bi-214 beta vs dead time. A-15, A-29, decisions entry.
 - 2026-11-21 coordinator step C: electrometer answers recorded (R-20, R-24, R-25, R-29, new R-35; A-06, A-10, A-12, A-13, A-16, A-18; decisions; questions table). Note `electrometer/docs/notes/data-link-and-power.md` (ADuM3160 isolated USB, GX12-4 pack, sealed head). doclint 0 both. The electrometer's block diagram still shows ESP-NOW: redraw in pass 2.
@@ -36,11 +37,11 @@ Rewrite both designs' documents to the document contract (brief: `docs/briefs/do
 
 ## Running
 
-- Nothing running. The single-pd-sweep brief and the coordinator's steps A–C are committed; nothing pushed.
+- Nothing running. Everything is committed and pushed (2026-11-24, at the user's request).
 
 ## Next
 
-- The user shares the seal sketch for the thin plate and confirms R-47 (0 V board). Then pass 2.
+- The user shares the seal sketch for the thin plate and confirms R-47 (0 V board). Then pass 2, starting with the four CSA ngspice models.
 
 ## Decisions made while the user was away
 

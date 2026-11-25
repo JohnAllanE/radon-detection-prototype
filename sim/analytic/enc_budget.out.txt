@@ -12,7 +12,7 @@ OPA140: e_n = 5.1 nV/rtHz, Ctot = 52 pF, noise gain Ctot/Cf = 52, GBW = 11 MHz -
    tau = 10 us, leak typ 0.15 nA: series    503 e, shot  132 e, Rf  244 e -> ENC    575 e rms =   4.9 keV FWHM
    tau = 10 us, leak    max 2 nA: series    503 e, shot  480 e, Rf  244 e -> ENC    737 e rms =   6.3 keV FWHM
 
-OPA656: e_n = 6.0 nV/rtHz, Ctot = 38 pF, noise gain Ctot/Cf = 38, GBW = 230 MHz -> amp time const 26 ns, 10-90% rise ~ 58 ns  [Cin = 2.6 diff + 0.4 cm (OPA656.json p5)]
+OPA656: e_n = 6 nV/rtHz, Ctot = 38 pF, noise gain Ctot/Cf = 38, GBW = 230 MHz -> amp time const 26 ns, 10-90% rise ~ 58 ns  [Cin = 2.6 diff + 0.4 cm (OPA656.json p5)]
    tau =  1 us, leak typ 0.15 nA: series   1368 e, shot   42 e, Rf   77 e -> ENC   1371 e rms =  11.7 keV FWHM
    tau =  1 us, leak    max 2 nA: series   1368 e, shot  152 e, Rf   77 e -> ENC   1378 e rms =  11.8 keV FWHM
    tau =  2 us, leak typ 0.15 nA: series    967 e, shot   59 e, Rf  109 e -> ENC    975 e rms =   8.3 keV FWHM
@@ -42,7 +42,7 @@ LMP7721: e_n = 6.5 nV/rtHz, Ctot = 40 pF, noise gain Ctot/Cf = 40, GBW = 17 MHz 
    tau = 10 us, leak typ 0.15 nA: series    493 e, shot  132 e, Rf  244 e -> ENC    566 e rms =   4.8 keV FWHM
    tau = 10 us, leak    max 2 nA: series    493 e, shot  480 e, Rf  244 e -> ENC    731 e rms =   6.2 keV FWHM
 
-ADA4817-1: e_n = 4.0 nV/rtHz, Ctot = 36 pF, noise gain Ctot/Cf = 36, GBW = 410 MHz -> amp time const 14 ns, 10-90% rise ~ 31 ns  [Cin = 1.3 cm + 0.1 diff (ADA4817-1.json p1); GBW >= 410 MHz (p4)]
+ADA4817-1: e_n = 4 nV/rtHz, Ctot = 36 pF, noise gain Ctot/Cf = 36, GBW = 410 MHz -> amp time const 14 ns, 10-90% rise ~ 31 ns  [Cin = 1.3 cm + 0.1 diff (ADA4817-1.json p1); GBW >= 410 MHz (p4)]
    tau =  1 us, leak typ 0.15 nA: series    874 e, shot   42 e, Rf   77 e -> ENC    878 e rms =   7.5 keV FWHM
    tau =  1 us, leak    max 2 nA: series    874 e, shot  152 e, Rf   77 e -> ENC    890 e rms =   7.6 keV FWHM
    tau =  2 us, leak typ 0.15 nA: series    618 e, shot   59 e, Rf  109 e -> ENC    630 e rms =   5.4 keV FWHM
@@ -52,7 +52,7 @@ ADA4817-1: e_n = 4.0 nV/rtHz, Ctot = 36 pF, noise gain Ctot/Cf = 36, GBW = 410 M
    tau = 10 us, leak typ 0.15 nA: series    276 e, shot  132 e, Rf  244 e -> ENC    391 e rms =   3.3 keV FWHM
    tau = 10 us, leak    max 2 nA: series    276 e, shot  480 e, Rf  244 e -> ENC    606 e rms =   5.2 keV FWHM
 
-ADA4530-1: e_n = 14.0 nV/rtHz, Ctot = 43 pF, noise gain Ctot/Cf = 43, GBW = 2 MHz -> amp time const 3422 ns, 10-90% rise ~ 7528 ns  [e_n at 10 kHz; Cin 8 pF; GBW 2 MHz (ADA4530-1 datasheet)]
+ADA4530-1: e_n = 14 nV/rtHz, Ctot = 43 pF, noise gain Ctot/Cf = 43, GBW = 2 MHz -> amp time const 3422 ns, 10-90% rise ~ 7528 ns  [e_n at 10 kHz; Cin 8 pF; GBW 2 MHz (ADA4530-1 datasheet)]
    tau =  1 us, leak typ 0.15 nA: series   3612 e, shot   42 e, Rf   77 e -> ENC   3613 e rms =  30.8 keV FWHM
    tau =  1 us, leak    max 2 nA: series   3612 e, shot  152 e, Rf   77 e -> ENC   3616 e rms =  30.8 keV FWHM
    tau =  2 us, leak typ 0.15 nA: series   2554 e, shot   59 e, Rf  109 e -> ENC   2557 e rms =  21.8 keV FWHM
@@ -71,6 +71,26 @@ BF862 + op-amp (hypothetical): e_n = 0.8 nV/rtHz, Ctot = 45 pF, noise gain Ctot/
    tau =  4 us, leak    max 2 nA: series    108 e, shot  304 e, Rf  154 e -> ENC    357 e rms =   3.0 keV FWHM
    tau = 10 us, leak typ 0.15 nA: series     68 e, shot  132 e, Rf  244 e -> ENC    286 e rms =   2.4 keV FWHM
    tau = 10 us, leak    max 2 nA: series     68 e, shot  480 e, Rf  244 e -> ENC    543 e rms =   4.6 keV FWHM
+
+JFE2140 pair + OPA140, 5 mA each: e_n = 1.27 nV/rtHz, Ctot = 48 pF, noise gain Ctot/Cf = 48, GBW = 100 MHz -> amp time const 76 ns, 10-90% rise ~ 168 ns  [TI product page figures; pair = sqrt(2) x one device; GBW assumed]
+   tau =  1 us, leak typ 0.15 nA: series    367 e, shot   42 e, Rf   77 e -> ENC    377 e rms =   3.2 keV FWHM
+   tau =  1 us, leak    max 2 nA: series    367 e, shot  152 e, Rf   77 e -> ENC    404 e rms =   3.4 keV FWHM
+   tau =  2 us, leak typ 0.15 nA: series    259 e, shot   59 e, Rf  109 e -> ENC    287 e rms =   2.4 keV FWHM
+   tau =  2 us, leak    max 2 nA: series    259 e, shot  215 e, Rf  109 e -> ENC    354 e rms =   3.0 keV FWHM
+   tau =  4 us, leak typ 0.15 nA: series    183 e, shot   83 e, Rf  154 e -> ENC    254 e rms =   2.2 keV FWHM
+   tau =  4 us, leak    max 2 nA: series    183 e, shot  304 e, Rf  154 e -> ENC    387 e rms =   3.3 keV FWHM
+   tau = 10 us, leak typ 0.15 nA: series    116 e, shot  132 e, Rf  244 e -> ENC    301 e rms =   2.6 keV FWHM
+   tau = 10 us, leak    max 2 nA: series    116 e, shot  480 e, Rf  244 e -> ENC    551 e rms =   4.7 keV FWHM
+
+JFE2140 pair + OPA140, 2 mA each: e_n = 1.56 nV/rtHz, Ctot = 48 pF, noise gain Ctot/Cf = 48, GBW = 100 MHz -> amp time const 76 ns, 10-90% rise ~ 168 ns  [TI product page figures; pair = sqrt(2) x one device; GBW assumed]
+   tau =  1 us, leak typ 0.15 nA: series    448 e, shot   42 e, Rf   77 e -> ENC    457 e rms =   3.9 keV FWHM
+   tau =  1 us, leak    max 2 nA: series    448 e, shot  152 e, Rf   77 e -> ENC    479 e rms =   4.1 keV FWHM
+   tau =  2 us, leak typ 0.15 nA: series    317 e, shot   59 e, Rf  109 e -> ENC    340 e rms =   2.9 keV FWHM
+   tau =  2 us, leak    max 2 nA: series    317 e, shot  215 e, Rf  109 e -> ENC    398 e rms =   3.4 keV FWHM
+   tau =  4 us, leak typ 0.15 nA: series    224 e, shot   83 e, Rf  154 e -> ENC    285 e rms =   2.4 keV FWHM
+   tau =  4 us, leak    max 2 nA: series    224 e, shot  304 e, Rf  154 e -> ENC    408 e rms =   3.5 keV FWHM
+   tau = 10 us, leak typ 0.15 nA: series    142 e, shot  132 e, Rf  244 e -> ENC    311 e rms =   2.7 keV FWHM
+   tau = 10 us, leak    max 2 nA: series    142 e, shot  480 e, Rf  244 e -> ENC    557 e rms =   4.7 keV FWHM
 
 Benchmark: Cremat CR-110-R2.1 (CR-110-R2.1.json p1): 200 e + 3.8 e/pF at 1 us (premium module)
    at 33 pF: about 325 e rms = 2.8 keV FWHM (simple sum, VERIFY)
